@@ -38,39 +38,30 @@
         <h2>📍 Mapa de Mantenimiento Comunitario</h2>
         <p><small>Las alertas con localización GPS se marcan automáticamente en el mapa para organizar las brigadas de limpieza vecinal.</small></p>
         
-        <!-- Contenedor donde se dibuja el mapa -->
         <div id="mapa-municipio"></div>
 
         <h2>🛠️ Detalle de Incidencias Pendientes</h2>
     <div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div>
         <script>
-            // 1. Inicializar el mapa centrado por defecto en el Geoparque de Las Loras (Burgos/Palencia)
-            // Cambia estas coordenadas por las exactas de la plaza de tu pueblo si quieres
             const mapa = L.map('mapa-municipio').setView([42.715, -3.885], 13);
 
-            # Capa visual de OpenStreetMap (Estilo claro y limpio)
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
             }).addTo(mapa);
 
-            // 2. Cargar los marcadores de la base de datos inyectados por Python
             const datosMarcadores = [{"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}, {"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}, {"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}];
-            
             let puntosValidos = [];
 
             datosMarcadores.forEach(function(item) {
-                // Añadir pin en el mapa
                 const marker = L.marker([item.lat, item.lon]).addTo(mapa);
-                // Bocadillo emergente al hacer clic en el pin
                 marker.bindPopup("<b>Avería:</b> " + item.desc + "<br><small>Estado: " + item.estado + "</small>");
                 puntosValidos.push([item.lat, item.lon]);
             });
 
-            // 3. Si hay marcadores, auto-ajustar el zoom del mapa para que se vean todos a la vez
             if (puntosValidos.length > 0) {
                 const bounds = L.latLngBounds(puntosValidos);
-                mapa.fitBounds(bounds, { padding: [50, 50] });
+                mapa.fitBounds(bounds, { padding: [30, 30] });
             }
         </script>
     </body>
