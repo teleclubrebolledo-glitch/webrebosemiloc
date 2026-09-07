@@ -1,18 +1,21 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Soberanía Rural y Bienestar - Comunidad Autónoma</title>
+        
+        <!-- Librería de Mapas Libres Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com" />
+        <script src="https://unpkg.com"></script>
+
         <style>
-            body { font-family: monospace; max-width: 800px; margin: 0 auto; padding: 20px; background: #faf9f6; color: #333; line-height: 1.6; }
+            body { font-family: monospace; max-width: 900px; margin: 0 auto; padding: 20px; background: #faf9f6; color: #333; line-height: 1.6; }
             h1, h2, h3 { color: #2e4a24; border-bottom: 1px solid #2e4a24; padding-bottom: 5px; }
             .bloque { background: white; border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 4px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
             .incidencia { border-left: 5px solid #d9534f; }
-            .coordenadas { color: #666; font-size: 0.9em; font-weight: bold; }
+            #mapa-municipio { height: 400px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 20px; background: #eee; }
             a { color: #2e4a24; text-decoration: underline; }
-            a:hover { color: #4a733a; }
             small { color: #777; }
         </style>
     </head>
@@ -22,6 +25,11 @@
         
         <h2>📢 Tablón Informativo (Secciones Dinámicas)</h2>
     
+            <div class="bloque">
+                <h3>Sección: NOTICIAS_CONTROL</h3>
+                <p>Bienvenidos al nuevo portal autónomo del Teleclub. El mapa ya está activo.</p>
+            </div>
+            
             <div class="bloque">
                 <h3>Sección: NOTICIAS_CONTROL</h3>
                 <p>kikiд ывшо ввыы двовышывщ ыщш выов</p>
@@ -36,7 +44,36 @@
                 <h3>Sección: NOTICIAS_CONTROL</h3>
                 <p>jdjdk</p>
             </div>
-            <h2>📍 Incidencias y Mantenimiento del Municipio</h2><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p class="coordenadas">📍 Ubicación: <a href="https://google.com42.7302,-3.891" target="_blank">Ver coordenadas GPS en Google Maps</a></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p class="coordenadas">📍 Ubicación: <a href="https://google.com42.7302,-3.891" target="_blank">Ver coordenadas GPS en Google Maps</a></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p class="coordenadas">📍 Ubicación: <a href="https://google.com42.7302,-3.891" target="_blank">Ver coordenadas GPS en Google Maps</a></p><p><small>Estado actual: <b>Pendiente</b></small></p></div>
+            
+        <h2>📍 Mapa de Mantenimiento Comunitario</h2>
+        <p><small>Las alertas con localización GPS se marcan automáticamente en el mapa para organizar las brigadas de limpieza vecinal.</small></p>
+        
+        <div id="mapa-municipio"></div>
+
+        <h2>🛠️ Detalle de Incidencias Pendientes</h2>
+    <div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div><div class="bloque incidencia"><p><strong>Aviso de avería:</strong> Balsa de agua atascada cerca del camino</p><p><small>Coordenadas registradas: 42.7302, -3.891</small></p><p><small>Estado actual: <b>Pendiente</b></small></p></div>
+        <script>
+            const mapa = L.map('mapa-municipio').setView([42.715, -3.885], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+            }).addTo(mapa);
+
+            const datosMarcadores = [{"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}, {"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}, {"desc": "Balsa de agua atascada cerca del camino", "lat": 42.7302, "lon": -3.891, "estado": "Pendiente"}];
+            let puntosValidos = [];
+
+            datosMarcadores.forEach(function(item) {
+                const marker = L.marker([item.lat, item.lon]).addTo(mapa);
+                marker.bindPopup("<b>Avería:</b> " + item.desc + "<br><small>Estado: " + item.estado + "</small>");
+                puntosValidos.push([item.lat, item.lon]);
+            });
+
+            if (puntosValidos.length > 0) {
+                const bounds = L.latLngBounds(puntosValidos);
+                mapa.fitBounds(bounds, { padding: });
+            }
+        </script>
     </body>
     </html>
     
