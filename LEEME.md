@@ -11,7 +11,8 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 - [x] Bot de Telegram: @rebolledodelatorre_bot (enlazado en `colabora.html`).
 - [ ] Decidir si se publica como **proyecto comunitario no oficial** (como está redactado) o en coordinación con el Ayuntamiento. No hacerse pasar por la web oficial.
 - [ ] Contenido de Naturaleza, Historia y Estrellas con **fuentes citadas** (nada de memoria).
-- [ ] Fotos y vídeo: **autoría propia o permiso/licencia**, con crédito; texto alternativo en cada imagen; subtítulos o transcripción en vídeo. Sin personas reconocibles sin consentimiento por escrito (L.O. 1/1982).
+- [x] Vídeo de portada (`media/cielo-nocturno.mp4`, recomprimido de 13,6 a 2,6 MB, sin audio): permiso confirmado por TeleCluB.
+- [ ] Fotos: **autoría propia o permiso/licencia**, con crédito; texto alternativo en cada imagen; subtítulos o transcripción en vídeo. Sin personas reconocibles sin consentimiento por escrito (L.O. 1/1982).
 - [ ] Revisión por un gestor o abogado del Aviso legal y de Privacidad (los textos son un borrador de buena fe, no asesoría jurídica).
 
 ## Reglas que mantiene esta web (para no incumplir normativa)

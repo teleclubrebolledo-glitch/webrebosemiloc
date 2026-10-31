@@ -88,6 +88,14 @@ def main():
     <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
   </div>
 
+  <figure class="portada-video">
+    <video controls muted loop playsinline preload="none" poster="media/cielo-nocturno.jpg" aria-label="Cielo nocturno sobre Rebolledo de la Torre (vídeo sin sonido)">
+      <source src="media/cielo-nocturno.mp4" type="video/mp4">
+      Tu navegador no puede reproducir el vídeo.
+    </video>
+    <figcaption>Cielo nocturno sobre Rebolledo · vídeo sin sonido, con permiso de su autor</figcaption>
+  </figure>
+
   <nav class="arbol" aria-label="Secciones">
 {ramas}  </nav>
 </main>
