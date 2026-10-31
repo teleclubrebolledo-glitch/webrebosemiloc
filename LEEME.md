@@ -28,7 +28,7 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 Si se quiere recuperar un tablón o avisos de vecinos, hay que diseñarlo con moderación previa, base legal de tratamiento y política de privacidad.
 
 ## Diseño y cómo editarlo
-- Diseño «árbol de roble»: SVG + CSS puros (`css/arbol.css`), un único símbolo de hoja reutilizado, tronco que se estrecha, hojas espejadas a ambos lados, ramas que crecen despacio al abrir una hoja (`<details>`), sin JavaScript y con animación desactivada si el usuario pide menos movimiento.
+- Diseño (v2, 2026-10-31): la **curvatura de los lóbulos del roble** como único motivo (`css/roble.css`): bordes festoneados por máscara SVG, rama de fondo que se dibuja con el scroll, submenús que crecen despacio como una rama (`<details>`), títulos con degradado y trazo que se dibuja, tarjetas con esquinas de hoja y revelado por scroll. Sin hojas dibujadas ni contenido dentro de hojas. Sin JavaScript; animaciones solo con soporte y sin «movimiento reducido»; `@view-transition` entre páginas.
 - El contenido está en `construir.py` (lista `CONTENIDO`); `python3 construir.py` regenera `index.html`. La galería la regenera el bot de fotos.
 - Contenido tomado de la web anterior (web-rebolledo.pages.dev: rutas, astroturismo, eclipse, canales de Telegram). **Verificar cada dato** antes de publicar (distancias, desnivel, iglesia románica del s. XII, etc.).
 - Coordenadas corregidas: 42.6889, -4.2271 (las de Windy de la web anterior). Antes había puesto 42.7302, -3.8910, que venían de una entrada de prueba del tablón.

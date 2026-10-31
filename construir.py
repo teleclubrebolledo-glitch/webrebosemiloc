@@ -30,81 +30,80 @@ CONTENIDO = [
                             ("Contacto", '<a href="mailto:teleclubrebolledo@gmail.com">teleclubrebolledo@gmail.com</a>')]),
 ]
 
-SIMBOLO = '''<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="hoja" viewBox="-38 -2 76 116" preserveAspectRatio="none">
-      <g id="mitad"><path class="f" d="M0 100C7 97 12 94 13 89C24 90 34 84 30 77C27 73 20 74 15 72C27 71 36 63 31 56C28 52 20 53 15 51C27 49 35 41 28 35C26 31 19 32 13 30C23 28 27 20 20 14C16 10 8 8 0 0Z"/><path class="v" d="M0 92L18 83M0 74L20 63M0 54L18 43M0 36L13 25"/></g>
-      <use href="#mitad" transform="scale(-1 1)"/>
-      <path class="v" d="M0 112V6"/>
-    </symbol>
-  </defs>
-</svg>'''
+LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
+         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
+         "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
+         "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
+         "comunidad": "Canales de Telegram, fotos de vecinas y vecinos, y cómo sumarse.",
+         "visitar": "Cómo llegar, el tiempo y cómo escribirnos."}
 
+# Curvatura de lóbulos de roble como único motivo: borde festoneado (máscara), línea que crece y rama de fondo.
+def rama_fondo():
+    return ('<svg class="rama-fondo" viewBox="0 0 120 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+            '<path class="tallo" pathLength="1" d="M70 1000C96 930 40 880 66 820S104 720 62 650 28 560 70 480 96 380 56 300 38 210 74 140 80 60 62 0"/>'
+            '<path class="ramita r1" pathLength="1" d="M64 830C40 810 22 812 8 790"/>'
+            '<path class="ramita r2" pathLength="1" d="M70 480C94 462 108 466 118 444"/>'
+            '<path class="ramita r3" pathLength="1" d="M56 300C34 288 22 292 10 270"/>'
+            '<path class="ramita r4" pathLength="1" d="M74 140C94 126 106 132 116 112"/>'
+            '</svg>')
 
-def hoja(clase, interior):
-    return f'<div class="{clase}"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg>{interior}</div>'
+def tarjeta(ident, titulo, texto):
+    return f'<article class="tarjeta" id="{ident}"><h3>{escape(titulo)}</h3><p>{texto}</p></article>'
 
+def seccion(i, ident, nombre, subs):
+    tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
+    rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
+    return (f'  <section class="banda b{i % 2}" id="{ident}" style="--z:{40-i}" aria-labelledby="h-{ident}">\n'
+            f'    <div class="envoltorio">\n      <h2 id="h-{ident}">{escape(nombre)}</h2>{rama}\n'
+            f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
-def rama(i, ident, nombre, subs):
-    lado = "izq" if i % 2 == 0 else "der"
-    ramita = '<svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg>'
-    ramita_sub = '<svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg>'
-    menu = hoja("hoja-menu", f'<span class="nombre">{escape(nombre)}</span>')
-    lado_html = f'<span class="lado">{ramita}{menu}</span>'
-    hijos = ""
-    for j, (titulo, texto) in enumerate(subs):
-        l2 = lado if j % 2 == 0 else ("der" if lado == "izq" else "izq")
-        hijos += (f'<article class="sub {l2}" style="--i:{j}">{ramita_sub}'
-                  + hoja("hoja-sub", f'<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div>') + '</article>\n        ')
-    return (f'    <details class="rama {lado}" name="menu" id="{ident}">\n      <summary>{lado_html}</summary>\n'
-            f'      <div class="brote">\n        {hijos}</div>\n    </details>\n')
-
+def menu(ident, nombre, subs):
+    enlaces = "".join(f'<a href="#{ident}-{j+1}">{escape(t)}</a>' for j, (t, _) in enumerate(subs))
+    return (f'<li><details name="m"><summary>{escape(nombre)}</summary><div class="sub">'
+            f'<svg viewBox="0 0 12 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 0C0 25 12 40 6 60S4 90 6 100"/></svg>'
+            f'<a href="#{ident}">Ver todo</a>{enlaces}</div></details></li>')
 
 def main():
-    ramas = "".join(rama(i, *c) for i, c in enumerate(CONTENIDO))
-    pagina = f'''<!DOCTYPE html>
+    nav = "".join(menu(*c) for c in CONTENIDO)
+    secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
+    pagina = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rebolledo de la Torre · Naturaleza, historia y estrellas</title>
-<meta name="description" content="Página comunitaria no oficial sobre Rebolledo de la Torre (Burgos): naturaleza, historia, cielo nocturno y cómo visitarlo.">
+<meta name="description" content="Página comunitaria no oficial sobre Rebolledo de la Torre (Burgos): rutas, cielo nocturno, patrimonio y comunidad.">
+<meta name="theme-color" content="#2e5a2b">
 <link rel="stylesheet" href="css/estilo.css">
-<link rel="stylesheet" href="css/arbol.css">
+<link rel="stylesheet" href="css/roble.css">
 </head>
 <body>
-{SIMBOLO}
 <a class="salto" href="#contenido">Saltar al contenido</a>
-<header class="cabecera">
-  <div class="envoltorio">
-    <div class="marca"><strong>Rebolledo de la Torre</strong><span>Naturaleza, historia y estrellas</span></div>
-  </div>
+{rama_fondo()}
+<header class="barra">
+  <a class="marca" href="#inicio"><strong>Rebolledo de la Torre</strong></a>
+  <nav aria-label="Principal"><ul>{nav}</ul></nav>
 </header>
 
-<main id="contenido" class="envoltorio">
-  <div class="portada">
-    <h1>Un pueblo, su campo y su cielo</h1>
-    <p>Página comunitaria dedicada a Rebolledo de la Torre. Toca una hoja para ver cómo crece la rama.</p>
-    <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
-  </div>
-
-  <figure class="portada-video">
+<main id="contenido">
+  <section class="portada" id="inicio" style="--z:50">
     <video controls muted loop playsinline preload="none" poster="media/cielo-nocturno.jpg" aria-label="Cielo nocturno sobre Rebolledo de la Torre (vídeo sin sonido)">
       <source src="media/cielo-nocturno.mp4" type="video/mp4">
-      Tu navegador no puede reproducir el vídeo.
     </video>
-    <figcaption>Cielo nocturno sobre Rebolledo · vídeo sin sonido, con permiso de su autor</figcaption>
-  </figure>
+    <div class="portada-texto">
+      <h1>Rebolledo de la Torre</h1>
+      <p>Naturaleza, historia y estrellas</p>
+    </div>
+  </section>
+  <p class="aviso envoltorio"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
+{secciones}</main>
 
-  <nav class="arbol" aria-label="Secciones">
-{ramas}  </nav>
-</main>
-
-<footer>
+<footer class="pie">
   <div class="envoltorio">
-    <p>Proyecto comunitario sin ánimo de lucro. Esta web no usa cookies, no usa servicios de analítica ni publicidad y no recoge datos personales.</p>
+    <p>Proyecto comunitario sin ánimo de lucro. Sin cookies, sin analítica, sin publicidad y sin recoger datos personales. Vídeo de portada con permiso de su autor.</p>
     <ul>
       <li><a href="colabora.html">Colabora con tus fotos</a></li>
+      <li><a href="galeria.html">Galería</a></li>
       <li><a href="aviso-legal.html">Aviso legal</a></li>
       <li><a href="privacidad.html">Privacidad y cookies</a></li>
       <li><a href="accesibilidad.html">Accesibilidad</a></li>
@@ -113,7 +112,7 @@ def main():
 </footer>
 </body>
 </html>
-'''
+"""
     Path(__file__).with_name("index.html").write_text(pagina)
     print("index.html generado")
 
