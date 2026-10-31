@@ -4,7 +4,8 @@ Web estática (HTML + CSS, sin JavaScript, sin cookies, sin servicios de tercero
 Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de abajo.
 
 ## Antes de publicar (marcado con «Por completar» / «por definir» en las páginas)
-- [ ] **Titular** de la web, correo de contacto y, si procede, NIF → `aviso-legal.html`, `privacidad.html`, `accesibilidad.html`, sección Contacto.
+- [x] Titular (TeleCluB Rebolledo de la Torre) y correo (teleclubrebolledo@gmail.com) incorporados.
+- [ ] **NIF y domicilio del titular**: confirmar si TeleCluB tiene personalidad jurídica (asociación inscrita) o es un grupo informal; en ese caso la persona responsable debe figurar como titular. Obligatorio identificar si hay actividad económica (LSSI-CE art. 10); recomendable siempre.
 - [ ] Decidir si se publica como **proyecto comunitario no oficial** (como está redactado) o en coordinación con el Ayuntamiento. No hacerse pasar por la web oficial.
 - [ ] Contenido de Naturaleza, Historia y Estrellas con **fuentes citadas** (nada de memoria).
 - [ ] Fotos y vídeo: **autoría propia o permiso/licencia**, con crédito; texto alternativo en cada imagen; subtítulos o transcripción en vídeo. Sin personas reconocibles sin consentimiento por escrito (L.O. 1/1982).
