@@ -1,0 +1,36 @@
+/* Rebolledo de la Torre · estilo luminoso y rural. Sin fuentes externas, sin scripts, sin cookies. */
+:root{
+  --papel:#fbf8ef; --tinta:#26331f; --tenue:#56604c; --verde:#2e5a2b; --verde-claro:#e4efd9;
+  --trigo:#e8b84a; --cielo:#dcebf5; --linea:#d9d2bd; --foco:#0b57d0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font:18px/1.65 Georgia,"Times New Roman",serif}
+img,video{max-width:100%;height:auto}
+a{color:var(--verde);text-underline-offset:3px}
+a:hover{color:#1d3d1b}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px;border-radius:3px}
+.salto{position:absolute;left:-999px;top:0;background:#fff;padding:10px 16px;z-index:100}
+.salto:focus{left:8px;top:8px}
+header.cabecera{background:linear-gradient(180deg,var(--cielo),var(--papel));border-bottom:1px solid var(--linea)}
+.envoltorio{max-width:960px;margin:0 auto;padding:0 20px}
+.marca{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding:18px 0 6px}
+.marca strong{font-size:1.5rem;letter-spacing:.01em}
+.marca span{color:var(--tenue);font-size:1rem}
+nav ul{list-style:none;margin:0;padding:6px 0 14px;display:flex;flex-wrap:wrap;gap:6px 18px}
+nav a{display:inline-block;padding:6px 2px;font-family:system-ui,sans-serif;font-size:1rem}
+.portada{padding:42px 0 30px}
+.portada h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;margin:0 0 12px;color:var(--verde)}
+.portada p{font-size:1.15rem;max-width:40em;color:var(--tenue)}
+section{padding:34px 0;border-top:1px solid var(--linea)}
+section h2{font-size:1.7rem;margin:0 0 10px;color:var(--verde)}
+.tarjetas{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:16px}
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:14px 0 14px 0;padding:16px 18px}
+.tarjeta h3{margin:0 0 6px;font-size:1.15rem}
+.aviso{background:var(--verde-claro);border-left:5px solid var(--verde);padding:12px 16px;border-radius:0 10px 10px 0;font-family:system-ui,sans-serif;font-size:.98rem}
+.pendiente{background:#fff6dc;border:1px dashed var(--trigo);padding:2px 8px;border-radius:6px;font-family:system-ui,sans-serif;font-size:.9em}
+footer{border-top:1px solid var(--linea);margin-top:30px;padding:22px 0 40px;color:var(--tenue);font-family:system-ui,sans-serif;font-size:.95rem}
+footer ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.legal h1{color:var(--verde)} .legal h2{font-size:1.3rem;margin-top:26px;color:var(--tinta)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{header nav,.salto{display:none}body{background:#fff;font-size:12pt}}
