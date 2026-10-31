@@ -25,3 +25,14 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 - El tablón automático de Telegram con mensajes de prueba y avisos con coordenadas, sin moderación.
 - Enlaces de mapa rotos.
 Si se quiere recuperar un tablón o avisos de vecinos, hay que diseñarlo con moderación previa, base legal de tratamiento y política de privacidad.
+
+## Diseño y cómo editarlo
+- Diseño «árbol de roble»: SVG + CSS puros (`css/arbol.css`), un único símbolo de hoja reutilizado, tronco que se estrecha, hojas espejadas a ambos lados, ramas que crecen despacio al abrir una hoja (`<details>`), sin JavaScript y con animación desactivada si el usuario pide menos movimiento.
+- El contenido está en `construir.py` (lista `CONTENIDO`); `python3 construir.py` regenera `index.html`. La galería la regenera el bot de fotos.
+- Contenido tomado de la web anterior (web-rebolledo.pages.dev: rutas, astroturismo, eclipse, canales de Telegram). **Verificar cada dato** antes de publicar (distancias, desnivel, iglesia románica del s. XII, etc.).
+- Coordenadas corregidas: 42.6889, -4.2271 (las de Windy de la web anterior). Antes había puesto 42.7302, -3.8910, que venían de una entrada de prueba del tablón.
+
+## Lo que NO se ha traído de la web anterior (y por qué)
+- Incrustados de terceros (Windy, forecast7, widgets de Telegram, Wikiloc embebido): instalan cookies o cargan scripts de terceros → exigirían banner de consentimiento. Aquí se enlazan, no se incrustan.
+- Textos tipo «Portal Municipal», «Ayuntamiento», «Horarios del Ayuntamiento/Iglesia»: parecen oficiales y los horarios eran de relleno.
+- Carpeta `ChatExport` (fotos exportadas de Telegram): sin permiso documentado por foto. Las fotos nuevas entran por el bot, con permiso y autoría archivados.

@@ -6,62 +6,82 @@
 <title>Rebolledo de la Torre · Naturaleza, historia y estrellas</title>
 <meta name="description" content="Página comunitaria no oficial sobre Rebolledo de la Torre (Burgos): naturaleza, historia, cielo nocturno y cómo visitarlo.">
 <link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/arbol.css">
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="hoja" viewBox="-38 -2 76 116" preserveAspectRatio="none">
+      <g id="mitad"><path class="f" d="M0 100C7 97 12 94 13 89C24 90 34 84 30 77C27 73 20 74 15 72C27 71 36 63 31 56C28 52 20 53 15 51C27 49 35 41 28 35C26 31 19 32 13 30C23 28 27 20 20 14C16 10 8 8 0 0Z"/><path class="v" d="M0 92L18 83M0 74L20 63M0 54L18 43M0 36L13 25"/></g>
+      <use href="#mitad" transform="scale(-1 1)"/>
+      <path class="v" d="M0 112V6"/>
+    </symbol>
+  </defs>
+</svg>
 <a class="salto" href="#contenido">Saltar al contenido</a>
 <header class="cabecera">
   <div class="envoltorio">
     <div class="marca"><strong>Rebolledo de la Torre</strong><span>Naturaleza, historia y estrellas</span></div>
-    <nav aria-label="Principal">
-      <ul>
-        <li><a href="#naturaleza">Naturaleza</a></li>
-        <li><a href="#historia">Historia</a></li>
-        <li><a href="#estrellas">Estrellas</a></li>
-        <li><a href="#visitar">Cómo visitarlo</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
   </div>
 </header>
 
 <main id="contenido" class="envoltorio">
   <div class="portada">
     <h1>Un pueblo, su campo y su cielo</h1>
-    <p>Página comunitaria dedicada a Rebolledo de la Torre. Aquí reunimos lo que hace especial al lugar: su paisaje, su memoria y la calidad de su cielo de noche.</p>
-    <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento.</p>
+    <p>Página comunitaria dedicada a Rebolledo de la Torre. Toca una hoja para ver cómo crece la rama.</p>
+    <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
   </div>
 
-  <section id="naturaleza" aria-labelledby="t-naturaleza">
-    <h2 id="t-naturaleza">Naturaleza</h2>
-    <p>Paisajes, caminos, flora y fauna del entorno. <span class="pendiente">Por completar con texto y fotos propias</span></p>
-    <div class="tarjetas">
-      <article class="tarjeta"><h3>Caminos y paseos</h3><p>Rutas a pie o en bici desde el pueblo. <span class="pendiente">Por completar</span></p></article>
-      <article class="tarjeta"><h3>Huerta y campo</h3><p>Lo que se cultiva y cuándo. <span class="pendiente">Por completar</span></p></article>
-      <article class="tarjeta"><h3>Fauna y flora</h3><p>Especies que se pueden ver según la estación. <span class="pendiente">Por completar</span></p></article>
-    </div>
-  </section>
-
-  <section id="historia" aria-labelledby="t-historia">
-    <h2 id="t-historia">Historia</h2>
-    <p>Origen del lugar, su iglesia, su torre y las costumbres que han llegado hasta hoy. <span class="pendiente">Por completar con fuentes citadas</span></p>
-  </section>
-
-  <section id="estrellas" aria-labelledby="t-estrellas">
-    <h2 id="t-estrellas">Estrellas</h2>
-    <p>Un cielo oscuro es parte del patrimonio del pueblo. Aquí irán las fechas de observación, consejos para mirar el cielo respetando el descanso de los vecinos y un calendario de fenómenos. <span class="pendiente">Por completar</span></p>
-  </section>
-
-  <section id="visitar" aria-labelledby="t-visitar">
-    <h2 id="t-visitar">Cómo visitarlo</h2>
-    <p>Rebolledo de la Torre está en la provincia de Burgos. Ver en el mapa abierto: <a href="https://www.openstreetmap.org/?mlat=42.7302&amp;mlon=-3.8910#map=14/42.7302/-3.8910" rel="noopener">OpenStreetMap (se abre en otra página)</a>.</p>
-    <p>Rogamos respeto al vecindario y al entorno: no dejar residuos, cerrar cancelas y no molestar al ganado.</p>
-  </section>
-
-  <section id="contacto" aria-labelledby="t-contacto">
-    <h2 id="t-contacto">Contacto</h2>
-    <p>Para sugerencias, correcciones o para enviar fotos e información: <a href="mailto:teleclubrebolledo@gmail.com">teleclubrebolledo@gmail.com</a>.</p>
-    <p>¿Quieres que tu foto aparezca en el proyecto? Mira <a href="colabora.html">cómo colaborar con tus fotos</a>.</p>
-  </section>
+  <nav class="arbol" aria-label="Secciones">
+    <details class="rama izq" name="menu" id="rutas">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Rutas</span></div></span></summary>
+      <div class="brote">
+        <article class="sub izq" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Las Fuerzas de la Tierra</h3><p>Peña Mesa · ~13,2 km · moderada · +384 m. <a href="https://es.wikiloc.com/rutas-senderismo/las-fuerzas-de-la-tierra-126481753" rel="noopener">Wikiloc</a></p></div></div></article>
+        <article class="sub der" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Las Tuerces y la Horadada</h3><p>Formas kársticas esculpidas por el agua y el viento. Fácil/media.</p></div></div></article>
+        <article class="sub izq" style="--i:2"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Valdelucio y las Loras</h3><p>Circular y moderada: valles, páramo y aves de las cortadas.</p></div></div></article>
+        <article class="sub der" style="--i:3"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Circuito románico</h3><p>Rebolledo y su entorno, a pie o en coche. <a href="https://www.rebolledodelatorre.es/rutas" rel="noopener">Web municipal</a></p></div></div></article>
+        </div>
+    </details>
+    <details class="rama der" name="menu" id="astro">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Astro-turismo</span></div></span></summary>
+      <div class="brote">
+        <article class="sub der" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Geoparque Las Loras</h3><p>Cielo oscuro dentro del Geoparque Mundial de la UNESCO.</p></div></div></article>
+        <article class="sub izq" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Observatorios</h3><p><a href="https://www.astroburgos.org/agenda/" rel="noopener">Agenda Astroburgos</a> · <a href="https://astrodemanda.blogspot.com/" rel="noopener">AstroDemanda</a></p></div></div></article>
+        <article class="sub der" style="--i:2"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Mirar con respeto</h3><p>Sin luces ni ruido: el cielo es de todos y el descanso también. <small class="pendiente">por completar</small></p></div></div></article>
+        </div>
+    </details>
+    <details class="rama izq" name="menu" id="patrimonio">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Patrimonio</span></div></span></summary>
+      <div class="brote">
+        <article class="sub izq" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Iglesia románica</h3><p>San Julián y Santa Basilisa, con galería porticada del siglo XII. <small class="pendiente">por completar</small></p></div></div></article>
+        <article class="sub der" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>La torre-castillo</h3><p>Emblema del pueblo y de su nombre. <small class="pendiente">por completar</small></p></div></div></article>
+        <article class="sub izq" style="--i:2"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Costumbres</h3><p>Fiestas y tradiciones. <small class="pendiente">por completar</small></p></div></div></article>
+        </div>
+    </details>
+    <details class="rama der" name="menu" id="eventos">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Eventos</span></div></span></summary>
+      <div class="brote">
+        <article class="sub der" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>El eclipse en la plaza</h3><p>Gafas especiales, silencio al cubrirse el Sol y aplausos: una tarde que el pueblo recuerda.</p></div></div></article>
+        <article class="sub izq" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Próximo evento</h3><p>Aquí se anunciará. <small class="pendiente">por completar</small></p></div></div></article>
+        </div>
+    </details>
+    <details class="rama izq" name="menu" id="comunidad">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Comunidad</span></div></span></summary>
+      <div class="brote">
+        <article class="sub izq" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Canales de Telegram</h3><p><a href="https://t.me/Rebolledodelatorre" rel="noopener">Pueblo</a> · <a href="https://t.me/rutasrebolledodelatorre" rel="noopener">Rutas</a> · <a href="https://t.me/rebolledodelatorrehuerta" rel="noopener">Huerta</a> · <a href="https://t.me/Rebolledodelatorreenlaces" rel="noopener">Enlaces</a></p></div></div></article>
+        <article class="sub der" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Tus fotos</h3><p><a href="colabora.html">Cómo colaborar</a> o por Telegram: <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a></p></div></div></article>
+        <article class="sub izq" style="--i:2"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Galería</h3><p><a href="galeria.html">Ver las fotos</a></p></div></div></article>
+        </div>
+    </details>
+    <details class="rama der" name="menu" id="visitar">
+      <summary><span class="lado"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 28C30 28 50 6 100 4"/></svg><div class="hoja-menu"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><span class="nombre">Visitar</span></div></span></summary>
+      <div class="brote">
+        <article class="sub der" style="--i:0"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Cómo llegar</h3><p>Provincia de Burgos. <a href="https://www.openstreetmap.org/?mlat=42.6889&amp;mlon=-4.2271#map=14/42.6889/-4.2271" rel="noopener">Mapa (OpenStreetMap)</a></p></div></div></article>
+        <article class="sub izq" style="--i:1"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>El tiempo</h3><p><a href="https://windy.com/42.6889/-4.2271" rel="noopener">Windy</a> (se abre en otra página)</p></div></div></article>
+        <article class="sub der" style="--i:2"><svg class="ramita" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M0 4C40 4 62 28 100 28"/></svg><div class="hoja-sub"><svg viewBox="-38 -2 76 116" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#hoja" x="-38" y="-2" width="76" height="116"/></svg><div class="texto"><h3>Contacto</h3><p><a href="mailto:teleclubrebolledo@gmail.com">teleclubrebolledo@gmail.com</a></p></div></div></article>
+        </div>
+    </details>
+  </nav>
 </main>
 
 <footer>
