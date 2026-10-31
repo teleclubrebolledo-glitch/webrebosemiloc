@@ -6,8 +6,9 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 ## Antes de publicar (marcado con «Por completar» / «por definir» en las páginas)
 - [x] Titular (TeleCluB Rebolledo de la Torre) y correo (teleclubrebolledo@gmail.com) incorporados.
 - [x] Grupo informal sin actividad económica: sin NIF por ahora. **Al empezar a vender (camisetas, tazas…) hay que identificar al titular (LSSI-CE art. 10), darse de alta fiscalmente y revisar el Aviso legal.**
-- [ ] **Nombre y apellidos de la persona responsable** del proyecto (un grupo informal no tiene personalidad jurídica: responde una persona física). Falta en `aviso-legal.html`.
-- [ ] Nombre del bot de Telegram para enviar fotos → `colabora.html`.
+- [x] Sin nombres de personas por ahora (proyecto muy informal, poca gente). Revisar si el proyecto crece o hay actividad económica: un grupo informal no tiene personalidad jurídica y responde una persona física.
+- [x] Reconocimiento por usos comerciales: se deja deliberadamente ambiguo («el reconocimiento que corresponda», a acordar por escrito con la persona autora).
+- [x] Bot de Telegram: @rebolledodelatorre_bot (enlazado en `colabora.html`).
 - [ ] Decidir si se publica como **proyecto comunitario no oficial** (como está redactado) o en coordinación con el Ayuntamiento. No hacerse pasar por la web oficial.
 - [ ] Contenido de Naturaleza, Historia y Estrellas con **fuentes citadas** (nada de memoria).
 - [ ] Fotos y vídeo: **autoría propia o permiso/licencia**, con crédito; texto alternativo en cada imagen; subtítulos o transcripción en vídeo. Sin personas reconocibles sin consentimiento por escrito (L.O. 1/1982).
