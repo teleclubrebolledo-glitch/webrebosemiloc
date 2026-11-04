@@ -4,7 +4,7 @@
    navegador las soporta y el usuario no pide menos movimiento; sin ellas todo se ve igual, estático. */
 :root{
   --lobos:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 124 32'%3E%3Cpath d='M0 0H124V10C124 36.6 93 36.6 93 10C93 30 62 30 62 10C62 39.3 31 39.3 31 10C31 31.3 0 31.3 0 10Z'/%3E%3C/svg%3E");
-  --verde-osc:#1f3d1c;--trigo-suave:#f7edcb;--festón:31px;
+  --verde-osc:#1f3d1c;--trigo-suave:#f7edcb;--festón:0px;--arco:clamp(70px,14vw,200px);
   color-scheme:light;accent-color:var(--verde);
 }
 html{scroll-padding-top:76px}
@@ -21,14 +21,14 @@ body{overflow-x:hidden}
 .barra nav{margin-left:auto;min-width:0}
 .barra ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
 .barra li{position:relative}
-.barra summary{list-style:none;cursor:pointer;padding:8px 14px;border-radius:0 18px 0 18px;font:600 .94rem system-ui,sans-serif;color:var(--verde);transition:background .4s,color .4s}
+.barra summary{list-style:none;cursor:pointer;padding:8px 14px;border-radius:999px 999px 0 0;font:600 .94rem system-ui,sans-serif;color:var(--verde);transition:background .4s,color .4s}
 .barra summary::-webkit-details-marker{display:none}
 .barra summary:hover,.barra details[open]>summary{background:var(--verde);color:#fff}
-.sub{position:absolute;top:calc(100% + 8px);right:0;min-width:236px;display:grid;gap:2px;padding:14px 14px 14px 30px;
-  background:#fffdf7;border:1px solid var(--linea);border-radius:0 28px 0 28px;box-shadow:0 22px 44px -14px #1f3d1c66}
+.sub{position:absolute;top:calc(100% + 8px);right:0;min-width:236px;display:grid;gap:2px;padding:30px 14px 14px 30px;
+  background:#fffdf7;border:1px solid var(--linea);border-radius:999px 999px 0 0;box-shadow:0 22px 44px -14px #1f3d1c66}
 .sub svg{position:absolute;left:10px;top:16px;width:10px;height:calc(100% - 32px);overflow:visible}
 .sub svg path{fill:none;stroke:var(--verde);stroke-width:2.4;stroke-linecap:round}
-.sub a{padding:7px 10px;border-radius:0 12px 0 12px;color:var(--tinta);text-decoration:none;font:.92rem system-ui,sans-serif}
+.sub a{padding:7px 10px;border-radius:999px 999px 0 0;color:var(--tinta);text-decoration:none;font:.92rem system-ui,sans-serif}
 .sub a:hover,.sub a:focus-visible{background:var(--verde-claro);color:var(--verde-osc)}
 @media (prefers-reduced-motion:no-preference){
   details[open]>.sub{animation:rama 1s cubic-bezier(.2,.8,.2,1) both}
@@ -44,8 +44,7 @@ body{overflow-x:hidden}
 }
 
 /* ── borde festoneado: la curvatura del lóbulo de roble ── */
-.portada,.banda{-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--festón) + 1px) no-repeat,var(--lobos) bottom/124px 32px repeat-x;
-  mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--festón) + 1px) no-repeat,var(--lobos) bottom/124px 32px repeat-x}
+.portada,.banda{border-radius:50% 50% 0 0 / var(--arco) var(--arco) 0 0}
 
 /* ── portada ── */
 .portada,.banda{border:0}
@@ -59,7 +58,7 @@ body{overflow-x:hidden}
 .aviso{margin-block:18px 8px}
 
 /* ── bandas de sección ── */
-.banda{position:relative;z-index:var(--z);padding:clamp(54px,9vw,96px) 0 calc(clamp(54px,9vw,96px) + var(--festón));margin-bottom:calc(var(--festón) * -1)}
+.banda{position:relative;z-index:var(--z);padding:calc(var(--arco) * .75) 0 calc(clamp(54px,9vw,96px) + var(--festón));margin-bottom:calc(var(--festón) * -1)}
 .banda.b0{background:var(--verde-claro)}
 .banda.b1{background:var(--trigo-suave)}
 .banda .envoltorio{max-width:1040px}
@@ -70,9 +69,9 @@ body{overflow-x:hidden}
 .b1 .trazo path{stroke:var(--verde)}
 .lead{margin:0 0 30px;max-width:48ch;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--tenue);text-wrap:pretty}
 .rejilla{display:grid;gap:clamp(14px,2.4vw,28px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.tarjeta{position:relative;padding:22px 24px 24px;background:#fffdf7;border-radius:0 40px 0 40px;box-shadow:0 14px 30px -16px #1f3d1c77;
+.tarjeta{position:relative;padding:48px 24px 24px;background:#fffdf7;border-radius:999px 999px 0 0;box-shadow:0 14px 30px -16px #1f3d1c77;
   transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
-.tarjeta::before{content:"";position:absolute;left:0;top:0;width:46px;height:6px;border-radius:0 0 8px 0;background:var(--trigo)}
+.tarjeta::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:46px;height:6px;border-radius:0;background:var(--trigo)}
 .b1 .tarjeta::before{background:var(--verde)}
 .tarjeta:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 26px 40px -18px #1f3d1c88}
 .tarjeta:target{outline:3px solid var(--trigo);outline-offset:4px}

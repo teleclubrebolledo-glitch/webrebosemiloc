@@ -1,0 +1,104 @@
+/* Rebolledo de la Torre · la curvatura de los lóbulos del roble como único motivo.
+   Todo vectorial y sin JavaScript: bordes festoneados (máscara SVG de 400 bytes), una rama de fondo que crece con el scroll,
+   menús que se despliegan despacio como una rama, tarjetas con esquinas de hoja. Las animaciones por scroll solo se activan si el
+   navegador las soporta y el usuario no pide menos movimiento; sin ellas todo se ve igual, estático. */
+:root{
+  --lobos:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 124 32'%3E%3Cpath d='M0 0H124V10C124 36.6 93 36.6 93 10C93 30 62 30 62 10C62 39.3 31 39.3 31 10C31 31.3 0 31.3 0 10Z'/%3E%3C/svg%3E");
+  --verde-osc:#1f3d1c;--trigo-suave:#f7edcb;--festón:31px;
+  color-scheme:light;accent-color:var(--verde);
+}
+html{scroll-padding-top:76px}
+::selection{background:var(--trigo);color:var(--tinta)}
+body{overflow-x:hidden}
+@view-transition{navigation:auto}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* ── barra superior con submenús que crecen ── */
+.barra{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:18px;padding:10px clamp(14px,4vw,44px);
+  background:color-mix(in srgb,var(--papel) 80%,transparent);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--linea)}
+.marca{color:var(--verde-osc);text-decoration:none;white-space:nowrap}
+.marca strong{font:700 1.2rem Georgia,serif;letter-spacing:.01em}
+.barra nav{margin-left:auto;min-width:0}
+.barra ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.barra li{position:relative}
+.barra summary{list-style:none;cursor:pointer;padding:8px 14px;border-radius:0 18px 0 18px;font:600 .94rem system-ui,sans-serif;color:var(--verde);transition:background .4s,color .4s}
+.barra summary::-webkit-details-marker{display:none}
+.barra summary:hover,.barra details[open]>summary{background:var(--verde);color:#fff}
+.sub{position:absolute;top:calc(100% + 8px);right:0;min-width:236px;display:grid;gap:2px;padding:14px 14px 14px 30px;
+  background:#fffdf7;border:1px solid var(--linea);border-radius:0 28px 0 28px;box-shadow:0 22px 44px -14px #1f3d1c66}
+.sub svg{position:absolute;left:10px;top:16px;width:10px;height:calc(100% - 32px);overflow:visible}
+.sub svg path{fill:none;stroke:var(--verde);stroke-width:2.4;stroke-linecap:round}
+.sub a{padding:7px 10px;border-radius:0 12px 0 12px;color:var(--tinta);text-decoration:none;font:.92rem system-ui,sans-serif}
+.sub a:hover,.sub a:focus-visible{background:var(--verde-claro);color:var(--verde-osc)}
+@media (prefers-reduced-motion:no-preference){
+  details[open]>.sub{animation:rama 1s cubic-bezier(.2,.8,.2,1) both}
+  details[open]>.sub svg path{stroke-dasharray:1;animation:trazo 1.3s ease-out both}
+  @keyframes rama{from{clip-path:inset(0 0 100% 0 round 0 28px 0 28px);opacity:.2}to{clip-path:inset(0 0 0 0 round 0 28px 0 28px);opacity:1}}
+  @keyframes trazo{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+}
+@media (max-width:760px){
+  .barra{flex-wrap:wrap;gap:4px 12px;padding-block:8px}
+  .barra nav{flex:1 0 100%;overflow-x:auto;margin:0;padding-bottom:2px;scrollbar-width:none}
+  .barra ul{width:max-content}
+  .sub{position:fixed;left:12px;right:12px;top:104px;min-width:0}
+}
+
+/* ── borde festoneado: la curvatura del lóbulo de roble ── */
+.portada,.banda{-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--festón) + 1px) no-repeat,var(--lobos) bottom/124px 32px repeat-x;
+  mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--festón) + 1px) no-repeat,var(--lobos) bottom/124px 32px repeat-x}
+
+/* ── portada ── */
+.portada,.banda{border:0}
+.portada{position:relative;z-index:var(--z);display:grid;min-height:min(80vh,740px);overflow:hidden;background:#10200f;padding:0 0 var(--festón)}
+.portada video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portada::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#10200f00 35%,#10200fd9)}
+.portada-texto{position:relative;z-index:2;align-self:end;pointer-events:none;padding:0 clamp(20px,6vw,90px) 118px;color:#fff;max-width:1100px}
+.portada h1{margin:0;color:#fff;font:700 clamp(2.7rem,9.5vw,6.6rem)/.98 Georgia,serif;letter-spacing:-.02em;text-wrap:balance;text-shadow:0 4px 30px #0008}
+.portada-texto p{margin:.6rem 0 0;font:500 clamp(1.05rem,2.6vw,1.6rem) system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--trigo)}
+.portada video::-webkit-media-controls-panel{background-image:linear-gradient(#0000,#000a)}
+.aviso{margin-block:18px 8px}
+
+/* ── bandas de sección ── */
+.banda{position:relative;z-index:var(--z);padding:clamp(54px,9vw,96px) 0 calc(clamp(54px,9vw,96px) + var(--festón));margin-bottom:calc(var(--festón) * -1)}
+.banda.b0{background:var(--verde-claro)}
+.banda.b1{background:var(--trigo-suave)}
+.banda .envoltorio{max-width:1040px}
+.banda h2{margin:0;width:fit-content;max-width:100%;font:700 clamp(2.1rem,5.4vw,3.6rem)/1.04 Georgia,serif;text-wrap:balance;letter-spacing:-.01em;
+  background:linear-gradient(90deg,var(--verde-osc),#5f8a2f 58%,#c0900f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trazo{display:block;width:min(280px,64%);height:26px;margin:2px 0 10px;overflow:visible}
+.trazo path{fill:none;stroke:var(--trigo);stroke-width:4.5;stroke-linecap:round}
+.b1 .trazo path{stroke:var(--verde)}
+.lead{margin:0 0 30px;max-width:48ch;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--tenue);text-wrap:pretty}
+.rejilla{display:grid;gap:clamp(14px,2.4vw,28px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.tarjeta{position:relative;padding:22px 24px 24px;background:#fffdf7;border-radius:0 40px 0 40px;box-shadow:0 14px 30px -16px #1f3d1c77;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
+.tarjeta::before{content:"";position:absolute;left:0;top:0;width:46px;height:6px;border-radius:0 0 8px 0;background:var(--trigo)}
+.b1 .tarjeta::before{background:var(--verde)}
+.tarjeta:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 26px 40px -18px #1f3d1c88}
+.tarjeta:target{outline:3px solid var(--trigo);outline-offset:4px}
+.tarjeta h3{margin:.5rem 0 .35rem;font:700 1.28rem/1.2 Georgia,serif;color:var(--verde-osc);text-wrap:balance}
+.tarjeta p{margin:0;font:1rem/1.55 system-ui,sans-serif;text-wrap:pretty}
+.tarjeta a{color:var(--verde);font-weight:600}
+.pendiente{display:inline-block;margin-top:6px}
+
+/* ── pie ── */
+.pie{position:relative;z-index:1;margin:0;padding:clamp(70px,9vw,110px) 0 46px;background:var(--verde-osc);color:#e6efdc;border:0}
+.pie a{color:#fff}
+.pie ul{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;margin:14px 0 0;padding:0}
+.pie .envoltorio{max-width:1040px}
+
+/* ── rama de fondo (se dibuja al hacer scroll) y revelados por scroll: solo con soporte y sin «movimiento reducido» ── */
+.rama-fondo{display:none;position:fixed;left:0;top:0;height:100vh;width:132px;z-index:60;pointer-events:none;mix-blend-mode:multiply}
+.rama-fondo path{fill:none;stroke:var(--verde);stroke-width:5;stroke-linecap:round;stroke-opacity:.34}
+.rama-fondo .ramita{stroke-width:3.2}
+@media (min-width:1240px){.rama-fondo{display:block}}
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    .rama-fondo path{stroke-linecap:butt;stroke-dasharray:1;stroke-dashoffset:1;animation:trazo linear both;animation-timeline:scroll(root)}
+    .rama-fondo .r1{animation-range:18% 52%}.rama-fondo .r2{animation-range:42% 74%}.rama-fondo .r3{animation-range:62% 90%}.rama-fondo .r4{animation-range:78% 100%}
+    .trazo path{stroke-dasharray:1;stroke-dashoffset:1;animation:trazo linear both;animation-timeline:view();animation-range:entry 8% cover 34%}
+    .tarjeta{animation:aparece linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+    @keyframes aparece{from{opacity:0;transform:translateY(46px) scale(.96)}to{opacity:1;transform:none}}
+  }
+}
+@media print{.barra,.rama-fondo{display:none}.portada{min-height:0}}
