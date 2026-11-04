@@ -164,3 +164,7 @@ html[data-vista="seccion"] .tabs{display:none}
 .pilar::before,.pilar::after{content:"";position:absolute;left:-13%;right:-13%;background:#8f836b}
 .pilar::before{top:calc(clamp(16px,2.6vw,26px) * -1);height:clamp(16px,2.6vw,26px);clip-path:polygon(12% 100%,0 0,100% 0,88% 100%)}
 .pilar::after{bottom:0;height:clamp(14px,2.2vw,22px);clip-path:polygon(0 100%,12% 0,88% 0,100% 100%)}
+
+/* la caja del carrusel también es un arco con sus columnas */
+.carrusel .marco-arco{margin-top:0}
+.carrusel .caja{min-width:0}
