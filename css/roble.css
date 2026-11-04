@@ -114,3 +114,4 @@ body{overflow-x:hidden}
 .guia li{margin:.55rem 0}
 .nota{font:.88rem/1.45 system-ui,sans-serif;color:var(--tenue);margin:.8rem 0 0}
 @media (max-width:760px){.tarjeta.ancha .figuras{grid-template-columns:1fr}}
+.tarjeta.ancha .figuras.una{grid-template-columns:1fr;background:#0f1d3d;justify-items:center}.tarjeta.ancha .figuras.una svg{max-height:440px;width:auto;max-width:100%}

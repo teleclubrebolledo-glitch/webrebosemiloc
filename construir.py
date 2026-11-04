@@ -18,7 +18,13 @@ CONTENIDO = [
     ("astro", "Astro-turismo", [("Geoparque Las Loras", "Cielo oscuro dentro del Geoparque Mundial de la UNESCO."),
                                 ("Observatorios", '<a href="https://www.astroburgos.org/agenda/" rel="noopener">Agenda Astroburgos</a> · <a href="https://astrodemanda.blogspot.com/" rel="noopener">AstroDemanda</a>'),
                                 ("Orientar el telescopio", "@ASTRO"),
-                                ("Mirar con respeto", "Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
+                                ("A qué altura mirar", "@G:altura|Todo lo del cielo se mide en grados sobre el horizonte. Con el brazo estirado, un puño cerrado son unos 10°, la mano abierta unos 20° y el dedo meñique, 1°. Desde Rebolledo la Polar queda siempre a unos 42,7°."),
+                                ("El camino del Sol", "@SOL"),
+                                ("Orión, el cielo de invierno", "@G:orion|El Cinturón (tres estrellas en fila) es la guía: hacia abajo a la izquierda señala Sirio, la más brillante del cielo, y hacia arriba a la derecha Aldebarán. Desde aquí el Cinturón llega a unos %d° de altura, de diciembre a febrero al anochecer." % round(90 - abs(graficos.LAT - -1.2))),
+                                ("El Triángulo de Verano", "@G:triangulo|Vega, Deneb y Altair, de julio a octubre al anochecer. Vega y Deneb pasan casi por encima de la cabeza (unos %d° y %d°); Altair llega a unos %d°. La Vía Láctea los cruza." % (round(90 - abs(graficos.LAT - 38.78)), round(90 - abs(graficos.LAT - 45.28)), round(90 - abs(graficos.LAT - 8.87)))),
+                                ("Fases de la Luna", "@G:lunas|Para el cielo profundo, mejor cerca de la Luna nueva; con la Luna llena, el protagonista es ella, hasta con prismáticos. Creciente: se ve por la tarde; menguante: de madrugada."),
+                                ("Lluvias de estrellas", "@LLUVIA"),
+                                ("Mirar con respeto", "@G:respeto|Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
                                   ("Costumbres", 'Las fiestas patronales de San Julián y Santa Basilisa se celebran en torno al 9 de enero. <a href="https://www.festivalesdeespana.com/festival/fiestas-san-julian-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Festivales de España</a> ' + PEND)]),
@@ -56,11 +62,30 @@ ASTRO_GUIA = (
     '<li><strong>Cuida la vista.</strong> Luz roja y unos 20 minutos para que los ojos se acostumbren a la oscuridad.</li></ol>'
     '<p class="nota">Esquemas orientativos, con posiciones redondeadas: para orientarse a ojo, no para apuntar con precisión. Comprueba la altura con una app de planetario.</p>') % graficos.LAT
 
+LLUVIAS_TXT = ('<ul class="guia">' + "".join(f"<li><strong>{n}</strong> · máximo hacia el {d} de {['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][m-1]} · radiante en {c}</li>" for n, m, d, c in graficos.LLUVIAS) + "</ul>"
+    '<p class="nota">Fechas aproximadas del máximo (varían un día de un año a otro). Las Perseidas, con su radiante muy al norte, no se ponen nunca desde Rebolledo: el punto del que parecen salir queda siempre sobre el horizonte. Mejor lejos de las luces y sin Luna llena.</p>')
+
+def _sol_txt(filas):
+    li = "".join(f"<li><strong>{n}.</strong> Sale hacia {az:.0f}° (desde el norte) y se pone hacia {360-az:.0f}°; sube a {alt:.0f}° al mediodía y el día dura unas {int(d)} h {round((d % 1) * 60):02d} min.</li>" for n, alt, az, d, _ in filas)
+    return f'<ol class="guia" style="list-style:none;padding:0">{li}</ol><p class="nota">Cálculo geométrico para la latitud de Rebolledo (sin refracción: el día real dura unos minutos más). 90° = este, 180° = sur, 270° = oeste.</p>'
+
 def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3>{ASTRO_GUIA}</div></article>')
-    g = graficos.GRAFICOS.get(ident)
+    if texto == "@SOL":
+        svg, filas = graficos.camino_sol()
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{svg}</div>'
+                f'<div class="texto"><h3>{escape(titulo)}</h3>{_sol_txt(filas)}</div></article>')
+    if texto == "@LLUVIA":
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{graficos.rueda_lluvias()}</div>'
+                f'<div class="texto"><h3>{escape(titulo)}</h3>{LLUVIAS_TXT}</div></article>')
+    if texto.startswith("@G:"):
+        nombre, texto = texto[3:].split("|", 1)
+        g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
+             "lunas": graficos.lunas, "respeto": graficos.respeto}[nombre]
+    else:
+        g = graficos.GRAFICOS.get(ident)
     fig = f'<figure>{g()}</figure>' if g else ""
     return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 

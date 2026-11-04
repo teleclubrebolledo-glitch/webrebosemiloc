@@ -237,7 +237,7 @@ def montura():
 
 GRAFICOS = {
     "rutas-1": peña_mesa, "rutas-2": tuerces, "rutas-3": loras, "rutas-4": romanico,
-    "astro-1": cielo_loras, "astro-2": telescopio, "astro-4": respeto,
+    "astro-1": cielo_loras, "astro-2": telescopio,
     "patrimonio-1": iglesia, "patrimonio-2": torre, "patrimonio-3": costumbres,
     "eventos-1": eclipse, "eventos-2": evento,
     "comunidad-1": telegram, "comunidad-2": fotos, "comunidad-3": galeria,
@@ -249,3 +249,153 @@ if __name__ == "__main__":
     out = Path("/tmp/graf-prueba.html")
     out.write_text("<body style='background:#ddd;display:grid;grid-template-columns:repeat(4,300px);gap:8px'>"
                    + "".join(f for f in (g() for g in GRAFICOS.values())) + carta_polar() + montura() + "</body>")
+
+
+# ═════════════ MÁS ASTRO-TURISMO (cálculos propios desde la latitud de Rebolledo) ═════════════
+EPS = 23.44   # oblicuidad de la eclíptica (grados)
+
+
+def _sol(dec_deg, lat=LAT):
+    """Altura máxima, acimutes de salida/puesta y duración geométrica del día (sin refracción)."""
+    f, d = math.radians(lat), math.radians(dec_deg)
+    alt_max = 90 - abs(lat - dec_deg)
+    az_sal = math.degrees(math.acos(math.sin(d) / math.cos(f)))
+    h = math.degrees(math.acos(-math.tan(f) * math.tan(d)))
+    return alt_max, az_sal, 2 * h / 15, h
+
+
+def _curva_sol(dec_deg, lat=LAT, paso=3):
+    f, d = math.radians(lat), math.radians(dec_deg)
+    _, _, _, H0 = _sol(dec_deg, lat)
+    pts = []
+    for h in range(int(-H0), int(H0) + 1, paso):
+        H = math.radians(h)
+        alt = math.degrees(math.asin(math.sin(f) * math.sin(d) + math.cos(f) * math.cos(d) * math.cos(H)))
+        az = math.degrees(math.atan2(-math.sin(H), math.tan(d) * math.cos(f) - math.sin(f) * math.cos(H))) % 360
+        pts.append((az, alt))
+    return pts
+
+
+def camino_sol():
+    X0, X1, Y0, Y1, A0, A1, ALT = 56, 436, 40, 300, 40, 320, 80
+    px = lambda az: X0 + (az - A0) / (A1 - A0) * (X1 - X0)
+    py = lambda alt: Y1 - alt / ALT * (Y1 - Y0)
+    cuerpo = f'<rect width="460" height="340" fill="#eaf1f8"/><rect x="{X0}" y="{Y1}" width="{X1-X0}" height="26" fill="{VERDE}"/>'
+    for a in range(0, 81, 20):
+        cuerpo += (f'<line x1="{X0}" y1="{py(a):.0f}" x2="{X1}" y2="{py(a):.0f}" stroke="#9db4cf" stroke-width="1" stroke-dasharray="3 5"/>'
+                   f'<text x="{X0-8}" y="{py(a)+4:.0f}" text-anchor="end" fill="{VERDE_OSC}" font-size="11" font-family="system-ui,sans-serif">{a}°</text>')
+    for az, nom in ((90, "Este"), (180, "Sur"), (270, "Oeste")):
+        cuerpo += (f'<line x1="{px(az):.0f}" y1="{Y0}" x2="{px(az):.0f}" y2="{Y1}" stroke="#9db4cf" stroke-width="1" stroke-dasharray="3 5"/>'
+                   f'<text x="{px(az):.0f}" y="{Y1+18}" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="system-ui,sans-serif">{nom}</text>')
+    filas = []
+    for dec, nom, col in ((EPS, "Solsticio de verano", ROJO), (0, "Equinoccios", TRIGO), (-EPS, "Solsticio de invierno", NOCHE2)):
+        alt, az, dur, _ = _sol(dec)
+        pts = " ".join(f"{px(a):.1f},{py(h):.1f}" for a, h in _curva_sol(dec))
+        cuerpo += f'<polyline points="{pts}" fill="none" stroke="{col}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>'
+        cuerpo += f'<text x="{px(180):.0f}" y="{py(alt)-7:.0f}" text-anchor="middle" fill="{col}" font-size="12" font-weight="700" font-family="system-ui,sans-serif">{alt:.0f}°</text>'
+        filas.append((nom, alt, az, dur, col))
+    cuerpo += f'<text x="14" y="22" fill="{VERDE_OSC}" font-size="14" font-weight="700" font-family="system-ui,sans-serif">Altura del Sol según el rumbo</text>'
+    return _svg(cuerpo, "Gráfico de la altura del Sol sobre el horizonte, de este a oeste, en los solsticios y en los equinoccios, calculado para la latitud de Rebolledo", vb="0 0 460 340"), filas
+
+
+def altura_ladder():
+    izq = [(90, "Cenit"), (LAT, "Estrella Polar")]
+    der = [(70.8, "Sol de verano"), (47.3, "Sol de equinoccio"), (23.9, "Sol de invierno")]
+    X, Y0, Y1 = 150, 34, 172
+    py = lambda a: Y1 - a / 90 * (Y1 - Y0)
+    c = _cielo("g7") + _estrellas(22, 300, 150, 41) + f'<rect y="{Y1}" width="300" height="30" fill="{VERDE_OSC}"/>'
+    c += f'<line x1="{X}" y1="{Y0}" x2="{X}" y2="{Y1}" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>'
+    for a in range(0, 91, 10):
+        c += f'<line x1="{X-5}" y1="{py(a):.1f}" x2="{X+5}" y2="{py(a):.1f}" stroke="#fff" stroke-opacity=".7"/>'
+    for a, nom in izq:
+        c += (f'<circle cx="{X}" cy="{py(a):.1f}" r="5" fill="{TRIGO if nom != "Cenit" else "#fff"}"/>'
+              f'<text x="{X-12}" y="{py(a)+4:.1f}" text-anchor="end" fill="#fff" font-size="12.5" font-family="system-ui,sans-serif">{nom} {a:.0f}°</text>')
+    for (a, nom), col in zip(der, ("#ff9a8b", "#f1d27a", "#9fc0ff")):
+        c += (f'<circle cx="{X}" cy="{py(a):.1f}" r="5" fill="{col}"/>'
+              f'<text x="{X+12}" y="{py(a)+4:.1f}" fill="{col}" font-size="12.5" font-family="system-ui,sans-serif">{nom} {a:.0f}°</text>')
+    c += f'<text x="{X}" y="{Y1+19}" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="system-ui,sans-serif">Horizonte · 0°</text>'
+    return _svg(c, f"Escalera de alturas sobre el horizonte, de 0 a 90 grados, con la Estrella Polar a {LAT:.1f} grados y el Sol de solsticio y equinoccio a mediodía")
+
+
+def _proy_eq(estrellas, ra0, dec0, k, cx, cy, cosf=1.0):
+    return {n: (cx - (ra - ra0) * 15 * k * cosf, cy - (dec - dec0) * k) for n, (ra, dec) in estrellas.items()}
+
+
+def orion():
+    E = {"Betelgeuse": (5.92, 7.41), "Bellatrix": (5.42, 6.35), "Mintaka": (5.53, -0.30), "Alnilam": (5.60, -1.20), "Alnitak": (5.68, -1.94),
+         "Saiph": (5.80, -9.67), "Rigel": (5.24, -8.20), "Sirio": (6.75, -16.72), "Aldebarán": (4.60, 16.51)}
+    P = _proy_eq(E, 5.6, 0, 5.2, 150, 112, 0.95)
+    lin = [("Betelgeuse", "Bellatrix"), ("Betelgeuse", "Alnitak"), ("Bellatrix", "Mintaka"), ("Alnitak", "Alnilam"), ("Alnilam", "Mintaka"),
+           ("Alnitak", "Saiph"), ("Mintaka", "Rigel"), ("Saiph", "Rigel")]
+    c = _cielo("g8") + _estrellas(40, 300, 200, 9)
+    c += f'<line x1="{P["Aldebarán"][0]:.0f}" y1="{P["Aldebarán"][1]:.0f}" x2="{P["Sirio"][0]:.0f}" y2="{P["Sirio"][1]:.0f}" stroke="{TRIGO}" stroke-width="1.6" stroke-dasharray="5 5" opacity=".8"/>'
+    for a, b in lin:
+        c += f'<line x1="{P[a][0]:.1f}" y1="{P[a][1]:.1f}" x2="{P[b][0]:.1f}" y2="{P[b][1]:.1f}" stroke="#9fb8ee" stroke-width="1.8"/>'
+    for n, (x, y) in P.items():
+        r = 4.2 if n in ("Betelgeuse", "Rigel", "Sirio") else 3.2
+        col = "#ffb36b" if n == "Betelgeuse" else ("#bcd8ff" if n in ("Rigel", "Sirio") else "#fff")
+        c += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{col}"/>'
+    for n, dx, dy in (("Betelgeuse", 7, -4), ("Rigel", 7, 12), ("Sirio", -4, 16), ("Aldebarán", -6, -8)):
+        c += f'<text x="{P[n][0]+dx:.1f}" y="{P[n][1]+dy:.1f}" fill="#fff" font-size="10" font-family="system-ui,sans-serif">{n}</text>'
+    return _svg(c, "Carta de la constelación de Orión con el Cinturón de tres estrellas, Betelgeuse y Rigel, y la línea que apunta a Sirio y a Aldebarán")
+
+
+def triangulo_verano():
+    E = {"Vega": (18.62, 38.78), "Deneb": (20.69, 45.28), "Altair": (19.85, 8.87)}
+    P = _proy_eq(E, 19.7, 28, 3.3, 150, 112, 0.78)
+    c = _cielo("g9") + _estrellas(45, 300, 200, 13)
+    c += f'<path d="M-10 190 C80 150 160 90 320 20 L320 62 C180 130 90 190 -10 214Z" fill="#fff" opacity=".13"/>'
+    pts = " ".join(f"{P[n][0]:.1f},{P[n][1]:.1f}" for n in ("Vega", "Deneb", "Altair"))
+    c += f'<polygon points="{pts}" fill="{TRIGO}" fill-opacity=".10" stroke="{TRIGO}" stroke-width="1.8" stroke-dasharray="6 5"/>'
+    for n, (x, y) in P.items():
+        c += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.4" fill="#fff"/><text x="{x+8:.1f}" y="{y-6:.1f}" fill="#fff" font-size="11" font-family="system-ui,sans-serif">{n}</text>'
+    return _svg(c, "Carta del Triángulo de Verano formado por Vega, Deneb y Altair, sobre la banda de la Vía Láctea")
+
+
+def lunas():
+    c = f'<rect width="300" height="200" fill="{NOCHE}"/>' + _estrellas(26, 300, 200, 17)
+    nombres = ["Nueva", "Creciente", "1.er cuarto", "Gibosa", "Llena", "Gibosa", "3.er cuarto", "Menguante"]
+    r = 19
+    for i in range(8):
+        cx, cy = 66 + (i % 4) * 56, 84 + (i // 4) * 74
+        p = i / 8; ang = 2 * math.pi * p; rx = abs(r * math.cos(ang))
+        c += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#26324f"/>'
+        if i == 4:
+            c += f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#f6efd2"/>'
+        elif i != 0:
+            cos = math.cos(ang)
+            if p < .5:   # creciente: iluminada la derecha
+                c += (f'<path d="M{cx} {cy-r} A{r} {r} 0 0 1 {cx} {cy+r} A{rx:.1f} {r} 0 0 {0 if cos > 0 else 1} {cx} {cy-r}Z" fill="#f6efd2"/>')
+            else:        # menguante: iluminada la izquierda
+                c += (f'<path d="M{cx} {cy-r} A{r} {r} 0 0 0 {cx} {cy+r} A{rx:.1f} {r} 0 0 {1 if cos > 0 else 0} {cx} {cy-r}Z" fill="#f6efd2"/>')
+        c += f'<text x="{cx}" y="{cy+r+14}" text-anchor="middle" fill="#bcd0f2" font-size="10.5" font-family="system-ui,sans-serif">{nombres[i]}</text>'
+    return _svg(c, "Las ocho fases de la Luna, de la nueva a la llena y de nuevo a la nueva, vistas desde el hemisferio norte")
+
+
+LLUVIAS = [  # (nombre, mes, día del máximo, constelación)
+    ("Cuadrántidas", 1, 3, "Boyero"), ("Líridas", 4, 22, "Lira"), ("η-Acuáridas", 5, 6, "Acuario"), ("Perseidas", 8, 12, "Perseo"),
+    ("Oriónidas", 10, 21, "Orión"), ("Leónidas", 11, 17, "Leo"), ("Gemínidas", 12, 14, "Géminis")]
+MESES = "E F M A M J J A S O N D".split()
+
+
+def rueda_lluvias():
+    cx, cy, R = 260, 210, 124
+    ac = lambda mes, dia: ((mes - 1) + (dia - 1) / 30.4) / 12 * 2 * math.pi - math.pi / 2
+    c = f'<rect width="520" height="420" fill="{NOCHE}"/>' + _estrellas(80, 520, 420, 31)
+    c += f'<circle cx="{cx}" cy="{cy}" r="{R}" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2"/>'
+    for m in range(12):
+        a = ac(m + 1, 1) + (math.pi / 12)
+        c += (f'<line x1="{cx+(R-6)*math.cos(ac(m+1,1)):.1f}" y1="{cy+(R-6)*math.sin(ac(m+1,1)):.1f}" x2="{cx+(R+6)*math.cos(ac(m+1,1)):.1f}" y2="{cy+(R+6)*math.sin(ac(m+1,1)):.1f}" stroke="#fff" stroke-opacity=".5"/>'
+              f'<text x="{cx+(R-24)*math.cos(a):.1f}" y="{cy+(R-24)*math.sin(a)+4:.1f}" text-anchor="middle" fill="#bcd0f2" font-size="13" font-family="system-ui,sans-serif">{MESES[m]}</text>')
+    for nom, mes, dia, con in LLUVIAS:
+        a = ac(mes, dia); x, y = cx + R * math.cos(a), cy + R * math.sin(a)
+        col = ROJO if nom == "Perseidas" else TRIGO
+        lx, ly = cx + (R + 24) * math.cos(a), cy + (R + 24) * math.sin(a)
+        anc = "start" if math.cos(a) > .2 else ("end" if math.cos(a) < -.2 else "middle")
+        c += (f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{x+22*math.cos(a)-18*math.cos(a)*0:.1f}" y2="{y+22*math.sin(a):.1f}" stroke="{col}" stroke-opacity=".0"/>'
+              f'<path d="M{x-16*math.cos(a)+10:.1f} {y-16*math.sin(a)-10:.1f} L{x:.1f} {y:.1f}" stroke="{col}" stroke-width="2.4" stroke-linecap="round"/>'
+              f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.5" fill="{col}"/>'
+              f'<text x="{lx:.1f}" y="{ly+4:.1f}" text-anchor="{anc}" fill="#fff" font-size="11.5" font-weight="700" font-family="system-ui,sans-serif">{nom}</text>')
+    c += (f'<text x="{cx}" y="{cy-4}" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui,sans-serif">Lluvias de</text>'
+          f'<text x="{cx}" y="{cy+16}" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui,sans-serif">estrellas</text>')
+    return _svg(c, "Rueda del año con la fecha del máximo de siete lluvias de meteoros: Cuadrántidas, Líridas, eta Acuáridas, Perseidas, Oriónidas, Leónidas y Gemínidas", vb="0 0 520 420")
