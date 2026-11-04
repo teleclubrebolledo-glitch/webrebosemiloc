@@ -1,4 +1,5 @@
 /* Rebolledo de la Torre · estilo luminoso y rural. Sin fuentes externas, sin scripts, sin cookies. */
+@font-face{font-family:"Cinzel";src:url(../fonts/Cinzel.ttf) format("truetype");font-weight:400 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Lora";src:url(../fonts/Lora.ttf) format("truetype");font-weight:400 700;font-style:normal;font-display:swap}
 :root{
   /* Iglesia románica en paisaje de montaña: piedra, tierra, trigo y hierba */
@@ -6,6 +7,7 @@
   --piedra:#e1d6bc; --piedra-osc:#9b8f78; --tierra:#8a5a3c; --tierra-osc:#4a3526;
   --verde:#4c6b2e; --verde-osc:#364a22; --verde-claro:#dbe4c2; --trigo:#d9ad3f; --trigo-suave:#efe0ad;
   --linea:#cbbf9f; --foco:#a3441a; --fuente:"Lora","Palatino Linotype","Book Antiqua",Georgia,serif;
+  --titulos:"Cinzel","Trajan Pro","Palatino Linotype",Georgia,serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -46,10 +48,11 @@ footer ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;g
 
 /* Barra superior en todas las páginas: todas las secciones siempre a mano, sin líneas separadoras */
 .barra{position:sticky;top:0;z-index:100;display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:10px clamp(14px,4vw,44px);background:var(--papel)}
-.marca{color:var(--tierra-osc);text-decoration:none;white-space:nowrap;font:700 1.2rem var(--fuente)}
+.marca{color:var(--tierra-osc);text-decoration:none;white-space:nowrap;font:700 1.15rem var(--titulos);letter-spacing:.05em}
 .navtop{display:flex;flex-wrap:wrap;gap:2px 6px;margin-left:auto;min-width:0}
-.navtop a{font:600 .94rem system-ui,sans-serif;color:var(--verde-osc);text-decoration:none;padding:8px 12px 6px;border-bottom:4px solid transparent;border-radius:14px 14px 0 0;transition:border-color .4s,background .4s}
+.navtop a{font:600 .82rem var(--titulos);letter-spacing:.07em;color:var(--verde-osc);text-decoration:none;padding:8px 12px 6px;border-bottom:4px solid transparent;border-radius:14px 14px 0 0;transition:border-color .4s,background .4s}
 .navtop a:hover{background:var(--piedra)}
 .navtop a[aria-current]{border-bottom-color:var(--trigo);background:var(--cal)}
 @media (max-width:760px){.navtop{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.navtop a{white-space:nowrap}}
 .legal .tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
+h1,h2,h3{font-family:var(--titulos);letter-spacing:.03em}

@@ -21,7 +21,7 @@ body{overflow-x:hidden}
 .portada{position:relative;z-index:var(--z);display:grid;min-height:min(80vh,740px);overflow:hidden;background:var(--tierra-osc);padding:0 0 var(--festón)}
 .portada video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .portada-texto{position:relative;z-index:2;align-self:end;pointer-events:none;padding:0 clamp(20px,6vw,90px) 118px;color:#fff;max-width:1100px}
-.portada h1{margin:0;color:#fff;font:700 clamp(2.7rem,9.5vw,6.6rem)/.98 var(--fuente);letter-spacing:-.02em;text-wrap:balance;text-shadow:0 4px 30px #0008}
+.portada h1{margin:0;color:#fff;font:700 clamp(2.2rem,7.6vw,5.4rem)/1.04 var(--titulos);letter-spacing:.02em;text-wrap:balance;text-shadow:0 4px 30px #0008}
 .portada-texto p{margin:.6rem 0 0;font:500 clamp(1.05rem,2.6vw,1.6rem) system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--trigo)}
 .aviso{margin-block:18px 8px}
 
@@ -31,7 +31,7 @@ body{overflow-x:hidden}
 .banda.b1{background:var(--trigo-suave)}
 .banda.b2{background:var(--verde-claro)}
 .banda .envoltorio{max-width:1040px}
-:is(.banda,.diap) h2{margin:0;width:fit-content;max-width:100%;font:700 clamp(2.1rem,5.4vw,3.6rem)/1.04 var(--fuente);text-wrap:balance;letter-spacing:-.01em;
+:is(.banda,.diap) h2{margin:0;width:fit-content;max-width:100%;font:700 clamp(1.8rem,4.6vw,3.1rem)/1.1 var(--titulos);text-wrap:balance;letter-spacing:.02em;
   background:linear-gradient(90deg,var(--tierra-osc),var(--verde) 55%,var(--tierra));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{margin:0 0 30px;max-width:48ch;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--tenue);text-wrap:pretty}
 .rejilla{display:grid;gap:clamp(14px,2.4vw,28px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
@@ -41,7 +41,7 @@ body{overflow-x:hidden}
 .b1 .tarjeta.__x::before{background:var(--verde)}
 .tarjeta:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 26px 40px -18px #1f3d1c88}
 .tarjeta:target{outline:3px solid var(--trigo);outline-offset:4px}
-.tarjeta h3{margin:.5rem 0 .35rem;font:700 1.28rem/1.2 var(--fuente);color:var(--verde-osc);text-wrap:balance}
+.tarjeta h3{margin:.5rem 0 .35rem;font:700 1.12rem/1.25 var(--titulos);letter-spacing:.03em;color:var(--verde-osc);text-wrap:balance}
 .tarjeta p{margin:0;font:1rem/1.55 system-ui,sans-serif;text-wrap:pretty}
 .tarjeta a{color:var(--verde);font-weight:600}
 .pendiente{display:inline-block;margin-top:6px}
@@ -121,7 +121,7 @@ html.js .carrusel{display:block;margin-top:18px;position:relative;z-index:5}
 html.js #almacen{display:none}
 html.js[data-vista="seccion"] #almacen{display:block}
 html.js[data-vista="seccion"] #almacen .sec:not(.activa){display:none}
-html.js[data-vista="seccion"] :is(.portada,.aviso,.carrusel){display:none}
+html.js[data-vista="seccion"] :is(.marco-arco,.aviso,.carrusel){display:none}
 .caja{--fondo:#e1d6bc;--fondo-banda:#e1d6bc;background:var(--fondo);border-radius:50% 50% 0 0 / var(--arco) var(--arco) 0 0;
   padding:calc(var(--arco) * .72) clamp(14px,4vw,56px) 30px;min-height:540px;transition:background .8s;position:relative}
 .caja[data-par="1"]{--fondo:#efe0ad;--fondo-banda:#efe0ad}.caja[data-par="2"]{--fondo:#dbe4c2;--fondo-banda:#dbe4c2}
@@ -144,7 +144,7 @@ html.js[data-vista="seccion"] :is(.portada,.aviso,.carrusel){display:none}
 .flecha:hover,.pausa:hover{background:var(--verde);color:#fff}
 .flecha:focus-visible,.pausa:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
 .tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin:8px auto 28px;padding:0 12px;max-width:1040px}
-.tabs a{font:600 1rem system-ui,sans-serif;color:var(--verde);text-decoration:none;padding:8px 14px 6px;border-bottom:4px solid transparent;border-radius:14px 14px 0 0;transition:border-color .4s,background .4s}
+.tabs a{font:600 .88rem var(--titulos);letter-spacing:.07em;color:var(--verde);text-decoration:none;padding:8px 14px 6px;border-bottom:4px solid transparent;border-radius:14px 14px 0 0;transition:border-color .4s,background .4s}
 .tabs a:hover{background:var(--verde-claro)}
 .tabs a[aria-current]{border-bottom-color:var(--trigo);color:var(--verde-osc);background:var(--cal)}
 html[data-vista="seccion"] .tabs{margin-top:18px}
@@ -155,3 +155,12 @@ html[data-vista="seccion"] .tabs{margin-top:18px}
 
 @keyframes trazo{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 html[data-vista="seccion"] .tabs{display:none}
+
+/* ── la portada es un arco con sus columnas: el vídeo, bajo el arco; a los lados, los fustes con capitel y base ── */
+.marco-arco{--col:clamp(30px,6vw,88px);display:grid;grid-template-columns:var(--col) minmax(0,1fr) var(--col);background:#d9cdb0;
+  padding:clamp(16px,2.6vw,30px) clamp(8px,3vw,44px) 0}
+.marco-arco .portada{min-height:min(62vh,560px)}
+.pilar{position:relative;margin-top:var(--arco);background:#bfb08f;box-shadow:inset calc(var(--col) * -.22) 0 0 #a99a7a}
+.pilar::before,.pilar::after{content:"";position:absolute;left:-13%;right:-13%;background:#8f836b}
+.pilar::before{top:calc(clamp(16px,2.6vw,26px) * -1);height:clamp(16px,2.6vw,26px);clip-path:polygon(12% 100%,0 0,100% 0,88% 100%)}
+.pilar::after{bottom:0;height:clamp(14px,2.2vw,22px);clip-path:polygon(0 100%,12% 0,88% 0,100% 100%)}
