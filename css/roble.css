@@ -148,3 +148,7 @@ body{overflow-x:hidden}
   background:linear-gradient(to bottom,transparent 0%,rgba(16,32,15,.35) 60%,rgba(16,32,15,.6) 100%)}
 /* si una tarjeta no lleva imagen, su texto baja para que la curva no corte las primeras letras */
 .tarjeta:not(:has(figure)):not(.ancha) .texto{padding-top:3.4rem}
+
+.fotos-ruta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;padding:12px 18px 0;background:#faf7ef}
+.fotos-ruta figure{margin:0}.fotos-ruta img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px 14px 0 0}
+.fotos-ruta figcaption{font:.78rem system-ui,sans-serif;color:var(--tenue);padding:3px 2px}

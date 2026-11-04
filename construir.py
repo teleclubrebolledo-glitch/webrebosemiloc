@@ -107,7 +107,7 @@ def tarjeta(ident, titulo, texto):
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
     if texto == "@APORTA":
         return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
-                '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx al bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. '
+                '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx al bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. Al final podrás añadir hasta 3 fotos de la ruta (opcional): ten esas fotos a mano en el mismo dispositivo. '
                 'Solo rutas que hayas grabado tú, por caminos públicos o con permiso. <a href="enviar-rutas.html#gpx">Guía paso a paso: cómo grabar el GPX</a>.</p></div></article>')
     if texto.startswith("@RUTA:"):
         id_ = texto[6:]
@@ -116,7 +116,11 @@ def tarjeta(ident, titulo, texto):
         if ru.get("origen") == "comunidad":
             aut = f" Recorrido de {escape(ru['autor'].rstrip('.'))}." if ru.get("autor") else ""
             av = f'<p class="nota"><strong>Aviso:</strong> {escape(ru["avisos"])}</p>' if ru.get("avisos") else ""
-            return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
+            fot = ""
+            if ru.get("fotos"):
+                cred = f" · Foto: {escape(ru['autor'].rstrip('.'))}" if ru.get("autor") else ""
+                fot = '<div class="fotos-ruta">' + "".join(f'<figure><img src="fotos-rutas/{escape(f["archivo"])}" alt="{escape(f["alt"])}" loading="lazy"><figcaption>{escape(ru["nombre"])}{cred}</figcaption></figure>' for f in ru["fotos"]) + '</div>'
+            return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div>{fot}<div class="texto"><h3>{escape(titulo)}</h3>'
                     f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Recorrida por la comunidad</span>{aut}</p>{av}'
                     f'<p class="nota">Recorrido aportado con permiso de su autoría. ¿Quieres añadir el tuyo? <a href="enviar-rutas.html">Cómo aportar una ruta</a>. '
                     f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
