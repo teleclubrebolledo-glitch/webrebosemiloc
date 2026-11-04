@@ -179,3 +179,4 @@ html[data-vista="seccion"] .tabs{display:none}
 .carrusel .marco-arco{margin-top:0}
 .carrusel,html.js .centro .carrusel{padding:0}
 .caja{touch-action:pan-y}
+.pilar{z-index:3}
