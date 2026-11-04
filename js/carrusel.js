@@ -11,7 +11,7 @@
   raiz.classList.add('js');
 
   var secs = [].slice.call(almacen.querySelectorAll(':scope > .sec'));
-  var tabs = [].slice.call(document.querySelectorAll('.tabs a'));
+  var tabs = [].slice.call(document.querySelectorAll('.tabs a, .navtop a'));
   var N = secs.length;
   var cartas = secs.map(function (s) { return [].slice.call(s.querySelectorAll('.rejilla > article')); });
   var reducido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -26,7 +26,8 @@
   }
 
   function subrayar(s) {
-    tabs.forEach(function (a, k) { if (k === s) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    var id = s === null ? 'inicio' : secs[s].id;
+    tabs.forEach(function (a) { if (a.getAttribute('data-sec') === id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
   }
 
   function mostrar(n) {
@@ -47,7 +48,7 @@
     var envol = document.createElement('div'); envol.className = 'enc';
     envol.appendChild(tit); envol.appendChild(lead); envol.appendChild(carta); envol.appendChild(cuenta);
     diap.appendChild(envol);
-    caja.setAttribute('data-par', sec.classList.contains('b1') ? '1' : '0');
+    caja.setAttribute('data-par', sec.classList.contains('b2') ? '2' : (sec.classList.contains('b1') ? '1' : '0'));
     diap.classList.remove('entra'); void diap.offsetWidth; diap.classList.add('entra');
     subrayar(s);
   }

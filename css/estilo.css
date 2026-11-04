@@ -1,18 +1,21 @@
 /* Rebolledo de la Torre · estilo luminoso y rural. Sin fuentes externas, sin scripts, sin cookies. */
+@font-face{font-family:"Lora";src:url(../fonts/Lora.ttf) format("truetype");font-weight:400 700;font-style:normal;font-display:swap}
 :root{
-  --papel:#fbf8ef; --tinta:#26331f; --tenue:#56604c; --verde:#2e5a2b; --verde-claro:#e4efd9;
-  --trigo:#e8b84a; --cielo:#dcebf5; --linea:#d9d2bd; --foco:#0b57d0;
+  /* Iglesia románica en paisaje de montaña: piedra, tierra, trigo y hierba */
+  --papel:#f0e9d8; --cal:#f9f3e3; --tinta:#2f281b; --tenue:#5f5645;
+  --piedra:#e1d6bc; --piedra-osc:#9b8f78; --tierra:#8a5a3c; --tierra-osc:#4a3526;
+  --verde:#4c6b2e; --verde-osc:#364a22; --verde-claro:#dbe4c2; --trigo:#d9ad3f; --trigo-suave:#efe0ad;
+  --linea:#cbbf9f; --foco:#a3441a; --fuente:"Lora","Palatino Linotype","Book Antiqua",Georgia,serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--papel);color:var(--tinta);font:18px/1.65 Georgia,"Times New Roman",serif}
+body{margin:0;background:var(--papel);color:var(--tinta);font:18px/1.65 var(--fuente)}
 img,video{max-width:100%;height:auto}
 a{color:var(--verde);text-underline-offset:3px}
-a:hover{color:#1d3d1b}
+a:hover{color:var(--tierra-osc)}
 :focus-visible{outline:3px solid var(--foco);outline-offset:2px;border-radius:3px}
 .salto{position:absolute;left:-999px;top:0;background:#fff;padding:10px 16px;z-index:100}
 .salto:focus{left:8px;top:8px}
-header.cabecera{background:linear-gradient(180deg,var(--cielo),var(--papel));border-bottom:1px solid var(--linea)}
 .envoltorio{max-width:960px;margin:0 auto;padding:0 20px}
 .marca{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding:18px 0 6px}
 .marca strong{font-size:1.5rem;letter-spacing:.01em}
@@ -22,21 +25,31 @@ nav a{display:inline-block;padding:6px 2px;font-family:system-ui,sans-serif;font
 .portada{padding:42px 0 30px}
 .portada h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;margin:0 0 12px;color:var(--verde)}
 .portada p{font-size:1.15rem;max-width:40em;color:var(--tenue)}
-section{padding:34px 0;border-top:1px solid var(--linea)}
+section{padding:34px 0}
 section h2{font-size:1.7rem;margin:0 0 10px;color:var(--verde)}
 .tarjetas{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:16px}
-.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:999px 999px 0 0;padding:36px 18px 16px}
+.tarjeta{background:var(--cal);border:1px solid var(--linea);border-radius:999px 999px 0 0;padding:36px 18px 16px}
 .tarjeta h3{margin:0 0 6px;font-size:1.15rem}
-.aviso{background:var(--verde-claro);border-left:5px solid var(--verde);padding:12px 16px;border-radius:0;font-family:system-ui,sans-serif;font-size:.98rem}
-.pendiente{background:#fff6dc;border:1px dashed var(--trigo);padding:2px 8px;border-radius:6px;font-family:system-ui,sans-serif;font-size:.9em}
-footer{border-top:1px solid var(--linea);margin-top:30px;padding:22px 0 40px;color:var(--tenue);font-family:system-ui,sans-serif;font-size:.95rem}
+.aviso{background:var(--verde-claro);padding:12px 16px;border-radius:0;font-family:system-ui,sans-serif;font-size:.98rem}
+.pendiente{background:#f3e6b8;border:1px dashed var(--trigo);padding:2px 8px;border-radius:6px;font-family:system-ui,sans-serif;font-size:.9em}
+footer{margin-top:30px;padding:22px 0 40px;color:var(--tenue);font-family:system-ui,sans-serif;font-size:.95rem}
 footer ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px 18px}
 .legal h1{color:var(--verde)} .legal h2{font-size:1.3rem;margin-top:26px;color:var(--tinta)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{header nav,.salto{display:none}body{background:#fff;font-size:12pt}}
 
 /* Botón «Volver al inicio»: visible en todas las páginas y secciones */
-.volver{position:fixed;right:14px;bottom:14px;z-index:90;font:700 .95rem system-ui,sans-serif;color:#fff;background:#2e5a2b;text-decoration:none;
-  padding:10px 16px;border-radius:999px 999px 4px 4px;box-shadow:0 8px 22px -8px #1f3d1caa;border:2px solid #fff}
-.volver:hover,.volver:focus-visible{background:#1f3d1c;outline:3px solid #e0b341;outline-offset:2px}
+.volver{position:fixed;right:14px;bottom:14px;z-index:90;font:700 .95rem system-ui,sans-serif;color:#fff;background:var(--verde);text-decoration:none;
+  padding:10px 16px;border-radius:999px 999px 4px 4px;box-shadow:0 8px 22px -8px #4a3526aa;border:2px solid var(--cal)}
+.volver:hover,.volver:focus-visible{background:var(--verde-osc);outline:3px solid var(--trigo);outline-offset:2px}
 @media print{.volver{display:none}}
+
+/* Barra superior en todas las páginas: todas las secciones siempre a mano, sin líneas separadoras */
+.barra{position:sticky;top:0;z-index:100;display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:10px clamp(14px,4vw,44px);background:var(--papel)}
+.marca{color:var(--tierra-osc);text-decoration:none;white-space:nowrap;font:700 1.2rem var(--fuente)}
+.navtop{display:flex;flex-wrap:wrap;gap:2px 6px;margin-left:auto;min-width:0}
+.navtop a{font:600 .94rem system-ui,sans-serif;color:var(--verde-osc);text-decoration:none;padding:8px 12px 6px;border-bottom:4px solid transparent;border-radius:14px 14px 0 0;transition:border-color .4s,background .4s}
+.navtop a:hover{background:var(--piedra)}
+.navtop a[aria-current]{border-bottom-color:var(--trigo);background:var(--cal)}
+@media (max-width:760px){.navtop{margin-left:0;width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.navtop a{white-space:nowrap}}
+.legal .tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}

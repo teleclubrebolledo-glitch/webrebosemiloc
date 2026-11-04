@@ -5,7 +5,7 @@ import math
 from html import escape
 
 NOCHE, NOCHE2 = "#0f1d3d", "#26407a"
-VERDE, VERDE_OSC, CLARO, TRIGO, PIEDRA, ROJO = "#2e5a2b", "#1f3d1c", "#e3eed6", "#e0b341", "#b9a98a", "#c0392b"
+VERDE, VERDE_OSC, CLARO, TRIGO, PIEDRA, ROJO = "#4c6b2e", "#364a22", "#dbe4c2", "#d9ad3f", "#b9a98a", "#a3441a"
 
 
 def _svg(cuerpo, etiqueta, vb="0 0 300 200", extra=""):
@@ -100,7 +100,7 @@ def iglesia():
 
 
 def torre():
-    c = (_cielo("g4", "#f7edcb", "#e3eed6")
+    c = (_cielo("g4", "#f7edcb", "#dbe4c2")
          + f'<rect x="120" y="60" width="62" height="126" fill="{PIEDRA}"/>'
          + "".join(f'<rect x="{120+i*16}" y="48" width="12" height="14" fill="{PIEDRA}"/>' for i in range(4))
          + f'<path d="M142 186 V158 A9 9 0 0 1 160 158 V186Z" fill="{NOCHE}"/><rect x="143" y="86" width="16" height="22" rx="8" fill="{NOCHE}"/>'
@@ -476,7 +476,7 @@ def _cuña(x, y, a0, a1, r, col, op):
 
 
 def plano_observacion():
-    c = f'<rect x="0" y="130" width="1260" height="1040" fill="#e6edd2"/>'
+    c = f'<rect x="0" y="130" width="1260" height="1040" fill="#dfe6c8"/>'
     # cuesta rocosa del oeste
     c += f'<path d="M0 360 C120 330 240 380 330 430 C390 470 420 540 410 640 C380 700 250 720 120 760 L0 780Z" fill="#b9a98a" fill-opacity=".55"/>'
     for i in range(7):
@@ -498,7 +498,7 @@ def plano_observacion():
     # casco urbano
     pol = "614,545 660,530 700,432 735,440 758,480 760,600 765,700 740,775 700,760 612,720 620,640"
     c += f'<polygon points="{pol}" fill="{VERDE}" fill-opacity=".30" stroke="{ROJO}" stroke-width="4" stroke-dasharray="10 7"/>'
-    c += f'<text x="686" y="630" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Georgia,serif">Rebolledo</text><text x="686" y="662" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Georgia,serif">de la Torre</text>'
+    c += f'<text x="686" y="630" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Lora,Georgia,serif">Rebolledo</text><text x="686" y="662" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Lora,Georgia,serif">de la Torre</text>'
     # escala y norte
     c += f'<line x1="60" y1="1130" x2="230" y2="1130" stroke="{VERDE_OSC}" stroke-width="5"/><text x="145" y="1115" text-anchor="middle" fill="{VERDE_OSC}" font-size="22" font-family="system-ui,sans-serif">200 m</text>'
     c += f'<path d="M80 330 V230 M80 230 L60 270 M80 230 L100 270" stroke="{VERDE_OSC}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="80" y="210" text-anchor="middle" fill="{VERDE_OSC}" font-size="34" font-weight="700" font-family="system-ui,sans-serif">N</text>'
@@ -510,7 +510,7 @@ def plano_observacion():
     for let, nom, x, y, rumbo, _ in PUNTOS_PUBLICOS:
         c += f'<circle cx="{x}" cy="{y}" r="30" fill="{ROJO}" stroke="#fff" stroke-width="5"/><text x="{x}" y="{y+12}" text-anchor="middle" fill="#fff" font-size="34" font-weight="700" font-family="system-ui,sans-serif">{let}</text>'
         izq = x > 900
-        c += f'<text x="{x-40 if izq else x+40}" y="{y-8}" text-anchor="{"end" if izq else "start"}" fill="{VERDE_OSC}" font-size="26" font-weight="700" font-family="system-ui,sans-serif" stroke="#e6edd2" stroke-width="6" paint-order="stroke">{nom}</text>'
+        c += f'<text x="{x-40 if izq else x+40}" y="{y-8}" text-anchor="{"end" if izq else "start"}" fill="{VERDE_OSC}" font-size="26" font-weight="700" font-family="system-ui,sans-serif" stroke="#dfe6c8" stroke-width="6" paint-order="stroke">{nom}</text>'
     c += f'<rect x="60" y="1048" width="26" height="18" fill="#7b2d1e" fill-opacity=".4"/><text x="94" y="1064" fill="{VERDE_OSC}" font-size="20" font-family="system-ui,sans-serif">posible relieve que tapa el cielo</text>'
     c += f'<rect x="400" y="1048" width="26" height="18" fill="#e8a317" fill-opacity=".45"/><text x="434" y="1064" fill="{VERDE_OSC}" font-size="20" font-family="system-ui,sans-serif">luz del pueblo en ese lado</text>'
     c += f'<text x="22" y="1160" fill="{VERDE_OSC}" font-size="19" font-family="system-ui,sans-serif" opacity=".8">Plano esquemático dibujado a ojo sobre una vista de satélite (Google Maps): posiciones y distancias aproximadas.</text>'

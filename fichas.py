@@ -53,7 +53,7 @@ def ficha_svg(ru):
     ox = PX0 + (PW - (x1 - x0) * esc) / 2; oy = PY0 + (PH - (y1 - y0) * esc) / 2
     P = lambda lat, lon: (ox + (lon * k - x0) * esc, oy + (y1 - lat) * esc)
     m_por_px = 111320 / esc if esc else 1
-    c = f'<rect width="760" height="640" fill="#faf7ef"/><rect x="{PX0}" y="{PY0}" width="{PW}" height="{PH}" rx="4" fill="#e6edd2"/>'
+    c = f'<rect width="760" height="640" fill="#faf7ef"/><rect x="{PX0}" y="{PY0}" width="{PW}" height="{PH}" rx="4" fill="#dfe6c8"/>'
     c += f'<clipPath id="cl{ru["id"]}"><rect x="{PX0}" y="{PY0}" width="{PW}" height="{PH}"/></clipPath><g clip-path="url(#cl{ru["id"]})">'
     for via in ru.get("contexto", []):
         pp = " ".join("%.1f,%.1f" % P(a, b) for a, b in via)

@@ -130,7 +130,7 @@ def tarjeta(ident, titulo, texto):
                 f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, <a href="enviar-rutas.html">envíanos tu GPX</a>. '
                 f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
     if texto == "@PUNTOS":
-        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#dfe6c8">{graficos.plano_observacion()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details open><summary>Cinco puntos candidatos</summary>{_puntos_txt()}</details></div></article>')
     if texto == "@SOL":
         svg, filas = graficos.camino_sol()
@@ -152,8 +152,8 @@ def seccion(i, ident, nombre, subs):
     BANNER = ' banner' if ident == 'astro' else ''
     tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
     rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
-    return (f'  <section class="banda b{i % 2} sec" id="{ident}" data-nombre="{escape(nombre)}" data-lead="{escape(LEADS[ident])}" aria-labelledby="h-{ident}">\n'
-            f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>{rama}\n'
+    return (f'  <section class="banda b{i % 3} sec" id="{ident}" data-nombre="{escape(nombre)}" data-lead="{escape(LEADS[ident])}" aria-labelledby="h-{ident}">\n'
+            f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
 def menu(ident, nombre, subs):
@@ -164,6 +164,7 @@ def menu(ident, nombre, subs):
 
 def main():
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
+    navtop = '<a href="#inicio" data-sec="inicio">Inicio</a>' + tabs
     secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
     pagina = f"""<!DOCTYPE html>
 <html lang="es">
@@ -172,7 +173,7 @@ def main():
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rebolledo de la Torre · Naturaleza, historia y estrellas</title>
 <meta name="description" content="Página comunitaria no oficial sobre Rebolledo de la Torre (Burgos): rutas, cielo nocturno, patrimonio y comunidad.">
-<meta name="theme-color" content="#2e5a2b">
+<meta name="theme-color" content="#4a3526">
 <link rel="stylesheet" href="css/estilo.css">
 <link rel="stylesheet" href="css/roble.css">
 </head>
@@ -180,8 +181,8 @@ def main():
 <a class="salto" href="#contenido">Saltar al contenido</a>
 {rama_fondo()}
 <header class="barra">
-  <a class="marca" href="#inicio"><strong>Rebolledo de la Torre</strong></a>
-  <a class="a-inicio" href="#inicio">Inicio</a>
+  <a class="marca" href="#inicio">Rebolledo de la Torre</a>
+  <nav class="navtop" aria-label="Secciones">{navtop}</nav>
 </header>
 
 <main id="contenido">
