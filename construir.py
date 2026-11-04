@@ -107,7 +107,7 @@ def tarjeta(ident, titulo, texto):
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
     if texto == "@APORTA":
         return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
-                '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx por Telegram a <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. '
+                '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx al bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. '
                 'Solo rutas que hayas grabado tú, por caminos públicos o con permiso. <a href="colabora.html#gpx">Guía paso a paso: cómo grabar el GPX</a>.</p></div></article>')
     if texto.startswith("@RUTA:"):
         id_ = texto[6:]
