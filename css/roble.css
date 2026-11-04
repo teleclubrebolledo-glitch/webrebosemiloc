@@ -168,3 +168,13 @@ html[data-vista="seccion"] .tabs{display:none}
 /* la caja del carrusel también es un arco con sus columnas */
 .carrusel .marco-arco{margin-top:0}
 .carrusel .caja{min-width:0}
+
+/* ── UN solo arco: el vídeo y el carrusel van dentro del mismo arco, entre las mismas columnas ── */
+.marco-arco>.centro{min-width:0;display:flex;flex-direction:column}
+.centro .portada{flex:0 0 auto}
+.centro .aviso{margin:0;padding:14px clamp(14px,3vw,34px);border-radius:0}
+.centro .carrusel,html.js .centro .carrusel{display:block;margin:0;flex:1 1 auto}
+.centro .caja{border-radius:0;padding:clamp(22px,3vw,40px) clamp(14px,4vw,56px) 22px;min-height:0;height:100%}
+.centro .controles{margin:20px 0 4px}
+.carrusel .marco-arco{margin-top:0}
+.carrusel,html.js .centro .carrusel{padding:0}

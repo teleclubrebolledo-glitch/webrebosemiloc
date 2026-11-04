@@ -187,32 +187,31 @@ def main():
 
 <main id="contenido">
   <div class="marco-arco">
-  <div class="pilar" aria-hidden="true"></div>
-  <section class="portada" id="inicio">
-    <video autoplay muted loop playsinline controls preload="auto" poster="media/cielo-nocturno.jpg" aria-label="Cielo nocturno sobre Rebolledo de la Torre (vídeo sin sonido)">
-      <source src="media/cielo-nocturno.mp4" type="video/mp4">
-    </video>
-    <div class="portada-texto">
-      <h1>Rebolledo de la Torre</h1>
-      <p>Naturaleza, historia y estrellas</p>
+    <div class="pilar" aria-hidden="true"></div>
+    <div class="centro">
+      <section class="portada" id="inicio">
+        <video autoplay muted loop playsinline controls preload="auto" poster="media/cielo-nocturno.jpg" aria-label="Cielo nocturno sobre Rebolledo de la Torre (vídeo sin sonido)">
+          <source src="media/cielo-nocturno.mp4" type="video/mp4">
+        </video>
+        <div class="portada-texto">
+          <h1>Rebolledo de la Torre</h1>
+          <p>Naturaleza, historia y estrellas</p>
+        </div>
+      </section>
+      <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
+      <section id="carrusel" class="carrusel" aria-roledescription="carrusel" aria-label="Secciones del portal">
+        <div class="caja" data-par="0">
+          <div class="diap" aria-live="off"></div>
+          <div class="controles">
+            <button type="button" class="flecha" data-dir="-1" aria-label="Anterior">‹</button>
+            <button type="button" class="pausa" aria-pressed="false">⏸ Pausar</button>
+            <button type="button" class="flecha" data-dir="1" aria-label="Siguiente">›</button>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-  <div class="pilar" aria-hidden="true"></div>
+    <div class="pilar" aria-hidden="true"></div>
   </div>
-  <p class="aviso envoltorio"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
-
-  <section id="carrusel" class="carrusel" aria-roledescription="carrusel" aria-label="Secciones del portal">
-    <div class="marco-arco">
-      <div class="pilar" aria-hidden="true"></div>
-      <div class="caja" data-par="0"><div class="diap" aria-live="off"></div></div>
-      <div class="pilar" aria-hidden="true"></div>
-    </div>
-    <div class="controles">
-      <button type="button" class="flecha" data-dir="-1" aria-label="Anterior">‹</button>
-      <button type="button" class="pausa" aria-pressed="false">⏸ Pausar</button>
-      <button type="button" class="flecha" data-dir="1" aria-label="Siguiente">›</button>
-    </div>
-  </section>
   <nav class="tabs" aria-label="Secciones">{tabs}</nav>
 
   <div id="almacen">
