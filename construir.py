@@ -87,7 +87,7 @@ def tarjeta(ident, titulo, texto):
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
     if texto == "@PUNTOS":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
-                f'<div class="texto"><h3>{escape(titulo)}</h3><details open><summary>Tres puntos candidatos</summary>{_puntos_txt()}</details></div></article>')
+                f'<div class="texto"><h3>{escape(titulo)}</h3><details open><summary>Cinco puntos candidatos</summary>{_puntos_txt()}</details></div></article>')
     if texto == "@SOL":
         svg, filas = graficos.camino_sol()
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{svg}</div>'
