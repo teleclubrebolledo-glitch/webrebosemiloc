@@ -122,6 +122,30 @@
   document.addEventListener('click', function (e) { if (!e.target.closest || !e.target.closest('.navtop')) cierraMenus(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cierraMenus(); });
 
+  /* Dovelas: el arco del vídeo lleva un anillo de piedras con sus juntas (dibujo decorativo, se recalcula al cambiar el tamaño). */
+  function piedras() {
+    var marco = document.querySelector('.marco-arco'), por = document.querySelector('.portada');
+    if (!marco || !por) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var svg = marco.querySelector('.piedras');
+    if (!svg) { svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'piedras'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false'); marco.insertBefore(svg, marco.firstChild); }
+    var sonda = document.createElement('div'); sonda.style.cssText = 'position:absolute;visibility:hidden;height:var(--arco);width:1px'; marco.appendChild(sonda);
+    var b = sonda.offsetHeight; marco.removeChild(sonda);
+    var m = marco.getBoundingClientRect(), r = por.getBoundingClientRect();
+    var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b, T = Math.max(8, Math.min(26, top - 3)), N = 17, d = '', i, f;
+    var A = a + T, B = b + T;
+    var banda = 'M' + (cx - A) + ' ' + cy + 'A' + A + ' ' + B + ' 0 0 1 ' + (cx + A) + ' ' + cy + 'L' + (cx + a) + ' ' + cy + 'A' + a + ' ' + b + ' 0 0 0 ' + (cx - a) + ' ' + cy + 'Z';
+    for (i = 1; i < N; i++) {
+      f = Math.PI * i / N;
+      d += 'M' + (cx - a * Math.cos(f)).toFixed(1) + ' ' + (cy - b * Math.sin(f)).toFixed(1) + 'L' + (cx - A * Math.cos(f)).toFixed(1) + ' ' + (cy - B * Math.sin(f)).toFixed(1);
+    }
+    svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
+    svg.innerHTML = '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6"/>';
+  }
+  piedras();
+  if (window.ResizeObserver) new ResizeObserver(piedras).observe(document.querySelector('.marco-arco')); else window.addEventListener('resize', piedras);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(piedras);
+
   var p = new URLSearchParams(location.search).get('i');
   if (p !== null && !isNaN(parseInt(p, 10))) i = parseInt(p, 10);
   etiqueta();

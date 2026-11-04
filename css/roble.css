@@ -180,3 +180,6 @@ html[data-vista="seccion"] .tabs{display:none}
 .carrusel,html.js .centro .carrusel{padding:0}
 .caja{touch-action:pan-y}
 .pilar{z-index:3}
+
+.marco-arco{position:relative}
+.piedras{position:absolute;left:0;top:0;z-index:2;pointer-events:none;overflow:visible}
