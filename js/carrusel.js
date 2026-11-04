@@ -104,6 +104,18 @@
       if (e.key === 'ArrowRight') { mostrar(i + 1); arrancar(); e.preventDefault(); }
     });
   }
+  /* Móvil: se pasa arrastrando el dedo hacia los lados (el gesto vertical sigue siendo desplazar la página). */
+  var x0 = null, y0 = 0;
+  caja.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { x0 = null; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  caja.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) { mostrar(i + (dx < 0 ? 1 : -1)); arrancar(); }
+  }, { passive: true });
+  caja.addEventListener('touchcancel', function () { x0 = null; }, { passive: true });
   document.addEventListener('visibilitychange', arrancar);
   window.addEventListener('hashchange', ruta);
 
