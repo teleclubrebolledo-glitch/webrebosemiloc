@@ -399,3 +399,48 @@ def rueda_lluvias():
     c += (f'<text x="{cx}" y="{cy-4}" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui,sans-serif">Lluvias de</text>'
           f'<text x="{cx}" y="{cy+16}" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="system-ui,sans-serif">estrellas</text>')
     return _svg(c, "Rueda del año con la fecha del máximo de siete lluvias de meteoros: Cuadrántidas, Líridas, eta Acuáridas, Perseidas, Oriónidas, Leónidas y Gemínidas", vb="0 0 520 420")
+
+
+# ═════════════ PANORAMA PÚBLICO: qué sale por dónde desde un punto abierto de Rebolledo ═════════════
+def _alt_az(dec, H_deg, lat=LAT):
+    f, d, H = map(math.radians, (lat, dec, H_deg))
+    alt = math.degrees(math.asin(math.sin(f) * math.sin(d) + math.cos(f) * math.cos(d) * math.cos(H)))
+    az = math.degrees(math.atan2(-math.sin(H), math.tan(d) * math.cos(f) - math.sin(f) * math.cos(H))) % 360
+    return az, alt
+
+
+def panorama_abierto():
+    X0, X1, Y0, Y1, ALT = 40, 560, 24, 224, 90
+    def x_(az): return X0 + ((((az - 180) + 180) % 360)) / 360 * (X1 - X0)
+    py = lambda a: Y1 - a / ALT * (Y1 - Y0)
+    c = (f'<defs><linearGradient id="pa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f1d3d"/><stop offset="1" stop-color="#4a6aa8"/></linearGradient></defs>'
+         f'<rect width="600" height="290" fill="#f3ead2"/><rect x="{X0}" y="{Y0}" width="{X1-X0}" height="{Y1-Y0}" fill="url(#pa)"/>')
+    for a in range(0, 91, 15):
+        c += (f'<line x1="{X0}" y1="{py(a):.0f}" x2="{X1}" y2="{py(a):.0f}" stroke="#fff" stroke-opacity=".25" stroke-dasharray="3 5"/>'
+              f'<text x="{X0-6}" y="{py(a)+4:.0f}" text-anchor="end" fill="{VERDE_OSC}" font-size="11" font-family="system-ui,sans-serif">{a}°</text>')
+    for dec, col in ((EPS, "#ff9a8b"), (0, "#f1d27a"), (-EPS, "#9fc0ff")):
+        pts = " ".join(f"{x_(a):.1f},{py(h):.1f}" for a, h in _curva_sol(dec, paso=2))
+        c += f'<polyline points="{pts}" fill="none" stroke="{col}" stroke-width="2" stroke-opacity=".95"/>'
+    for ra_dec, col in (((57.14), "#ff9a8b"), ((-1.2), "#9fb8ee"), ((38.78), "#8fd18a")):
+        for H in range(0, 361, 3):
+            az, alt = _alt_az(ra_dec, H)
+            if alt > 0: c += f'<circle cx="{x_(az):.1f}" cy="{py(alt):.1f}" r="1.6" fill="{col}"/>'
+    for xx in (x_(0), x_(359.99)):
+        c += f'<circle cx="{xx:.1f}" cy="{py(LAT):.1f}" r="5" fill="{TRIGO}"/>'
+    c += f'<rect x="{X0}" y="{Y1}" width="{X1-X0}" height="26" fill="{VERDE_OSC}"/>'
+    for az, nm in ((0, "N"), (45, "NE"), (90, "E"), (135, "SE"), (180, "S"), (225, "SO"), (270, "O"), (315, "NO"), (359.9, "N")):
+        c += f'<text x="{x_(az):.0f}" y="{Y1+18}" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="system-ui,sans-serif">{nm}</text>'
+    ley = [("#ff9a8b", "Sol, solsticio de verano"), ("#f1d27a", "Sol, equinoccios"), ("#9fc0ff", "Sol, solsticio de invierno"), ("#ff9a8b", "Doble Cúmulo"),
+           ("#9fb8ee", "Cinturón de Orión"), ("#8fd18a", "Vega"), (TRIGO, "Estrella Polar")]
+    for i, (col, tx) in enumerate(ley):
+        xx = 24 + (i % 4) * 140; yy = 268 + (i // 4) * 16
+        c += f'<circle cx="{xx}" cy="{yy-4}" r="4" fill="{col}"/><text x="{xx+9}" y="{yy}" fill="{VERDE_OSC}" font-size="10.5" font-family="system-ui,sans-serif">{tx}</text>'
+    return _svg(c, "Panorama del horizonte, de norte a norte pasando por el sur, con las trayectorias del Sol, la Polar, el Doble Cúmulo, Orión y Vega vistas desde un punto despejado de Rebolledo", vb="0 0 600 296")
+
+
+def punto_vacio():
+    c = (_cielo("g10") + _estrellas(40, 300, 140, 23)
+         + f'<path d="M0 160 C80 140 160 166 300 150 V200 H0Z" fill="{VERDE_OSC}"/>'
+         f'<path d="M150 150 C118 112 122 78 150 58 C178 78 182 112 150 150Z" fill="{ROJO}"/><circle cx="150" cy="92" r="11" fill="#fff"/>'
+         f'<text x="150" y="190" text-anchor="middle" fill="#fff" font-size="12" font-family="system-ui,sans-serif">¿Dónde se ve mejor?</text>')
+    return _svg(c, "Dibujo de una chincheta de mapa sobre un campo bajo el cielo estrellado: lugar por señalar")

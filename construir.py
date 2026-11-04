@@ -22,8 +22,10 @@ CONTENIDO = [
                                 ("El camino del Sol", "@SOL"),
                                 ("Orión, el cielo de invierno", "@G:orion|El Cinturón (tres estrellas en fila) es la guía: hacia abajo a la izquierda señala Sirio, la más brillante del cielo, y hacia arriba a la derecha Aldebarán. Desde aquí el Cinturón llega a unos %d° de altura, de diciembre a febrero al anochecer." % round(90 - abs(graficos.LAT - -1.2))),
                                 ("El Triángulo de Verano", "@G:triangulo|Vega, Deneb y Altair, de julio a octubre al anochecer. Vega y Deneb pasan casi por encima de la cabeza (unos %d° y %d°); Altair llega a unos %d°. La Vía Láctea los cruza." % (round(90 - abs(graficos.LAT - 38.78)), round(90 - abs(graficos.LAT - 45.28)), round(90 - abs(graficos.LAT - 8.87)))),
+                                ("Qué sale por dónde", "@G:panorama|Desde un punto con el horizonte despejado: el Sol, la Polar y tres objetivos, por rumbo y altura. Cada lugar real tiene su propio horizonte (árboles, casas, lomas): busca uno despejado al norte para la Polar y al sur para el cielo de invierno."),
                                 ("Fases de la Luna", "@G:lunas|Para el cielo profundo, mejor cerca de la Luna nueva; con la Luna llena, el protagonista es ella, hasta con prismáticos. Creciente: se ve por la tarde; menguante: de madrugada."),
                                 ("Lluvias de estrellas", "@LLUVIA"),
+                                ("Tus puntos de observación", "@G:puntos|Aún no hay lugares señalados: los pondrá la gente del pueblo, que sabe dónde se ve mejor. Cuéntanos el tuyo (qué rumbos tiene despejados y si es de acceso libre) en <a href=\"colabora.html\">Colabora</a>. Solo sitios públicos o con permiso de quien sea dueño."),
                                 ("Mirar con respeto", "@G:respeto|Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
@@ -39,7 +41,7 @@ CONTENIDO = [
 ]
 
 LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
-         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas. Desliza hacia los lados: hay diez tarjetas.",
+         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas. Desliza hacia los lados.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
          "comunidad": "Canales de Telegram, fotos de vecinas y vecinos, y cómo sumarse.",
@@ -83,7 +85,7 @@ def tarjeta(ident, titulo, texto):
     if texto.startswith("@G:"):
         nombre, texto = texto[3:].split("|", 1)
         g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
-             "lunas": graficos.lunas, "respeto": graficos.respeto}[nombre]
+             "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto, "puntos": graficos.punto_vacio}[nombre]
     else:
         g = graficos.GRAFICOS.get(ident)
     fig = f'<figure>{g()}</figure>' if g else ""
