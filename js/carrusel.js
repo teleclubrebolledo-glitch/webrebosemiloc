@@ -132,15 +132,26 @@
     var sonda = document.createElement('div'); sonda.style.cssText = 'position:absolute;visibility:hidden;height:var(--arco);width:1px'; marco.appendChild(sonda);
     var b = sonda.offsetHeight; marco.removeChild(sonda);
     var m = marco.getBoundingClientRect(), r = por.getBoundingClientRect();
-    var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b, T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width, top), N = 17, d = '', i, f;
-    var A = a + T, B = b + T;
-    var banda = 'M' + (cx - A) + ' ' + cy + 'A' + A + ' ' + B + ' 0 0 1 ' + (cx + A) + ' ' + cy + 'L' + (cx + a) + ' ' + cy + 'A' + a + ' ' + b + ' 0 0 0 ' + (cx - a) + ' ' + cy + 'Z';
-    for (i = 1; i < N; i++) {
-      f = Math.PI * i / N;
-      d += 'M' + (cx - a * Math.cos(f)).toFixed(1) + ' ' + (cy - b * Math.sin(f)).toFixed(1) + 'L' + (cx - A * Math.cos(f)).toFixed(1) + ' ' + (cy - B * Math.sin(f)).toFixed(1);
+    var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b;
+    var T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width, top);      /* grosor = ancho del capitel */
+    var M = 160, P = [], O = [], L = [0], k, th, nx, ny, nn, i;
+    for (k = 0; k <= M; k++) {                                   /* arco interior (elipse) y curva paralela a distancia T: el grosor no cambia en ningún punto */
+      th = Math.PI * k / M;
+      var x = cx - a * Math.cos(th), y = cy - b * Math.sin(th);
+      nx = -Math.cos(th) / a; ny = -Math.sin(th) / b; nn = Math.hypot(nx, ny); nx /= nn; ny /= nn;
+      P.push([x, y]); O.push([x + T * nx, y + T * ny]);
+      L.push(k ? L[k - 1] + Math.hypot(x - P[k - 1][0], y - P[k - 1][1]) : 0);
+    }
+    L.shift();
+    var N = Math.max(7, Math.round(L[M] / (T * 1.1))); if (N % 2 === 0) N++;       /* nº impar: la clave queda en el centro */
+    var banda = 'M' + O.map(function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('L') + 'L' + P.slice().reverse().map(function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('L') + 'Z';
+    var d = '';
+    for (i = 1; i < N; i++) {                                    /* juntas a intervalos iguales de arco: todas las piedras del mismo largo */
+      var obj = L[M] * i / N; k = 1; while (k < M && L[k] < obj) k++;
+      d += 'M' + P[k][0].toFixed(1) + ' ' + P[k][1].toFixed(1) + 'L' + O[k][0].toFixed(1) + ' ' + O[k][1].toFixed(1);
     }
     svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
-    svg.innerHTML = '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6"/>';
+    svg.innerHTML = '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/>';
   }
   piedras();
   if (window.ResizeObserver) new ResizeObserver(piedras).observe(document.querySelector('.marco-arco')); else window.addEventListener('resize', piedras);

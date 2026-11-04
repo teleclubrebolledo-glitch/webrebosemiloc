@@ -160,8 +160,8 @@ html[data-vista="seccion"] .tabs{display:none}
 .marco-arco{--col:clamp(30px,6vw,88px);display:grid;grid-template-columns:var(--col) minmax(0,1fr) var(--col);background:#d9cdb0;
   padding:clamp(16px,2.6vw,30px) clamp(8px,3vw,44px) 0}
 .marco-arco .portada{min-height:min(62vh,560px)}
-.pilar{position:relative;margin-top:var(--arco);background:#bfb08f;box-shadow:inset calc(var(--col) * -.22) 0 0 #a99a7a}
-.pilar::before,.pilar::after{content:"";position:absolute;left:-13%;right:-13%;background:#8f836b}
+.pilar{position:relative;margin-top:var(--arco);background:linear-gradient(90deg,transparent 0 12%,#bfb08f 12% 66%,#a99a7a 66% 88%,transparent 88%)}
+.pilar::before,.pilar::after{content:"";position:absolute;left:0;right:0;background:#8f836b}
 .pilar::before{top:calc(clamp(16px,2.6vw,26px) * -1);height:clamp(16px,2.6vw,26px);clip-path:polygon(12% 100%,0 0,100% 0,88% 100%)}
 .pilar::after{bottom:0;height:clamp(14px,2.2vw,22px);clip-path:polygon(0 100%,12% 0,88% 0,100% 100%)}
 
