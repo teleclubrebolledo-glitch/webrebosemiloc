@@ -100,7 +100,7 @@ def ficha_svg(ru):
         c += f'<text x="{px(i):.1f}" y="{QY0+QH+16}" text-anchor="middle" font-size="10.5" fill="#6b6b5a" font-family="system-ui,sans-serif">{i} km</text>'
     jmax = max(range(len(m["alt"])), key=lambda i: m["alt"][i])
     c += f'<circle cx="{px(m["km"][jmax]):.1f}" cy="{py(m["alt"][jmax]):.1f}" r="4.5" fill="{G.ROJO}"/><text x="{px(m["km"][jmax]):.1f}" y="{py(m["alt"][jmax])-9:.1f}" text-anchor="middle" font-size="11.5" font-weight="700" fill="{G.ROJO}" font-family="system-ui,sans-serif">{m["mx"]:.0f} m</text>'
-    c += f'<text x="20" y="620" font-size="10.5" fill="#6b6b5a" font-family="system-ui,sans-serif">Trazado propuesto sobre caminos de © OpenStreetMap (ODbL) · altitudes EU-DEM (Copernicus) · tiempo: regla de Naismith · POR VERIFICAR</text>'
+    c += f'<text x="20" y="620" font-size="10.5" fill="#6b6b5a" font-family="system-ui,sans-serif">{"Recorrido aportado por la comunidad" if ru.get("origen") == "comunidad" else "Trazado propuesto sobre caminos de © OpenStreetMap (ODbL)"} · mapa © OpenStreetMap · altitudes del GPX o EU-DEM · tiempo: regla de Naismith{"" if ru.get("origen") == "comunidad" else " · POR VERIFICAR"}</text>'
     etiqueta = f'Ficha de la ruta {ru["nombre"]}: plano con el trazado, perfil de altura y datos; {m["dist"]:.1f} kilómetros, {m["sube"]:.0f} metros de subida, dificultad {dificultad(m).lower()}'
     return G._svg(c, etiqueta, vb="0 0 760 640"), m
 

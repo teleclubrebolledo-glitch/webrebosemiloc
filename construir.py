@@ -3,7 +3,7 @@
 Sin dependencias, sin JavaScript en la web: todo el efecto es SVG + CSS."""
 from pathlib import Path
 from html import escape
-import graficos, fichas
+import graficos, fichas, json
 
 PEND = '<small class="pendiente">por completar</small>'
 LAT, LON = "42.6889", "-4.2271"   # de la web anterior (incrustado de Windy: 42.6889148, -4.2271223)
@@ -44,6 +44,21 @@ CONTENIDO = [
                             ("El tiempo", '<a href="https://windy.com/' + LAT + '/' + LON + '" rel="noopener">Windy</a> (se abre en otra página)'),
                             ("Contacto", '<a href="mailto:teleclubrebolledo@gmail.com">teleclubrebolledo@gmail.com</a>')]),
 ]
+
+def _rutas_comunidad():
+    ix = Path(__file__).with_name("datos-rutas") / "index.json"
+    try: ids = json.loads(ix.read_text())
+    except Exception: return []
+    out = []
+    for i in ids:
+        try: out.append((fichas.cargar(i)["nombre"], "@RUTA:" + i))
+        except Exception: pass
+    return out
+for _i, _c in enumerate(CONTENIDO):
+    if _c[0] == "rutas":
+        _l = list(_c[2]); _pos = next(k for k, (t, _) in enumerate(_l) if t == "Aporta tu ruta")
+        _com = _rutas_comunidad(); APORTA_ID = f"rutas-{_pos + len(_com) + 1}"
+        CONTENIDO[_i] = (_c[0], _c[1], _l[:_pos] + _com + _l[_pos:])
 
 LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
          "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas. Desliza hacia los lados.",
@@ -92,16 +107,23 @@ def tarjeta(ident, titulo, texto):
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
     if texto == "@APORTA":
         return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
-                '<p>Si has recorrido un sendero del entorno y lo has grabado con el móvil, pronto podrás enviarlo por Telegram para que salga aquí con su plano, su perfil y sus datos, con tu permiso y con el reconocimiento que elijas. '
-                'Mientras tanto, cuéntanoslo en <a href="colabora.html">Colabora</a>.</p></div></article>')
+                '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx por Telegram a <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. '
+                'Solo rutas que hayas grabado tú, por caminos públicos o con permiso. Más datos en <a href="colabora.html">Colabora</a>.</p></div></article>')
     if texto.startswith("@RUTA:"):
         id_ = texto[6:]
         try: svg, m, ru = fichas.ficha_html(id_)
         except FileNotFoundError: return f'<article class="tarjeta" id="{ident}"><div class="texto"><h3>{escape(titulo)}</h3><p>Ficha en preparación. {PEND}</p></div></article>'
+        if ru.get("origen") == "comunidad":
+            aut = f" Recorrido de {escape(ru['autor'].rstrip('.'))}." if ru.get("autor") else ""
+            av = f'<p class="nota"><strong>Aviso:</strong> {escape(ru["avisos"])}</p>' if ru.get("avisos") else ""
+            return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
+                    f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Recorrida por la comunidad</span>{aut}</p>{av}'
+                    f'<p class="nota">Recorrido aportado con permiso de su autoría. ¿Quieres añadir el tuyo? <a href="#{APORTA_ID}">Cómo aportar una ruta</a>. '
+                    f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
                 f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Propuesta · por verificar</span></p>'
                 + (f'<p class="nota">Llega hasta donde acaba el camino cartografiado: faltan unos {ru["faltan_m"]:.0f} m hasta {escape(ru["destino"])}, sin senda marcada en el mapa.</p>' if ru.get("faltan_m", 0) > 50 else '') +
-                f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, cuéntalo en <a href="colabora.html">Colabora</a>. '
+                f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, envíanos tu GPX (mira «Aporta tu ruta»). '
                 f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
     if texto == "@PUNTOS":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
