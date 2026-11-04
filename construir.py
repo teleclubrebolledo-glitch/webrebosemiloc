@@ -3,6 +3,7 @@
 Sin dependencias, sin JavaScript en la web: todo el efecto es SVG + CSS."""
 from pathlib import Path
 from html import escape
+import graficos
 
 PEND = '<small class="pendiente">por completar</small>'
 LAT, LON = "42.6889", "-4.2271"   # de la web anterior (incrustado de Windy: 42.6889148, -4.2271223)
@@ -16,6 +17,7 @@ CONTENIDO = [
                         ("Circuito románico", 'Rebolledo y su entorno, a pie o en coche. <a href="https://www.rebolledodelatorre.es/rutas" rel="noopener">Web municipal</a>')]),
     ("astro", "Astro-turismo", [("Geoparque Las Loras", "Cielo oscuro dentro del Geoparque Mundial de la UNESCO."),
                                 ("Observatorios", '<a href="https://www.astroburgos.org/agenda/" rel="noopener">Agenda Astroburgos</a> · <a href="https://astrodemanda.blogspot.com/" rel="noopener">AstroDemanda</a>'),
+                                ("Orientar el telescopio", "@ASTRO"),
                                 ("Mirar con respeto", "Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
@@ -47,8 +49,20 @@ def rama_fondo():
             '<path class="ramita r4" pathLength="1" d="M74 140C94 126 106 132 116 112"/>'
             '</svg>')
 
+ASTRO_GUIA = (
+    '<ol class="guia"><li><strong>Encuentra la Polar.</strong> Une Merak y Dubhe, las dos estrellas del borde del Carro, y prolonga esa línea unas cinco veces su distancia.</li>'
+    '<li><strong>Inclina la montura.</strong> Desde Rebolledo la Polar está a unos %.1f° sobre el horizonte norte: ese es el ángulo del eje polar.</li>'
+    '<li><strong>Objetivo de la noche: el Doble Cúmulo de Perseo,</strong> entre Casiopea y Perseo. Desde aquí nunca se pone (de unos 10° en su punto más bajo a unos 76° en el más alto) y se ve como una mancha; con prismáticos o un telescopio de campo amplio se separa en dos cúmulos.</li>'
+    '<li><strong>Cuida la vista.</strong> Luz roja y unos 20 minutos para que los ojos se acostumbren a la oscuridad.</li></ol>'
+    '<p class="nota">Esquemas orientativos, con posiciones redondeadas: para orientarse a ojo, no para apuntar con precisión. Comprueba la altura con una app de planetario.</p>') % graficos.LAT
+
 def tarjeta(ident, titulo, texto):
-    return f'<article class="tarjeta" id="{ident}"><h3>{escape(titulo)}</h3><p>{texto}</p></article>'
+    if texto == "@ASTRO":
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
+                f'<div class="texto"><h3>{escape(titulo)}</h3>{ASTRO_GUIA}</div></article>')
+    g = graficos.GRAFICOS.get(ident)
+    fig = f'<figure>{g()}</figure>' if g else ""
+    return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 
 def seccion(i, ident, nombre, subs):
     tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))

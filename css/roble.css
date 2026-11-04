@@ -69,10 +69,10 @@ body{overflow-x:hidden}
 .b1 .trazo path{stroke:var(--verde)}
 .lead{margin:0 0 30px;max-width:48ch;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--tenue);text-wrap:pretty}
 .rejilla{display:grid;gap:clamp(14px,2.4vw,28px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.tarjeta{position:relative;padding:48px 24px 24px;background:#fffdf7;border-radius:999px 999px 0 0;box-shadow:0 14px 30px -16px #1f3d1c77;
+.tarjeta{position:relative;padding:0;overflow:hidden;background:#fffdf7;border-radius:999px 999px 0 0;box-shadow:0 14px 30px -16px #1f3d1c77;
   transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
-.tarjeta::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:46px;height:6px;border-radius:0;background:var(--trigo)}
-.b1 .tarjeta::before{background:var(--verde)}
+.tarjeta.__x::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:46px;height:6px;border-radius:0;background:var(--trigo)}
+.b1 .tarjeta.__x::before{background:var(--verde)}
 .tarjeta:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 26px 40px -18px #1f3d1c88}
 .tarjeta:target{outline:3px solid var(--trigo);outline-offset:4px}
 .tarjeta h3{margin:.5rem 0 .35rem;font:700 1.28rem/1.2 Georgia,serif;color:var(--verde-osc);text-wrap:balance}
@@ -101,3 +101,16 @@ body{overflow-x:hidden}
   }
 }
 @media print{.barra,.rama-fondo{display:none}.portada{min-height:0}}
+
+/* ── imágenes dentro del arco ── */
+.tarjeta figure{margin:0;line-height:0}
+.tarjeta figure svg{display:block;width:100%;height:auto}
+.tarjeta .texto{padding:16px 22px 24px}
+.tarjeta.ancha{grid-column:1/-1;border-radius:999px 999px 0 0 / 110px 110px 0 0}
+.tarjeta.ancha .figuras{display:grid;align-items:center;grid-template-columns:1.1fr 1fr;gap:0;align-items:stretch;background:#0f1d3d}
+.tarjeta.ancha .figuras svg{display:block;width:100%;height:100%;object-fit:cover}
+.tarjeta.ancha .texto{padding:26px clamp(22px,5vw,60px) 30px;max-width:70ch;margin-inline:auto}
+.guia{padding-left:1.2em;margin:.4rem 0 0;font:1rem/1.55 system-ui,sans-serif}
+.guia li{margin:.55rem 0}
+.nota{font:.88rem/1.45 system-ui,sans-serif;color:var(--tenue);margin:.8rem 0 0}
+@media (max-width:760px){.tarjeta.ancha .figuras{grid-template-columns:1fr}}
