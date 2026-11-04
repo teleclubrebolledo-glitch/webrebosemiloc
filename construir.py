@@ -39,7 +39,7 @@ CONTENIDO = [
 ]
 
 LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
-         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
+         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas. Desliza hacia los lados: hay diez tarjetas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
          "comunidad": "Canales de Telegram, fotos de vecinas y vecinos, y cómo sumarse.",
@@ -72,14 +72,14 @@ def _sol_txt(filas):
 def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
-                f'<div class="texto"><h3>{escape(titulo)}</h3>{ASTRO_GUIA}</div></article>')
+                f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
     if texto == "@SOL":
         svg, filas = graficos.camino_sol()
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{svg}</div>'
-                f'<div class="texto"><h3>{escape(titulo)}</h3>{_sol_txt(filas)}</div></article>')
+                f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los datos</summary>{_sol_txt(filas)}</details></div></article>')
     if texto == "@LLUVIA":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{graficos.rueda_lluvias()}</div>'
-                f'<div class="texto"><h3>{escape(titulo)}</h3>{LLUVIAS_TXT}</div></article>')
+                f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver las fechas</summary>{LLUVIAS_TXT}</details></div></article>')
     if texto.startswith("@G:"):
         nombre, texto = texto[3:].split("|", 1)
         g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
@@ -90,11 +90,12 @@ def tarjeta(ident, titulo, texto):
     return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 
 def seccion(i, ident, nombre, subs):
+    BANNER = ' banner' if ident == 'astro' else ''
     tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
     rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
     return (f'  <section class="banda b{i % 2}" id="{ident}" style="--z:{40-i}" aria-labelledby="h-{ident}">\n'
             f'    <div class="envoltorio">\n      <h2 id="h-{ident}">{escape(nombre)}</h2>{rama}\n'
-            f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
+            f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
 def menu(ident, nombre, subs):
     enlaces = "".join(f'<a href="#{ident}-{j+1}">{escape(t)}</a>' for j, (t, _) in enumerate(subs))

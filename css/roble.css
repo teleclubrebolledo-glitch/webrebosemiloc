@@ -115,3 +115,16 @@ body{overflow-x:hidden}
 .nota{font:.88rem/1.45 system-ui,sans-serif;color:var(--tenue);margin:.8rem 0 0}
 @media (max-width:760px){.tarjeta.ancha .figuras{grid-template-columns:1fr}}
 .tarjeta.ancha .figuras.una{grid-template-columns:1fr;background:#0f1d3d;justify-items:center}.tarjeta.ancha .figuras.una svg{max-height:440px;width:auto;max-width:100%}
+
+/* ── astro-turismo en modo banner: una sola fila que se desliza de lado, del mismo alto que el resto de secciones ── */
+.rejilla.banner{display:flex;gap:clamp(14px,2.4vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:2px;
+  padding:4px 4px 26px;margin-inline:-4px;overscroll-behavior-x:contain;scrollbar-color:var(--verde) transparent;scrollbar-width:thin;align-items:stretch}
+.rejilla.banner:focus-visible{outline:3px solid var(--foco);outline-offset:4px}
+.banner>.tarjeta{flex:0 0 min(78vw,256px);scroll-snap-align:start}
+.banner>.tarjeta.ancha{flex:0 0 min(90vw,640px);grid-column:auto;display:flex;flex-direction:column}
+.banner .tarjeta.ancha .figuras{grid-template-columns:1fr 1fr;flex:0 0 auto}
+.banner .tarjeta.ancha .figuras.una{grid-template-columns:1fr}
+.banner .tarjeta.ancha .figuras svg{max-height:300px}
+.banner .tarjeta.ancha .texto{padding:14px 22px 22px;max-width:none;width:100%;margin:0}
+.banner .tarjeta.ancha details summary{cursor:pointer;font:600 .95rem system-ui,sans-serif;color:var(--verde)}
+@media (max-width:760px){.banner .tarjeta.ancha .figuras{grid-template-columns:1fr}.banner .tarjeta.ancha .figuras svg{max-height:240px}}
