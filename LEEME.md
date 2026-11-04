@@ -28,7 +28,7 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 Si se quiere recuperar un tablón o avisos de vecinos, hay que diseñarlo con moderación previa, base legal de tratamiento y política de privacidad.
 
 ## Diseño y cómo editarlo
-- Diseño (v2, 2026-10-31): la **curvatura de los lóbulos del roble** como único motivo (`css/roble.css`): bordes festoneados por máscara SVG, rama de fondo que se dibuja con el scroll, submenús que crecen despacio como una rama (`<details>`), títulos con degradado y trazo que se dibuja, tarjetas con esquinas de hoja y revelado por scroll. Sin hojas dibujadas ni contenido dentro de hojas. Sin JavaScript; animaciones solo con soporte y sin «movimiento reducido»; `@view-transition` entre páginas.
+- Diseño (v2, 2026-10-31): la **curvatura de los lóbulos del roble** como único motivo (`css/roble.css`): bordes festoneados por máscara SVG, rama de fondo que se dibuja con el scroll, submenús que crecen despacio como una rama (`<details>`), títulos con degradado y trazo que se dibuja, tarjetas con esquinas de hoja y revelado por scroll. Sin hojas dibujadas ni contenido dentro de hojas. Sin JavaScript ajeno; animaciones solo con soporte y sin «movimiento reducido»; `@view-transition` entre páginas.
 - El contenido está en `construir.py` (lista `CONTENIDO`); `python3 construir.py` regenera `index.html`. La galería la regenera el bot de fotos.
 - Contenido tomado de la web anterior (web-rebolledo.pages.dev: rutas, astroturismo, eclipse, canales de Telegram). **Verificar cada dato** antes de publicar (distancias, desnivel, iglesia románica del s. XII, etc.).
 - Coordenadas corregidas: 42.6889, -4.2271 (las de Windy de la web anterior). Antes había puesto 42.7302, -3.8910, que venían de una entrada de prueba del tablón.
@@ -37,3 +37,9 @@ Si se quiere recuperar un tablón o avisos de vecinos, hay que diseñarlo con mo
 - Incrustados de terceros (Windy, forecast7, widgets de Telegram, Wikiloc embebido): instalan cookies o cargan scripts de terceros → exigirían banner de consentimiento. Aquí se enlazan, no se incrustan.
 - Textos tipo «Portal Municipal», «Ayuntamiento», «Horarios del Ayuntamiento/Iglesia»: parecen oficiales y los horarios eran de relleno.
 - Carpeta `ChatExport` (fotos exportadas de Telegram): sin permiso documentado por foto. Las fotos nuevas entran por el bot, con permiso y autoría archivados.
+
+
+## Carrusel de secciones (2026-11-05)
+- `index.html` lleva ahora UN carrusel dentro de una caja-arco: cada diapositiva enseña una subsección; cada vez que una sección vuelve a salir enseña la siguiente (y al acabar, empieza de nuevo). Flechas, teclado (← →), pausa y 12 s de avance automático (sin autoavance con «movimiento reducido»). Debajo, enlaces a cada sección completa (`#rutas`, `#astro`…, o `#astro-3` para una tarjeta) con la actual subrayada. Botón fijo «Volver al inicio» en todas las páginas.
+- Lo hace `js/carrusel.js`: **script propio**, sin cookies, sin almacenamiento local, sin terceros ni analítica. Sin JavaScript, la web muestra todas las secciones una debajo de otra. `construir.py` genera las secciones en `#almacen`; el script mueve (no copia) la tarjeta activa a la caja. `?i=N` abre la diapositiva N (para pruebas).
+- Nuevas secciones o tarjetas: se añaden en `CONTENIDO` y entran solas en el carrusel y en los enlaces.

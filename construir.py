@@ -61,7 +61,7 @@ for _i, _c in enumerate(CONTENIDO):
         CONTENIDO[_i] = (_c[0], _c[1], _l[:_pos] + _com + _l[_pos:])
 
 LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
-         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas. Desliza hacia los lados.",
+         "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
          "comunidad": "Canales de Telegram, fotos de vecinas y vecinos, y cómo sumarse.",
@@ -152,7 +152,7 @@ def seccion(i, ident, nombre, subs):
     BANNER = ' banner' if ident == 'astro' else ''
     tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
     rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
-    return (f'  <section class="banda b{i % 2}" id="{ident}" style="--z:{40-i}" aria-labelledby="h-{ident}">\n'
+    return (f'  <section class="banda b{i % 2} sec" id="{ident}" data-nombre="{escape(nombre)}" data-lead="{escape(LEADS[ident])}" aria-labelledby="h-{ident}">\n'
             f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>{rama}\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
@@ -163,7 +163,7 @@ def menu(ident, nombre, subs):
             f'<a href="#{ident}">Ver todo</a>{enlaces}</div></details></li>')
 
 def main():
-    nav = "".join(menu(*c) for c in CONTENIDO)
+    tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
     secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
     pagina = f"""<!DOCTYPE html>
 <html lang="es">
@@ -181,11 +181,11 @@ def main():
 {rama_fondo()}
 <header class="barra">
   <a class="marca" href="#inicio"><strong>Rebolledo de la Torre</strong></a>
-  <nav aria-label="Principal"><ul>{nav}</ul></nav>
+  <a class="a-inicio" href="#inicio">Inicio</a>
 </header>
 
 <main id="contenido">
-  <section class="portada" id="inicio" style="--z:50">
+  <section class="portada" id="inicio">
     <video autoplay muted loop playsinline controls preload="auto" poster="media/cielo-nocturno.jpg" aria-label="Cielo nocturno sobre Rebolledo de la Torre (vídeo sin sonido)">
       <source src="media/cielo-nocturno.mp4" type="video/mp4">
     </video>
@@ -195,7 +195,20 @@ def main():
     </div>
   </section>
   <p class="aviso envoltorio"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
-{secciones}</main>
+
+  <section id="carrusel" class="carrusel" aria-roledescription="carrusel" aria-label="Secciones del portal">
+    <div class="caja" data-par="0"><div class="diap" aria-live="off"></div></div>
+    <div class="controles">
+      <button type="button" class="flecha" data-dir="-1" aria-label="Anterior">‹</button>
+      <button type="button" class="pausa" aria-pressed="false">⏸ Pausar</button>
+      <button type="button" class="flecha" data-dir="1" aria-label="Siguiente">›</button>
+    </div>
+  </section>
+  <nav class="tabs" aria-label="Secciones">{tabs}</nav>
+
+  <div id="almacen">
+{secciones}  </div>
+</main>
 
 <footer class="pie">
   <div class="envoltorio">
@@ -210,6 +223,8 @@ def main():
     </ul>
   </div>
 </footer>
+<a class="volver" href="#inicio">↑ Volver al inicio</a>
+<script src="js/carrusel.js" defer></script>
 </body>
 </html>
 """

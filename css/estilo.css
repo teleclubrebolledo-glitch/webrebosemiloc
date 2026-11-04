@@ -34,3 +34,9 @@ footer ul{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;g
 .legal h1{color:var(--verde)} .legal h2{font-size:1.3rem;margin-top:26px;color:var(--tinta)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{header nav,.salto{display:none}body{background:#fff;font-size:12pt}}
+
+/* Botón «Volver al inicio»: visible en todas las páginas y secciones */
+.volver{position:fixed;right:14px;bottom:14px;z-index:90;font:700 .95rem system-ui,sans-serif;color:#fff;background:#2e5a2b;text-decoration:none;
+  padding:10px 16px;border-radius:999px 999px 4px 4px;box-shadow:0 8px 22px -8px #1f3d1caa;border:2px solid #fff}
+.volver:hover,.volver:focus-visible{background:#1f3d1c;outline:3px solid #e0b341;outline-offset:2px}
+@media print{.volver{display:none}}
