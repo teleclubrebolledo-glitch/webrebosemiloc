@@ -16,7 +16,7 @@ Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de aba
 - [ ] Revisión por un gestor o abogado del Aviso legal y de Privacidad (los textos son un borrador de buena fe, no asesoría jurídica).
 
 ## Reglas que mantiene esta web (para no incumplir normativa)
-- **Sin datos personales**: nada de formularios, comentarios, registros ni tablón con envíos de terceros (riesgo RGPD/LOPDGDD, difamación y localización de personas). Contacto solo por correo.
+- **Sin datos personales**: nada de formularios, comentarios, registros ni tablón con envíos de terceros (riesgo RGPD/LOPDGDD, difamación y localización de personas). Contacto por el bot de Telegram (botón «Hablar con el equipo»); el correo solo en las páginas legales y sin enlace mailto, para evitar spam. Antes: contacto solo por correo.
 - **Sin cookies ni almacenamiento local, y sin contenido incrustado de terceros** (Google Maps, YouTube, redes, fuentes de Google, analítica). Así no hace falta banner de cookies (LSSI-CE art. 22.2). Si algún día se añade algo de eso, hay que actualizar la política de privacidad y añadir consentimiento *antes*.
 - **Aviso legal con titular identificado** (LSSI-CE art. 10), aunque sea sin ánimo de lucro.
 - **Accesibilidad** como mínimo WCAG 2.1 AA por buena práctica (obligatoria solo para el sector público: RD 1112/2018).

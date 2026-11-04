@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enviar una ruta · Rebolledo de la Torre</title>
+<meta name="description" content="Cómo grabar un recorrido en GPX y enviarlo por Telegram para la sección Rutas, qué hacemos con él y cómo retirarlo.">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<main id="contenido" class="envoltorio legal">
+  <p><a href="index.html">← Volver a la página principal</a> · <a href="colabora.html">Colabora</a></p>
+  <h1>Enviar una ruta</h1>
+  <p class="aviso"><strong>Esta página es solo para rutas</strong>: el recorrido que has grabado con el móvil (un archivo GPX). Si quieres enviar fotos del pueblo, mira <a href="enviar-fotos.html">Enviar fotos</a>.</p>
+  <p>Las rutas salen en la sección Rutas de la web con su plano, su perfil de altura y sus datos, con el reconocimiento que elijas. De momento no se pueden adjuntar fotos a una ruta: las fotos van aparte, como fotos del pueblo.</p>
+
+  <h2 id="gpx">Cómo grabar tu ruta en un archivo GPX</h2>
+  <p>Un GPX es el archivo donde el móvil guarda por dónde has ido. No hace falta ser experto:</p>
+  <ol>
+    <li><strong>Instala una aplicación que grabe recorridos.</strong> Sirven, por ejemplo, <a href="https://osmand.net" rel="noopener">OsmAnd</a> (libre y funciona sin conexión), <a href="https://www.wikiloc.com" rel="noopener">Wikiloc</a>, <a href="https://www.komoot.com" rel="noopener">Komoot</a> o <a href="https://www.strava.com" rel="noopener">Strava</a>. Si ya usas una, vale la misma.</li>
+    <li><strong>Activa la ubicación y empieza a grabar</strong> antes de echar a andar.</li>
+    <li><strong>Haz el recorrido</strong> por caminos públicos o con permiso de quien sea dueño. Fíjate en lo que quieras avisar: barro, ganado, tramos de carretera, cotos de caza.</li>
+    <li><strong>Para la grabación y guarda el recorrido</strong> en la aplicación.</li>
+    <li><strong>Compártelo o expórtalo como GPX.</strong> En la mayoría de las aplicaciones está en el menú del recorrido, como «Compartir» o «Exportar». Elige el formato <em>GPX</em> y, como destino, Telegram.</li>
+  </ol>
+
+  <h2>Cómo enviarla al bot de Telegram</h2>
+  <ol>
+    <li>Escribe al bot <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> en un chat privado y pulsa <strong>«Enviar una ruta grabada (GPX)»</strong> (o escribe <code>/ruta</code>).</li>
+    <li>Envíale el archivo .gpx como documento.</li>
+    <li>El bot lo revisa y te pide permiso con tres botones: con tu nombre, sin nombre, o no.</li>
+    <li>Te pregunta el nombre de la ruta, una descripción corta y los avisos (ganado, barro, tramos de carretera…).</li>
+    <li>Una persona del proyecto la revisa antes de publicarla. Al terminar cada paso, el bot te ofrece los botones para empezar otra cosa.</li>
+  </ol>
+
+  <h2>Qué hacemos con tu recorrido</h2>
+  <ul>
+    <li>Quitamos del GPX las fechas, las horas y los datos del dispositivo, y <strong>recortamos 100 m al inicio y al final</strong> por si sales de casa.</li>
+    <li>El GPX original y tu permiso se guardan en un archivo privado que no se publica.</li>
+    <li>El recorrido sigue siendo tuyo: solo nos das permiso, gratuito y no exclusivo, para publicarlo en este proyecto.</li>
+    <li>No publicamos rutas por fincas privadas, cotos ni zonas de cría, ni datos de casas.</li>
+    <li>Puedes <strong>retirarla cuando quieras</strong>: en el bot, botón «Retirar una ruta mía» o el comando <code>/retirar_ruta</code>.</li>
+    <li>Solo aceptamos recorridos que hayas grabado tú. No copiamos rutas de otras webs.</li>
+  </ul>
+
+  <h2>Tus datos</h2>
+  <p>Los datos de quien envía una ruta se tratan según la <a href="privacidad.html">política de privacidad</a>.</p>
+</main>
+<footer><div class="envoltorio"><ul><li><a href="index.html">Inicio</a></li><li><a href="colabora.html">Colabora</a></li><li><a href="aviso-legal.html">Aviso legal</a></li><li><a href="privacidad.html">Privacidad y cookies</a></li><li><a href="accesibilidad.html">Accesibilidad</a></li></ul></div></footer>
+</body>
+</html>

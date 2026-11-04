@@ -38,11 +38,11 @@ CONTENIDO = [
     ("eventos", "Eventos", [("El eclipse en la plaza", "Gafas especiales, silencio al cubrirse el Sol y aplausos: una tarde que el pueblo recuerda."),
                             ("Próximo evento", "Aquí se anunciará. " + PEND)]),
     ("comunidad", "Comunidad", [("Canales de Telegram", tg("Rebolledodelatorre", "Pueblo") + " · " + tg("rutasrebolledodelatorre", "Rutas") + " · " + tg("rebolledodelatorrehuerta", "Huerta") + " · " + tg("Rebolledodelatorreenlaces", "Enlaces")),
-                                ("Tus fotos", '<a href="colabora.html">Cómo colaborar</a> o por Telegram: <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a>'),
+                                ("Tus fotos", '<a href="enviar-fotos.html">Cómo enviar tus fotos</a> por el bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a>'),
                                 ("Galería", '<a href="galeria.html">Ver las fotos</a>')]),
     ("visitar", "Visitar", [("Cómo llegar", "Provincia de Burgos. " + MAPA),
                             ("El tiempo", '<a href="https://windy.com/' + LAT + '/' + LON + '" rel="noopener">Windy</a> (se abre en otra página)'),
-                            ("Contacto", '<a href="mailto:teleclubrebolledo@gmail.com">teleclubrebolledo@gmail.com</a>')]),
+                            ("Contacto", 'Escríbenos por el bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> (botón «Hablar con el equipo»).')]),
 ]
 
 def _rutas_comunidad():
@@ -95,7 +95,7 @@ def _puntos_txt():
                f'<a href="https://www.openstreetmap.org/?mlat={lat:.5f}&amp;mlon={lon:.5f}#map=17/{lat:.5f}/{lon:.5f}" rel="noopener">Ver en el mapa</a></li>')
     return (f'<ol class="guia" style="list-style:none;padding:0">{li}</ol>'
             '<p class="nota"><strong>Candidatos por confirmar.</strong> Salen de mirar una vista de satélite, no de haber pisado el sitio: faltan comprobar el acceso, las luces de las granjas y el horizonte real. '
-            'Los sectores de color del plano (relieve que podría tapar el cielo, luz del pueblo) son una estimación a ojo. Mira desde caminos públicos y sin pisar cultivos ni fincas. ¿Conoces un sitio mejor? Cuéntalo en <a href="colabora.html">Colabora</a>.</p>')
+            'Los sectores de color del plano (relieve que podría tapar el cielo, luz del pueblo) son una estimación a ojo. Mira desde caminos públicos y sin pisar cultivos ni fincas. ¿Conoces un sitio mejor? Cuéntalo al equipo por el bot de Telegram (botón «Hablar con el equipo»).</p>')
 
 def _sol_txt(filas):
     li = "".join(f"<li><strong>{n}.</strong> Sale hacia {az:.0f}° (desde el norte) y se pone hacia {360-az:.0f}°; sube a {alt:.0f}° al mediodía y el día dura unas {int(d)} h {round((d % 1) * 60):02d} min.</li>" for n, alt, az, d, _ in filas)
@@ -108,7 +108,7 @@ def tarjeta(ident, titulo, texto):
     if texto == "@APORTA":
         return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
                 '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx al bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. '
-                'Solo rutas que hayas grabado tú, por caminos públicos o con permiso. <a href="colabora.html#gpx">Guía paso a paso: cómo grabar el GPX</a>.</p></div></article>')
+                'Solo rutas que hayas grabado tú, por caminos públicos o con permiso. <a href="enviar-rutas.html#gpx">Guía paso a paso: cómo grabar el GPX</a>.</p></div></article>')
     if texto.startswith("@RUTA:"):
         id_ = texto[6:]
         try: svg, m, ru = fichas.ficha_html(id_)
@@ -118,12 +118,12 @@ def tarjeta(ident, titulo, texto):
             av = f'<p class="nota"><strong>Aviso:</strong> {escape(ru["avisos"])}</p>' if ru.get("avisos") else ""
             return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
                     f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Recorrida por la comunidad</span>{aut}</p>{av}'
-                    f'<p class="nota">Recorrido aportado con permiso de su autoría. ¿Quieres añadir el tuyo? <a href="#{APORTA_ID}">Cómo aportar una ruta</a>. '
+                    f'<p class="nota">Recorrido aportado con permiso de su autoría. ¿Quieres añadir el tuyo? <a href="enviar-rutas.html">Cómo aportar una ruta</a>. '
                     f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
                 f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Propuesta · por verificar</span></p>'
                 + (f'<p class="nota">Llega hasta donde acaba el camino cartografiado: faltan unos {ru["faltan_m"]:.0f} m hasta {escape(ru["destino"])}, sin senda marcada en el mapa.</p>' if ru.get("faltan_m", 0) > 50 else '') +
-                f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, envíanos tu GPX (mira «Aporta tu ruta»). '
+                f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, <a href="enviar-rutas.html">envíanos tu GPX</a>. '
                 f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
     if texto == "@PUNTOS":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
@@ -197,7 +197,8 @@ def main():
   <div class="envoltorio">
     <p>Proyecto comunitario sin ánimo de lucro. Sin cookies, sin analítica, sin publicidad y sin recoger datos personales. Vídeo de portada con permiso de su autor.</p>
     <ul>
-      <li><a href="colabora.html">Colabora con tus fotos</a></li>
+      <li><a href="enviar-fotos.html">Enviar fotos</a></li>
+      <li><a href="enviar-rutas.html">Enviar una ruta</a></li>
       <li><a href="galeria.html">Galería</a></li>
       <li><a href="aviso-legal.html">Aviso legal</a></li>
       <li><a href="privacidad.html">Privacidad y cookies</a></li>
