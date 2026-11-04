@@ -25,7 +25,7 @@ CONTENIDO = [
                                 ("Qué sale por dónde", "@G:panorama|Desde un punto con el horizonte despejado: el Sol, la Polar y tres objetivos, por rumbo y altura. Cada lugar real tiene su propio horizonte (árboles, casas, lomas): busca uno despejado al norte para la Polar y al sur para el cielo de invierno."),
                                 ("Fases de la Luna", "@G:lunas|Para el cielo profundo, mejor cerca de la Luna nueva; con la Luna llena, el protagonista es ella, hasta con prismáticos. Creciente: se ve por la tarde; menguante: de madrugada."),
                                 ("Lluvias de estrellas", "@LLUVIA"),
-                                ("Tus puntos de observación", "@G:puntos|Aún no hay lugares señalados: los pondrá la gente del pueblo, que sabe dónde se ve mejor. Cuéntanos el tuyo (qué rumbos tiene despejados y si es de acceso libre) en <a href=\"colabora.html\">Colabora</a>. Solo sitios públicos o con permiso de quien sea dueño."),
+                                ("Dónde observar desde Rebolledo", "@PUNTOS"),
                                 ("Mirar con respeto", "@G:respeto|Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
@@ -67,6 +67,16 @@ ASTRO_GUIA = (
 LLUVIAS_TXT = ('<ul class="guia">' + "".join(f"<li><strong>{n}</strong> · máximo hacia el {d} de {['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][m-1]} · radiante en {c}</li>" for n, m, d, c in graficos.LLUVIAS) + "</ul>"
     '<p class="nota">Fechas aproximadas del máximo (varían un día de un año a otro). Las Perseidas, con su radiante muy al norte, no se ponen nunca desde Rebolledo: el punto del que parecen salir queda siempre sobre el horizonte. Mejor lejos de las luces y sin Luna llena.</p>')
 
+def _puntos_txt():
+    li = ""
+    for let, nom, x, y, rumbo, que in graficos.PUNTOS_PUBLICOS:
+        lat, lon, d = graficos.coordenadas_punto(x, y)
+        li += (f'<li><strong>{let} · {nom}</strong> (mira al {rumbo}; a unos {round(d, -1):.0f} m del casco). {que} '
+               f'<a href="https://www.openstreetmap.org/?mlat={lat:.5f}&amp;mlon={lon:.5f}#map=17/{lat:.5f}/{lon:.5f}" rel="noopener">Ver en el mapa</a></li>')
+    return (f'<ol class="guia" style="list-style:none;padding:0">{li}</ol>'
+            '<p class="nota"><strong>Candidatos por confirmar.</strong> Salen de mirar una vista de satélite, no de haber pisado el sitio: faltan comprobar el acceso, las luces de las granjas y el horizonte real. '
+            'Mira desde caminos públicos y sin pisar cultivos ni fincas. ¿Conoces un sitio mejor? Cuéntalo en <a href="colabora.html">Colabora</a>.</p>')
+
 def _sol_txt(filas):
     li = "".join(f"<li><strong>{n}.</strong> Sale hacia {az:.0f}° (desde el norte) y se pone hacia {360-az:.0f}°; sube a {alt:.0f}° al mediodía y el día dura unas {int(d)} h {round((d % 1) * 60):02d} min.</li>" for n, alt, az, d, _ in filas)
     return f'<ol class="guia" style="list-style:none;padding:0">{li}</ol><p class="nota">Cálculo geométrico para la latitud de Rebolledo (sin refracción: el día real dura unos minutos más). 90° = este, 180° = sur, 270° = oeste.</p>'
@@ -75,6 +85,9 @@ def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
+    if texto == "@PUNTOS":
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
+                f'<div class="texto"><h3>{escape(titulo)}</h3><details open><summary>Tres puntos candidatos</summary>{_puntos_txt()}</details></div></article>')
     if texto == "@SOL":
         svg, filas = graficos.camino_sol()
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una">{svg}</div>'
@@ -85,7 +98,7 @@ def tarjeta(ident, titulo, texto):
     if texto.startswith("@G:"):
         nombre, texto = texto[3:].split("|", 1)
         g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
-             "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto, "puntos": graficos.punto_vacio}[nombre]
+             "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto}[nombre]
     else:
         g = graficos.GRAFICOS.get(ident)
     fig = f'<figure>{g()}</figure>' if g else ""

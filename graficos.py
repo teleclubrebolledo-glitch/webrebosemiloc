@@ -444,3 +444,49 @@ def punto_vacio():
          f'<path d="M150 150 C118 112 122 78 150 58 C178 78 182 112 150 150Z" fill="{ROJO}"/><circle cx="150" cy="92" r="11" fill="#fff"/>'
          f'<text x="150" y="190" text-anchor="middle" fill="#fff" font-size="12" font-family="system-ui,sans-serif">¿Dónde se ve mejor?</text>')
     return _svg(c, "Dibujo de una chincheta de mapa sobre un campo bajo el cielo estrellado: lugar por señalar")
+
+
+# ═════════════ PLANO DE OBSERVACIÓN (calcado a ojo de la vista de satélite; esquemático) ═════════════
+# Coordenadas del dibujo = píxeles de la captura recortada. Escala medida en la captura: 200 m ≈ 170 px (1,18 m/px).
+PUNTOS_PUBLICOS = [  # (letra, nombre, x, y, rumbo que mira, qué se ve mejor)
+    ("1", "Campos del norte", 610, 360, "norte", "Polar, Carro, Casiopea y Doble Cúmulo: el pueblo queda a tu espalda y sus luces, fuera del cielo que miras."),
+    ("2", "Cruce del sur", 660, 1000, "sur", "Orión, Sirio y el Triángulo de Verano: el pueblo queda al norte y la Vía Láctea de verano se ve hacia el sur."),
+    ("3", "Cuesta del oeste", 360, 520, "oeste", "Puestas de Sol y de Luna sobre la cuesta. Por reconocer: la ladera puede tapar el cielo del oeste o, arriba, abrirlo del todo."),
+]
+CENTRO_PX = (685, 640); M_POR_PX = 200 / 170
+
+
+def coordenadas_punto(x, y, lat0=LAT, lon0=-4.2271):
+    dx, dy = (x - CENTRO_PX[0]) * M_POR_PX, (CENTRO_PX[1] - y) * M_POR_PX      # metros este / norte
+    return lat0 + dy / 111320, lon0 + dx / (111320 * math.cos(math.radians(lat0))), (dx ** 2 + dy ** 2) ** .5
+
+
+def plano_observacion():
+    c = f'<rect x="0" y="130" width="1024" height="1040" fill="#e6edd2"/>'
+    # cuesta rocosa del oeste
+    c += f'<path d="M0 360 C120 330 240 380 330 430 C390 470 420 540 410 640 C380 700 250 720 120 760 L0 780Z" fill="#b9a98a" fill-opacity=".55"/>'
+    for i in range(7):
+        y0 = 400 + i * 48
+        c += f'<path d="M{40+i*8} {y0} C180 {y0-30} 300 {y0+6} {380-i*4} {y0+40}" fill="none" stroke="#8f7f5e" stroke-opacity=".5" stroke-width="2.2"/>'
+    c += f'<text x="150" y="560" fill="#6d5f3f" font-size="26" font-family="system-ui,sans-serif" font-style="italic">cuesta rocosa</text>'
+    # arroyo
+    c += f'<path d="M180 1060 C300 1030 460 1020 560 1010 S700 990 1024 1000" fill="none" stroke="#6aa6d8" stroke-width="7" stroke-linecap="round"/><text x="260" y="1100" fill="#3d7fb5" font-size="24" font-family="system-ui,sans-serif" font-style="italic">arroyo Sauguillo</text>'
+    # caminos y carretera
+    for d, w in (("M0 750 C150 740 280 690 360 640 C400 600 470 585 570 580 L770 635 C860 640 950 650 1024 665", 9),
+                 ("M560 400 C590 360 615 345 640 330", 6), ("M570 580 C560 520 555 460 560 400", 6), ("M700 770 C690 860 680 940 655 1090", 6),
+                 ("M0 970 C200 900 420 800 700 775 L1024 790", 6)):
+        c += f'<path d="{d}" fill="none" stroke="#fff" stroke-width="{w+4}" stroke-linecap="round"/><path d="{d}" fill="none" stroke="#c9b98d" stroke-width="{w}" stroke-linecap="round"/>'
+    c += '<text x="330" y="610" fill="#6d5f3f" font-size="22" font-weight="700" font-family="system-ui,sans-serif" transform="rotate(-22 330 610)">BU-V-6214</text>'
+    # casco urbano
+    pol = "614,545 660,530 700,432 735,440 758,480 760,600 765,700 740,775 700,760 612,720 620,640"
+    c += f'<polygon points="{pol}" fill="{VERDE}" fill-opacity=".30" stroke="{ROJO}" stroke-width="4" stroke-dasharray="10 7"/>'
+    c += f'<text x="686" y="630" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Georgia,serif">Rebolledo</text><text x="686" y="662" text-anchor="middle" fill="{VERDE_OSC}" font-size="30" font-weight="700" font-family="Georgia,serif">de la Torre</text>'
+    # escala y norte
+    c += f'<line x1="60" y1="1130" x2="230" y2="1130" stroke="{VERDE_OSC}" stroke-width="5"/><text x="145" y="1115" text-anchor="middle" fill="{VERDE_OSC}" font-size="22" font-family="system-ui,sans-serif">200 m</text>'
+    c += f'<path d="M940 300 V200 M940 200 L920 240 M940 200 L960 240" stroke="{VERDE_OSC}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="940" y="180" text-anchor="middle" fill="{VERDE_OSC}" font-size="34" font-weight="700" font-family="system-ui,sans-serif">N</text>'
+    # puntos
+    for let, nom, x, y, rumbo, _ in PUNTOS_PUBLICOS:
+        c += f'<circle cx="{x}" cy="{y}" r="30" fill="{ROJO}" stroke="#fff" stroke-width="5"/><text x="{x}" y="{y+12}" text-anchor="middle" fill="#fff" font-size="34" font-weight="700" font-family="system-ui,sans-serif">{let}</text>'
+        c += f'<text x="{x+40}" y="{y-8}" fill="{VERDE_OSC}" font-size="26" font-weight="700" font-family="system-ui,sans-serif" stroke="#e6edd2" stroke-width="6" paint-order="stroke">{nom}</text>'
+    c += f'<text x="22" y="1160" fill="{VERDE_OSC}" font-size="19" font-family="system-ui,sans-serif" opacity=".8">Plano esquemático dibujado a ojo sobre una vista de satélite (Google Maps): posiciones y distancias aproximadas.</text>'
+    return _svg(c, "Plano esquemático de Rebolledo de la Torre con el casco urbano, la carretera, el arroyo y la cuesta rocosa del oeste, y tres puntos de observación candidatos: campos del norte, cruce del sur y cuesta del oeste", vb="0 130 1024 1040")

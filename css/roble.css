@@ -128,3 +128,4 @@ body{overflow-x:hidden}
 .banner .tarjeta.ancha .texto{padding:14px 22px 22px;max-width:none;width:100%;margin:0}
 .banner .tarjeta.ancha details summary{cursor:pointer;font:600 .95rem system-ui,sans-serif;color:var(--verde)}
 @media (max-width:760px){.banner .tarjeta.ancha .figuras{grid-template-columns:1fr}.banner .tarjeta.ancha .figuras svg{max-height:240px}}
+.banner .tarjeta.ancha .figuras.una[style] svg{max-height:380px}
