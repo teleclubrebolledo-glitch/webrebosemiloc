@@ -183,3 +183,4 @@ html[data-vista="seccion"] .tabs{display:none}
 
 .marco-arco{position:relative}
 .piedras{position:absolute;left:0;top:0;z-index:2;pointer-events:none;overflow:visible}
+.marco-arco{padding-top:calc(var(--col) + clamp(4px,.8vw,10px))}

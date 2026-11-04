@@ -132,7 +132,7 @@
     var sonda = document.createElement('div'); sonda.style.cssText = 'position:absolute;visibility:hidden;height:var(--arco);width:1px'; marco.appendChild(sonda);
     var b = sonda.offsetHeight; marco.removeChild(sonda);
     var m = marco.getBoundingClientRect(), r = por.getBoundingClientRect();
-    var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b, T = Math.max(8, Math.min(26, top - 3)), N = 17, d = '', i, f;
+    var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b, T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width, top), N = 17, d = '', i, f;
     var A = a + T, B = b + T;
     var banda = 'M' + (cx - A) + ' ' + cy + 'A' + A + ' ' + B + ' 0 0 1 ' + (cx + A) + ' ' + cy + 'L' + (cx + a) + ' ' + cy + 'A' + a + ' ' + b + ' 0 0 0 ' + (cx - a) + ' ' + cy + 'Z';
     for (i = 1; i < N; i++) {
