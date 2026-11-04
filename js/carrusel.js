@@ -11,7 +11,7 @@
   raiz.classList.add('js');
 
   var secs = [].slice.call(almacen.querySelectorAll(':scope > .sec'));
-  var tabs = [].slice.call(document.querySelectorAll('.tabs a, .navtop a'));
+  var tabs = [].slice.call(document.querySelectorAll('.tabs a, .navtop > a[data-sec], .navtop summary[data-sec]'));
   var N = secs.length;
   var cartas = secs.map(function (s) { return [].slice.call(s.querySelectorAll('.rejilla > article')); });
   var reducido = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -117,7 +117,10 @@
   }, { passive: true });
   caja.addEventListener('touchcancel', function () { x0 = null; }, { passive: true });
   document.addEventListener('visibilitychange', arrancar);
-  window.addEventListener('hashchange', ruta);
+  function cierraMenus() { [].forEach.call(document.querySelectorAll('.navtop details[open]'), function (d) { d.removeAttribute('open'); }); }
+  window.addEventListener('hashchange', function () { cierraMenus(); ruta(); });
+  document.addEventListener('click', function (e) { if (!e.target.closest || !e.target.closest('.navtop')) cierraMenus(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cierraMenus(); });
 
   var p = new URLSearchParams(location.search).get('i');
   if (p !== null && !isNaN(parseInt(p, 10))) i = parseInt(p, 10);

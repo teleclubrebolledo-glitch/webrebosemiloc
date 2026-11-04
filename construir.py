@@ -156,11 +156,31 @@ def seccion(i, ident, nombre, subs):
             f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
-def menu(ident, nombre, subs):
-    enlaces = "".join(f'<a href="#{ident}-{j+1}">{escape(t)}</a>' for j, (t, _) in enumerate(subs))
-    return (f'<li><details name="m"><summary>{escape(nombre)}</summary><div class="sub">'
-            f'<svg viewBox="0 0 12 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 0C0 25 12 40 6 60S4 90 6 100"/></svg>'
-            f'<a href="#{ident}">Ver todo</a>{enlaces}</div></details></li>')
+def barra_html(pref=""):
+    """Barra superior con menús desplegables (hiedra que baja al abrir). pref = "" en la portada, "index.html" en el resto de páginas."""
+    items = ""
+    for ident, nombre, subs in CONTENIDO:
+        enl = "".join(f'<a href="{pref}#{ident}-{j+1}">{escape(t)}</a>' for j, (t, _) in enumerate(subs))
+        items += (f'<details class="menu" name="menu"><summary data-sec="{ident}">{escape(nombre)}</summary>'
+                  f'<div class="sub"><a class="todo" href="{pref}#{ident}">Ver toda la sección</a>{enl}</div></details>')
+    ini = f'<a href="{pref or "#inicio"}" data-sec="inicio">Inicio</a>' if pref else '<a href="#inicio" data-sec="inicio">Inicio</a>'
+    marca = f'<a class="marca" href="{pref or "#inicio"}">Rebolledo de la Torre</a>'
+    return f'<header class="barra">\n  {marca}\n  <nav class="navtop" aria-label="Secciones">{ini}{items}</nav>\n</header>\n'
+
+
+def parchea_paginas():
+    """Pone la misma barra (con index.html# en los enlaces) en las páginas fijas, y deja un fragmento para la galería que genera el bot."""
+    import re
+    base = Path(__file__).parent
+    barra = barra_html("index.html")
+    for f in ("aviso-legal", "privacidad", "accesibilidad", "colabora", "enviar-fotos", "enviar-rutas"):
+        p = base / f"{f}.html"
+        if p.exists():
+            t = p.read_text()
+            t2 = re.sub(r'<header class="barra">.*?</header>\n', lambda m: barra, t, flags=re.S)
+            if t2 != t: p.write_text(t2)
+    (base / "barra-pagina.html").write_text(barra)
+
 
 def main():
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
@@ -180,10 +200,7 @@ def main():
 <body>
 <a class="salto" href="#contenido">Saltar al contenido</a>
 {rama_fondo()}
-<header class="barra">
-  <a class="marca" href="#inicio">Rebolledo de la Torre</a>
-  <nav class="navtop" aria-label="Secciones">{navtop}</nav>
-</header>
+{barra_html()}
 
 <main id="contenido">
   <div class="marco-arco">
@@ -237,6 +254,7 @@ def main():
 </html>
 """
     Path(__file__).with_name("index.html").write_text(pagina)
+    parchea_paginas()
     print("index.html generado")
 
 
