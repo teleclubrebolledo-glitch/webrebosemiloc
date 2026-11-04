@@ -129,3 +129,6 @@ body{overflow-x:hidden}
 .banner .tarjeta.ancha details summary{cursor:pointer;font:600 .95rem system-ui,sans-serif;color:var(--verde)}
 @media (max-width:760px){.banner .tarjeta.ancha .figuras{grid-template-columns:1fr}.banner .tarjeta.ancha .figuras svg{max-height:240px}}
 .banner .tarjeta.ancha .figuras.una[style] svg{max-height:none;width:100%}
+
+.tarjeta.ancha .figuras.una.ficha{background:#faf7ef}.tarjeta.ancha .figuras.una.ficha svg{max-height:560px;width:auto;max-width:100%}
+.etiqueta{display:inline-block;font:700 .78rem system-ui,sans-serif;background:#fff6dc;border:1px dashed var(--trigo);border-radius:999px;padding:1px 9px;color:var(--verde-osc)}

@@ -3,7 +3,7 @@
 Sin dependencias, sin JavaScript en la web: todo el efecto es SVG + CSS."""
 from pathlib import Path
 from html import escape
-import graficos
+import graficos, fichas
 
 PEND = '<small class="pendiente">por completar</small>'
 LAT, LON = "42.6889", "-4.2271"   # de la web anterior (incrustado de Windy: 42.6889148, -4.2271223)
@@ -11,7 +11,11 @@ MAPA = f'<a href="https://www.openstreetmap.org/?mlat={LAT}&amp;mlon={LON}#map=1
 def tg(canal, texto): return f'<a href="https://t.me/{canal}" rel="noopener">{texto}</a>'
 # (id, nombre de la hoja-menú, [(título, texto HTML)])  Contenido de la web anterior (web-rebolledo.pages.dev); verificar datos antes de publicar.
 CONTENIDO = [
-    ("rutas", "Rutas", [("Las Fuerzas de la Tierra", 'Peña Mesa · ~13,2 km · moderada · +384 m. <a href="https://es.wikiloc.com/rutas-senderismo/las-fuerzas-de-la-tierra-126481753" rel="noopener">Wikiloc</a>'),
+    ("rutas", "Rutas", [("Peña Mesa", "@RUTA:pena-mesa"),
+                        ("Cruz de Valdeverano", "@RUTA:cruz-valdeverano"),
+                        ("Mirador del norte", "@RUTA:mirador-norte"),
+                        ("Aporta tu ruta", "@APORTA"),
+                        ("Las Fuerzas de la Tierra", 'Peña Mesa · ~13,2 km · moderada · +384 m. <a href="https://es.wikiloc.com/rutas-senderismo/las-fuerzas-de-la-tierra-126481753" rel="noopener">Wikiloc</a>'),
                         ("Las Tuerces y la Horadada", "Formas kársticas esculpidas por el agua y el viento. Fácil/media."),
                         ("Valdelucio y las Loras", "Circular y moderada: valles, páramo y aves de las cortadas."),
                         ("Circuito románico", 'Rebolledo y su entorno, a pie o en coche. <a href="https://www.rebolledodelatorre.es/rutas" rel="noopener">Web municipal</a>')]),
@@ -86,6 +90,19 @@ def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
+    if texto == "@APORTA":
+        return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
+                '<p>Si has recorrido un sendero del entorno y lo has grabado con el móvil, pronto podrás enviarlo por Telegram para que salga aquí con su plano, su perfil y sus datos, con tu permiso y con el reconocimiento que elijas. '
+                'Mientras tanto, cuéntanoslo en <a href="colabora.html">Colabora</a>.</p></div></article>')
+    if texto.startswith("@RUTA:"):
+        id_ = texto[6:]
+        try: svg, m, ru = fichas.ficha_html(id_)
+        except FileNotFoundError: return f'<article class="tarjeta" id="{ident}"><div class="texto"><h3>{escape(titulo)}</h3><p>Ficha en preparación. {PEND}</p></div></article>'
+        return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una ficha">{svg}</div><div class="texto"><h3>{escape(titulo)}</h3>'
+                f'<p>{escape(ru["subtitulo"])}. <span class="etiqueta">Propuesta · por verificar</span></p>'
+                + (f'<p class="nota">Llega hasta donde acaba el camino cartografiado: faltan unos {ru["faltan_m"]:.0f} m hasta {escape(ru["destino"])}, sin senda marcada en el mapa.</p>' if ru.get("faltan_m", 0) > 50 else '') +
+                f'<p class="nota">Trazado calculado sobre los caminos de OpenStreetMap, aún sin recorrer. Si lo has andado y quieres confirmarlo o corregirlo, cuéntalo en <a href="colabora.html">Colabora</a>. '
+                f'<a href="datos-rutas/{id_}.gpx" download>Descargar GPX</a></p></div></article>')
     if texto == "@PUNTOS":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras una" style="background:#e6edd2">{graficos.plano_observacion()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details open><summary>Cinco puntos candidatos</summary>{_puntos_txt()}</details></div></article>')
