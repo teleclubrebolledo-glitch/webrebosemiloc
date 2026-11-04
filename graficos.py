@@ -463,6 +463,18 @@ def coordenadas_punto(x, y, lat0=LAT, lon0=-4.2271):
     return lat0 + dy / 111320, lon0 + dx / (111320 * math.cos(math.radians(lat0))), (dx ** 2 + dy ** 2) ** .5
 
 
+# Sectores (acimut desde el norte, en grados) que la foto de satélite sugiere tapados por relieve (tapa) o iluminados por el pueblo (luz). A ojo, por reconocer.
+SECTORES = {"1": {"luz": [(140, 220)]}, "2": {"luz": [(335, 25)]}, "3": {"tapa": [(200, 340)], "luz": [(60, 130)]},
+            "4": {"tapa": [(10, 80)], "luz": [(245, 295)]}, "5": {"tapa": [(330, 70)], "luz": [(230, 270)]}}
+
+
+def _cuña(x, y, a0, a1, r, col, op):
+    if a1 < a0: a1 += 360
+    p = lambda a: (x + r * math.sin(math.radians(a)), y - r * math.cos(math.radians(a)))
+    (x0, y0), (x1, y1) = p(a0), p(a1)
+    return f'<path d="M{x} {y} L{x0:.1f} {y0:.1f} A{r} {r} 0 {1 if a1 - a0 > 180 else 0} 1 {x1:.1f} {y1:.1f}Z" fill="{col}" fill-opacity="{op}" stroke="{col}" stroke-opacity=".6" stroke-width="2"/>'
+
+
 def plano_observacion():
     c = f'<rect x="0" y="130" width="1260" height="1040" fill="#e6edd2"/>'
     # cuesta rocosa del oeste
@@ -490,10 +502,16 @@ def plano_observacion():
     # escala y norte
     c += f'<line x1="60" y1="1130" x2="230" y2="1130" stroke="{VERDE_OSC}" stroke-width="5"/><text x="145" y="1115" text-anchor="middle" fill="{VERDE_OSC}" font-size="22" font-family="system-ui,sans-serif">200 m</text>'
     c += f'<path d="M80 330 V230 M80 230 L60 270 M80 230 L100 270" stroke="{VERDE_OSC}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="80" y="210" text-anchor="middle" fill="{VERDE_OSC}" font-size="34" font-weight="700" font-family="system-ui,sans-serif">N</text>'
+    # sectores tapados / con luz del pueblo
+    for let, nom, x, y, rumbo, _ in PUNTOS_PUBLICOS:
+        for a0, a1 in SECTORES.get(let, {}).get("tapa", []): c += _cuña(x, y, a0, a1, 110, "#7b2d1e", .28)
+        for a0, a1 in SECTORES.get(let, {}).get("luz", []): c += _cuña(x, y, a0, a1, 110, "#e8a317", .30)
     # puntos
     for let, nom, x, y, rumbo, _ in PUNTOS_PUBLICOS:
         c += f'<circle cx="{x}" cy="{y}" r="30" fill="{ROJO}" stroke="#fff" stroke-width="5"/><text x="{x}" y="{y+12}" text-anchor="middle" fill="#fff" font-size="34" font-weight="700" font-family="system-ui,sans-serif">{let}</text>'
         izq = x > 900
         c += f'<text x="{x-40 if izq else x+40}" y="{y-8}" text-anchor="{"end" if izq else "start"}" fill="{VERDE_OSC}" font-size="26" font-weight="700" font-family="system-ui,sans-serif" stroke="#e6edd2" stroke-width="6" paint-order="stroke">{nom}</text>'
+    c += f'<rect x="60" y="1048" width="26" height="18" fill="#7b2d1e" fill-opacity=".4"/><text x="94" y="1064" fill="{VERDE_OSC}" font-size="20" font-family="system-ui,sans-serif">posible relieve que tapa el cielo</text>'
+    c += f'<rect x="400" y="1048" width="26" height="18" fill="#e8a317" fill-opacity=".45"/><text x="434" y="1064" fill="{VERDE_OSC}" font-size="20" font-family="system-ui,sans-serif">luz del pueblo en ese lado</text>'
     c += f'<text x="22" y="1160" fill="{VERDE_OSC}" font-size="19" font-family="system-ui,sans-serif" opacity=".8">Plano esquemático dibujado a ojo sobre una vista de satélite (Google Maps): posiciones y distancias aproximadas.</text>'
     return _svg(c, "Plano esquemático de Rebolledo de la Torre con el casco urbano, la carretera, el arroyo y la cuesta rocosa del oeste, y cinco puntos de observación candidatos: campos del norte, cruce del sur, cuesta del oeste, área recreativa del este y Cruz de Valdeverano", vb="0 130 1260 1040")

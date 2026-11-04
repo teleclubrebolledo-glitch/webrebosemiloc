@@ -15,18 +15,19 @@ CONTENIDO = [
                         ("Las Tuerces y la Horadada", "Formas kársticas esculpidas por el agua y el viento. Fácil/media."),
                         ("Valdelucio y las Loras", "Circular y moderada: valles, páramo y aves de las cortadas."),
                         ("Circuito románico", 'Rebolledo y su entorno, a pie o en coche. <a href="https://www.rebolledodelatorre.es/rutas" rel="noopener">Web municipal</a>')]),
-    ("astro", "Astro-turismo", [("Geoparque Las Loras", "Cielo oscuro dentro del Geoparque Mundial de la UNESCO."),
-                                ("Observatorios", '<a href="https://www.astroburgos.org/agenda/" rel="noopener">Agenda Astroburgos</a> · <a href="https://astrodemanda.blogspot.com/" rel="noopener">AstroDemanda</a>'),
+    ("astro", "Astro-turismo", [("Dónde observar desde Rebolledo", "@PUNTOS"),
                                 ("Orientar el telescopio", "@ASTRO"),
-                                ("A qué altura mirar", "@G:altura|Todo lo del cielo se mide en grados sobre el horizonte. Con el brazo estirado, un puño cerrado son unos 10°, la mano abierta unos 20° y el dedo meñique, 1°. Desde Rebolledo la Polar queda siempre a unos 42,7°."),
-                                ("El camino del Sol", "@SOL"),
                                 ("Orión, el cielo de invierno", "@G:orion|El Cinturón (tres estrellas en fila) es la guía: hacia abajo a la izquierda señala Sirio, la más brillante del cielo, y hacia arriba a la derecha Aldebarán. Desde aquí el Cinturón llega a unos %d° de altura, de diciembre a febrero al anochecer." % round(90 - abs(graficos.LAT - -1.2))),
                                 ("El Triángulo de Verano", "@G:triangulo|Vega, Deneb y Altair, de julio a octubre al anochecer. Vega y Deneb pasan casi por encima de la cabeza (unos %d° y %d°); Altair llega a unos %d°. La Vía Láctea los cruza." % (round(90 - abs(graficos.LAT - 38.78)), round(90 - abs(graficos.LAT - 45.28)), round(90 - abs(graficos.LAT - 8.87)))),
+                                ("El camino del Sol", "@SOL"),
+                                ("Geoparque Las Loras", "@G:geoparque|Cielo oscuro dentro del Geoparque Mundial de la UNESCO."),
+                                ("Observatorios", "@G:observatorios|" + '<a href="https://www.astroburgos.org/agenda/" rel="noopener">Agenda Astroburgos</a> · <a href="https://astrodemanda.blogspot.com/" rel="noopener">AstroDemanda</a>'),
+                                ("A qué altura mirar", "@G:altura|Todo lo del cielo se mide en grados sobre el horizonte. Con el brazo estirado, un puño cerrado son unos 10°, la mano abierta unos 20° y el dedo meñique, 1°. Desde Rebolledo la Polar queda siempre a unos 42,7°."),
                                 ("Qué sale por dónde", "@G:panorama|Desde un punto con el horizonte despejado: el Sol, la Polar y tres objetivos, por rumbo y altura. Cada lugar real tiene su propio horizonte (árboles, casas, lomas): busca uno despejado al norte para la Polar y al sur para el cielo de invierno."),
                                 ("Fases de la Luna", "@G:lunas|Para el cielo profundo, mejor cerca de la Luna nueva; con la Luna llena, el protagonista es ella, hasta con prismáticos. Creciente: se ve por la tarde; menguante: de madrugada."),
                                 ("Lluvias de estrellas", "@LLUVIA"),
-                                ("Dónde observar desde Rebolledo", "@PUNTOS"),
                                 ("Mirar con respeto", "@G:respeto|Sin luces ni ruido: el cielo es de todos y el descanso también. " + PEND)]),
+
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
                                   ("Costumbres", 'Las fiestas patronales de San Julián y Santa Basilisa se celebran en torno al 9 de enero. <a href="https://www.festivalesdeespana.com/festival/fiestas-san-julian-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Festivales de España</a> ' + PEND)]),
@@ -75,7 +76,7 @@ def _puntos_txt():
                f'<a href="https://www.openstreetmap.org/?mlat={lat:.5f}&amp;mlon={lon:.5f}#map=17/{lat:.5f}/{lon:.5f}" rel="noopener">Ver en el mapa</a></li>')
     return (f'<ol class="guia" style="list-style:none;padding:0">{li}</ol>'
             '<p class="nota"><strong>Candidatos por confirmar.</strong> Salen de mirar una vista de satélite, no de haber pisado el sitio: faltan comprobar el acceso, las luces de las granjas y el horizonte real. '
-            'Mira desde caminos públicos y sin pisar cultivos ni fincas. ¿Conoces un sitio mejor? Cuéntalo en <a href="colabora.html">Colabora</a>.</p>')
+            'Los sectores de color del plano (relieve que podría tapar el cielo, luz del pueblo) son una estimación a ojo. Mira desde caminos públicos y sin pisar cultivos ni fincas. ¿Conoces un sitio mejor? Cuéntalo en <a href="colabora.html">Colabora</a>.</p>')
 
 def _sol_txt(filas):
     li = "".join(f"<li><strong>{n}.</strong> Sale hacia {az:.0f}° (desde el norte) y se pone hacia {360-az:.0f}°; sube a {alt:.0f}° al mediodía y el día dura unas {int(d)} h {round((d % 1) * 60):02d} min.</li>" for n, alt, az, d, _ in filas)
@@ -98,7 +99,7 @@ def tarjeta(ident, titulo, texto):
     if texto.startswith("@G:"):
         nombre, texto = texto[3:].split("|", 1)
         g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
-             "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto}[nombre]
+             "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto, "geoparque": graficos.cielo_loras, "observatorios": graficos.telescopio}[nombre]
     else:
         g = graficos.GRAFICOS.get(ident)
     fig = f'<figure>{g()}</figure>' if g else ""
