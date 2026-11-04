@@ -130,7 +130,7 @@
     var svg = marco.querySelector('.piedras');
     if (!svg) { svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'piedras'); svg.setAttribute('aria-hidden', 'true'); svg.setAttribute('focusable', 'false'); marco.insertBefore(svg, marco.firstChild); }
     var sonda = document.createElement('div'); sonda.style.cssText = 'position:absolute;visibility:hidden;height:var(--arco);width:1px'; marco.appendChild(sonda);
-    var b = sonda.offsetHeight; marco.removeChild(sonda);
+    var b = sonda.offsetHeight; sonda.style.height = 'var(--cap)'; var capAlto = sonda.offsetHeight; marco.removeChild(sonda);
     var m = marco.getBoundingClientRect(), r = por.getBoundingClientRect();
     var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b;
     var T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width, top);      /* grosor = ancho del capitel */
@@ -151,7 +151,9 @@
       d += 'M' + P[k][0].toFixed(1) + ' ' + P[k][1].toFixed(1) + 'L' + O[k][0].toFixed(1) + ' ' + O[k][1].toFixed(1);
     }
     svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
-    svg.innerHTML = '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/>';
+    /* el anillo termina justo en la cara superior del capitel (ni un pixel por debajo): recorte horizontal a esa altura */
+    svg.innerHTML = '<defs><clipPath id="piedras-corte"><rect x="0" y="0" width="' + m.width + '" height="' + (cy - capAlto) + '"/></clipPath></defs><g clip-path="url(#piedras-corte)">' +
+      '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
   }
   piedras();
   if (window.ResizeObserver) new ResizeObserver(piedras).observe(document.querySelector('.marco-arco')); else window.addEventListener('resize', piedras);
