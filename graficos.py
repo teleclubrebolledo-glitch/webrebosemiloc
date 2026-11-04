@@ -515,3 +515,7 @@ def plano_observacion():
     c += f'<rect x="400" y="1048" width="26" height="18" fill="#e8a317" fill-opacity=".45"/><text x="434" y="1064" fill="{VERDE_OSC}" font-size="20" font-family="system-ui,sans-serif">luz del pueblo en ese lado</text>'
     c += f'<text x="22" y="1160" fill="{VERDE_OSC}" font-size="19" font-family="system-ui,sans-serif" opacity=".8">Plano esquemático dibujado a ojo sobre una vista de satélite (Google Maps): posiciones y distancias aproximadas.</text>'
     return _svg(c, "Plano esquemático de Rebolledo de la Torre con el casco urbano, la carretera, el arroyo y la cuesta rocosa del oeste, y cinco puntos de observación candidatos: campos del norte, cruce del sur, cuesta del oeste, área recreativa del este y Cruz de Valdeverano", vb="0 130 1260 1040")
+
+
+# Dibujos por título (las posiciones de las tarjetas cambian al añadir fichas): evita tarjetas sin imagen, cuyo título quedaría bajo la curva del arco.
+POR_TITULO = {"Las Fuerzas de la Tierra": peña_mesa, "Las Tuerces y la Horadada": tuerces, "Valdelucio y las Loras": loras, "Circuito románico": romanico}

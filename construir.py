@@ -140,7 +140,7 @@ def tarjeta(ident, titulo, texto):
         g = {"altura": graficos.altura_ladder, "orion": graficos.orion, "triangulo": graficos.triangulo_verano,
              "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto, "geoparque": graficos.cielo_loras, "observatorios": graficos.telescopio}[nombre]
     else:
-        g = graficos.GRAFICOS.get(ident)
+        g = graficos.GRAFICOS.get(ident) or graficos.POR_TITULO.get(titulo)
     fig = f'<figure>{g()}</figure>' if g else ""
     return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 
@@ -149,7 +149,7 @@ def seccion(i, ident, nombre, subs):
     tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
     rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
     return (f'  <section class="banda b{i % 2}" id="{ident}" style="--z:{40-i}" aria-labelledby="h-{ident}">\n'
-            f'    <div class="envoltorio">\n      <h2 id="h-{ident}">{escape(nombre)}</h2>{rama}\n'
+            f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>{rama}\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
 def menu(ident, nombre, subs):

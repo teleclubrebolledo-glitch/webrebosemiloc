@@ -132,3 +132,19 @@ body{overflow-x:hidden}
 
 .tarjeta.ancha .figuras.una.ficha{background:#faf7ef}.tarjeta.ancha .figuras.una.ficha svg{max-height:560px;width:auto;max-width:100%}
 .etiqueta{display:inline-block;font:700 .78rem system-ui,sans-serif;background:#fff6dc;border:1px dashed var(--trigo);border-radius:999px;padding:1px 9px;color:var(--verde-osc)}
+
+/* ── títulos por encima, con un marco de esquinas redondeadas: opaco por la base y transparente por arriba (no tapa la curva del arco) ── */
+.banda{--fondo-banda:#e3eed6}.banda.b1{--fondo-banda:#f7edcb}
+.tarjeta .texto h3{position:relative;isolation:isolate;z-index:3}
+.banda .titulo{position:relative;z-index:3;width:fit-content;max-width:100%;padding:.12em .5em .08em;margin-left:-.5em}
+.banda .titulo::before{content:"";position:absolute;inset:-.1em 0 0;z-index:0;border-radius:22px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0%,color-mix(in srgb,var(--fondo-banda) 60%,transparent) 55%,color-mix(in srgb,var(--fondo-banda) 88%,transparent) 100%)}
+.banda .titulo h2{position:relative;z-index:1}
+.tarjeta .texto h3{padding:.18em .55em .12em;margin-inline:-.55em}
+.tarjeta .texto h3::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:16px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0%,rgba(255,253,247,.55) 55%,rgba(255,253,247,.92) 100%)}
+.portada h1{position:relative;isolation:isolate;padding:.05em .3em .02em;margin-left:-.3em}
+.portada h1::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:28px;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0%,rgba(16,32,15,.35) 60%,rgba(16,32,15,.6) 100%)}
+/* si una tarjeta no lleva imagen, su texto baja para que la curva no corte las primeras letras */
+.tarjeta:not(:has(figure)):not(.ancha) .texto{padding-top:3.4rem}
