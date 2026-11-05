@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: escritura-main      # los dos flujos guardan en main: que no se pisen
+  cancel-in-progress: false
 jobs:
   tiempo:
     runs-on: ubuntu-latest
@@ -21,4 +24,4 @@ jobs:
           git config user.name "Web de Rebolledo"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tiempo/tiempo.json
-          git diff --cached --quiet || (git commit -m "Tiempo: actualización" && git push)
+          git diff --cached --quiet || (git commit -m "Tiempo: actualización" && git pull --rebase origin main && git push)

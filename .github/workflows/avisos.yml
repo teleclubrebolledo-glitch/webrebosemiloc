@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: escritura-main      # los dos flujos guardan en main: que no se pisen
+  cancel-in-progress: false
 jobs:
   actualizar:
     runs-on: ubuntu-latest
@@ -26,4 +29,4 @@ jobs:
           git config user.name "Web de Rebolledo"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add avisos/salida index.html
-          git diff --cached --quiet || (git commit -m "Avisos: actualización diaria" && git push)
+          git diff --cached --quiet || (git commit -m "Avisos: actualización diaria" && git pull --rebase origin main && git push)
