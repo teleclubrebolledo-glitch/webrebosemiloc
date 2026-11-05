@@ -137,15 +137,22 @@
       o.capa.appendChild(im); return im;
     }
     o.repinta = function () { if (actual) actual.im = crea(actual.piedra, actual.url, true); };
+    function carga(url, ok, ko) {                                /* la foto se descarga y decodifica ANTES de empezar el fundido: así siempre entra con fade in */
+      var im = new Image(); im.onload = function () { (im.decode ? im.decode() : Promise.resolve()).then(ok, ok); }; im.onerror = ko; im.src = url;
+    }
+    var fallos = 0;
     function paso() {
       if (!lista.length || !o.geo.length || !o.capa) return;
       if (!cola.length) baraja();
       var url = cola.pop(), piedra, tries = 0;
       do { piedra = Math.floor(Math.random() * o.geo.length); tries++; } while (actual && Math.abs(piedra - actual.piedra) < 2 && tries < 20);   /* otra piedra, no la de al lado */
-      var nuevo = { piedra: piedra, url: url, im: crea(piedra, url, false) };
-      if (!nuevo.im) return;
-      var viejo = actual; actual = nuevo;
-      requestAnimationFrame(function () { requestAnimationFrame(function () { if (nuevo.im) nuevo.im.style.opacity = 1; if (viejo && viejo.im) { var v = viejo.im; v.style.opacity = 0; setTimeout(function () { if (v.parentNode) v.parentNode.removeChild(v); }, 2000); viejo.im = null; } }); });
+      carga(url, function () {
+        fallos = 0;
+        var nuevo = { piedra: piedra, url: url, im: crea(piedra, url, false) };
+        if (!nuevo.im) return;
+        var viejo = actual; actual = nuevo;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { if (nuevo.im) nuevo.im.style.opacity = 1; if (viejo && viejo.im) { var v = viejo.im; v.style.opacity = 0; setTimeout(function () { if (v.parentNode) v.parentNode.removeChild(v); }, 2000); viejo.im = null; } }); });
+      }, function () { if (++fallos < 5) paso(); });             /* si una foto falla, se prueba con la siguiente (máx. 5 seguidas) */
     }
     if (!reducido && lista.length) { setTimeout(paso, 1500); setInterval(function () { if (!document.hidden) paso(); }, 6000); }
     return o;
