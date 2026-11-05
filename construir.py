@@ -3,6 +3,7 @@
 Sin dependencias, sin JavaScript en la web: todo el efecto es SVG + CSS."""
 from pathlib import Path
 from html import escape
+import re
 import graficos, fichas, json, huerta_web
 
 PEND = '<small class="pendiente">por completar</small>'
@@ -275,13 +276,31 @@ def seccion(i, ident, nombre, subs):
             f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
+def _icono_aviso_mini(a):
+    """Miniatura del tipo de aviso (el mismo dibujo de la tarjeta ampliada), recortada al centro como la foto de la huerta."""
+    orden = ("energia", "comunicaciones", "transporte", "vivienda", "ayudas", "rural", "cultura", "educacion", "turismo", "noticias")
+    icono = next((k for k in orden if k in a["categorias"]), "ayudas")
+    svg = graficos.icono_aviso(icono)
+    return re.sub(r'<svg ', '<svg width="64" height="64" preserveAspectRatio="xMidYMid slice" aria-hidden="true" ', svg.replace('role="img" ', '', 1), count=1)
+
+
+def _cinta_cab(etq, href, ant, sig):
+    return (f'<div class="cinta-cab"><a class="cinta-etq" href="{href}">{etq}</a><div class="cinta-bs">'
+            f'<button type="button" class="cinta-b" data-d="-1" aria-label="{ant}">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="{sig}">›</button></div></div>')
+
+
 def cinta_avisos():
-    """Cinta estrecha y negra bajo el vídeo con las entradas de «Avisos y ayudas»; al pulsar el texto se abre la entrada ampliada dentro de la web."""
+    """Cinta estrecha y negra bajo el vídeo con las entradas de «Avisos y ayudas»; al pulsar el texto se abre la entrada ampliada dentro de la web.
+    Título y flechas van a la derecha (flechas debajo del título); cada entrada lleva el icono de su tipo."""
     items = AVISOS.get("items", [])[:10] if isinstance(AVISOS, dict) else []
     if not items: return ""
-    li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="#avisos-{i + 2}"><span class="cinta-cat">{escape(CATEGORIAS_AVISOS.get([k for k in a["categorias"] if k != "noticias"][0] if [k for k in a["categorias"] if k != "noticias"] else a["categorias"][0], ""))}</span> {escape(_recorta(a["titulo_natural"], 150))}</a>' for i, a in enumerate(items))
-    return (f'<div class="cinta" role="region" aria-label="Últimos avisos y ayudas"><a class="cinta-etq" href="#avisos">Avisos y ayudas</a><div class="cinta-pista">{li}</div>'
-            f'<button type="button" class="cinta-b" data-d="-1" aria-label="Aviso anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Aviso siguiente">›</button></div>')
+    def cat(a):
+        ks = [k for k in a["categorias"] if k != "noticias"]
+        return escape(CATEGORIAS_AVISOS.get(ks[0] if ks else a["categorias"][0], ""))
+    li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="#avisos-{i + 2}"><span class="cinta-txt"><span class="cinta-cat">{cat(a)}</span> {escape(_recorta(a["titulo_natural"], 150))}</span>'
+                 f'<span class="cinta-ico">{_icono_aviso_mini(a)}</span></a>' for i, a in enumerate(items))
+    return (f'<div class="cinta cinta-der" role="region" aria-label="Últimos avisos y ayudas"><div class="cinta-pista">{li}</div>'
+            + _cinta_cab("Avisos y ayudas", "#avisos", "Aviso anterior", "Aviso siguiente") + '</div>')
 
 
 def cinta_huerta():
@@ -290,8 +309,7 @@ def cinta_huerta():
     if not items: return ""
     li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="{it["enlace"]}"><img src="{escape(it["foto"])}" alt="" width="64" height="64" loading="lazy">'
                  f'<span class="cinta-txt"><strong>{escape(it["titulo"])}</strong><span>{escape(it["texto"])}</span></span></a>' for i, it in enumerate(items))
-    return (f'<div class="cinta cinta2" data-ms="21000" role="region" aria-label="Lo que toca en la huerta"><a class="cinta-etq" href="#huerta">En la huerta</a><div class="cinta-pista">{li}</div>'
-            f'<button type="button" class="cinta-b" data-d="-1" aria-label="Anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Siguiente">›</button></div>')
+    return (f'<div class="cinta cinta2" data-ms="21000" role="region" aria-label="Lo que toca en la huerta">{_cinta_cab("En la huerta", "#huerta", "Anterior", "Siguiente")}<div class="cinta-pista">{li}</div></div>')
 
 
 def pagina_creditos():
