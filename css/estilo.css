@@ -83,3 +83,15 @@ h1,h2,h3{font-family:var(--titulos);letter-spacing:.03em}
   .menu:nth-last-child(-n+3) .sub{left:10px;right:10px}
 }
 .menu>summary{white-space:nowrap}
+
+/* tiempo junto al nombre: ahora y «prev. mañana» */
+.cab-marca{display:flex;flex-direction:column;gap:1px;min-width:0}
+.cab-marca .fila{display:flex;align-items:center;gap:.7rem}
+.t-ahora,.t-manana{display:inline-flex;align-items:center;gap:.3rem;color:var(--verde-osc);font:600 .84rem system-ui,sans-serif}
+.t-ahora[hidden],.t-manana[hidden]{display:none}
+.t-manana{font-size:.72rem;font-weight:500;color:var(--tenue)}
+.t-ahora .ico svg,.t-manana .ico svg{display:block}
+.t-manana .ico svg{width:17px;height:17px}
+.t-manana .pre{font-variant:small-caps;letter-spacing:.04em}
+.navtop a,.menu>summary{padding:8px 7px 6px;font-size:.76rem;letter-spacing:.04em}
+@media (max-width:760px){.navtop a,.menu>summary{padding:8px 9px 6px}}

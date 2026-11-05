@@ -554,3 +554,68 @@ def icono_aviso(cat):
         c = _fondo_aviso(f'<path d="M150 164 V54" stroke="{VERDE_OSC}" stroke-width="5"/>{gr}<ellipse cx="150" cy="44" rx="8" ry="13" fill="{TRIGO}"/><circle cx="224" cy="120" r="22" fill="{TRIGO}" stroke="{VERDE_OSC}" stroke-width="3"/><text x="224" y="128" text-anchor="middle" font-size="22" font-weight="700" fill="{VERDE_OSC}" font-family="Lora,Georgia,serif">€</text>')
         et = "Dibujo de una espiga de trigo y una moneda"
     return _svg(c, et)
+
+
+# ═════════════ HUERTA Y NATURALEZA: iconos y calendarios en barras ═════════════
+def _fondo_n(extra, col="#efe0ad"):
+    return f'<rect width="300" height="200" fill="{col}"/><path d="M0 168 C80 152 160 176 300 160 V200 H0Z" fill="{VERDE}"/>{extra}'
+
+
+def icono_natural(kind):
+    t = {"hortaliza": "Dibujo de una zanahoria", "frutal": "Dibujo de una manzana", "flor": "Dibujo de una flor", "aromatica": "Dibujo de una ramita aromática", "seta": "Dibujo de una seta",
+         "calendario": "Dibujo de un calendario con hojas", "ave": "Dibujo de un ave en vuelo", "mamifero": "Dibujo de una huella de mamífero", "reptil": "Dibujo de una culebra", "insecto": "Dibujo de una mariposa",
+         "arbol": "Dibujo de un árbol de copa redonda", "habitat": "Dibujo de un paisaje de loras", "peligro": "Dibujo de un triángulo de advertencia", "consejo": "Dibujo de una regadera"}[kind]
+    if kind == "hortaliza":
+        c = _fondo_n(f'<path d="M150 72 L124 156 Q150 168 176 156Z" fill="#d9822b"/><path d="M150 72 C130 40 112 44 106 30 M150 72 C150 36 156 26 150 14 M150 72 C170 40 188 44 194 30" stroke="{VERDE}" stroke-width="7" fill="none" stroke-linecap="round"/>')
+    elif kind == "frutal":
+        c = _fondo_n(f'<path d="M150 70 C120 50 84 74 92 118 C98 150 130 170 150 160 C170 170 202 150 208 118 C216 74 180 50 150 70Z" fill="{ROJO}"/><path d="M150 70 C150 52 154 42 160 34" stroke="#5a3a1c" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M158 48 C176 34 196 40 200 52 C184 62 166 58 158 48Z" fill="{VERDE}"/>')
+    elif kind == "flor":
+        pet = "".join(f'<ellipse cx="150" cy="62" rx="17" ry="30" fill="#e9a8c2" transform="rotate({a} 150 100)"/>' for a in range(0, 360, 72))
+        c = _fondo_n(f'<path d="M150 100 V166" stroke="{VERDE_OSC}" stroke-width="6"/>{pet}<circle cx="150" cy="100" r="14" fill="{TRIGO}"/>')
+    elif kind == "aromatica":
+        ho = "".join(f'<ellipse cx="{150+s*22}" cy="{54+k*22}" rx="18" ry="8" fill="{VERDE}" transform="rotate({-s*34} {150+s*22} {54+k*22})"/>' for k in range(5) for s in (-1, 1))
+        c = _fondo_n(f'<path d="M150 166 V40" stroke="{VERDE_OSC}" stroke-width="5"/>{ho}')
+    elif kind == "seta":
+        c = _fondo_n(f'<path d="M120 150 C124 118 176 118 180 150Z" fill="#efe6d2"/><path d="M82 112 C86 58 214 58 218 112 Q150 126 82 112Z" fill="#a8613a"/><circle cx="120" cy="92" r="6" fill="#efe6d2"/><circle cx="160" cy="80" r="7" fill="#efe6d2"/><circle cx="184" cy="98" r="5" fill="#efe6d2"/>')
+    elif kind == "calendario":
+        return evento()
+    elif kind == "ave":
+        c = _cielo("gn1", "#9fc5e8", "#e8f1fb") + f'<path d="M40 110 C80 60 130 80 150 108 C170 80 220 60 260 110 C220 96 176 112 150 132 C124 112 80 96 40 110Z" fill="{NOCHE}"/><circle cx="150" cy="116" r="9" fill="{NOCHE}"/><path d="M158 114 L176 120 L158 122Z" fill="{TRIGO}"/>'
+    elif kind == "mamifero":
+        c = _fondo_n('<ellipse cx="150" cy="124" rx="34" ry="28" fill="#6b4a2c"/>' + "".join(f'<ellipse cx="{x}" cy="{y}" rx="13" ry="18" fill="#6b4a2c" transform="rotate({r} {x} {y})"/>' for x, y, r in ((98, 84, -24), (130, 62, -8), (170, 62, 8), (202, 84, 24))))
+    elif kind == "reptil":
+        c = _fondo_n(f'<path d="M50 150 C80 110 110 160 140 120 S200 100 222 70" stroke="{VERDE_OSC}" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M50 150 C80 110 110 160 140 120 S200 100 222 70" stroke="{TRIGO}" stroke-width="5" fill="none" stroke-dasharray="2 14" stroke-linecap="round"/><circle cx="232" cy="64" r="14" fill="{VERDE_OSC}"/><circle cx="236" cy="60" r="3" fill="#fff"/>')
+    elif kind == "insecto":
+        c = _fondo_n(f'<path d="M150 100 C110 40 60 50 70 100 C74 130 120 130 150 106Z" fill="#e9a23a"/><path d="M150 100 C190 40 240 50 230 100 C226 130 180 130 150 106Z" fill="#e9a23a"/><path d="M150 104 C120 120 100 160 120 164 C138 164 146 130 150 108Z" fill="#c76f1a"/><path d="M150 104 C180 120 200 160 180 164 C162 164 154 130 150 108Z" fill="#c76f1a"/><rect x="146" y="76" width="8" height="64" rx="4" fill="{NOCHE}"/>')
+    elif kind == "arbol":
+        c = _fondo_n(f'<rect x="140" y="110" width="20" height="58" fill="#6b4a2c"/><circle cx="150" cy="84" r="50" fill="{VERDE}"/><circle cx="116" cy="102" r="30" fill="{VERDE}"/><circle cx="184" cy="102" r="30" fill="{VERDE}"/>')
+    elif kind == "peligro":
+        c = _fondo_n(f'<path d="M150 36 L232 160 H68Z" fill="{TRIGO}" stroke="{ROJO}" stroke-width="10" stroke-linejoin="round"/><rect x="144" y="80" width="12" height="44" rx="5" fill="{ROJO}"/><circle cx="150" cy="140" r="7" fill="{ROJO}"/>', "#f3e6b8")
+    elif kind == "consejo":
+        c = _fondo_n(f'<path d="M96 80 H176 L164 150 H108Z" fill="#9fb8c7"/><path d="M176 96 L226 70 L230 84 L178 112Z" fill="#9fb8c7"/><path d="M96 92 C70 90 62 70 70 60" stroke="#9fb8c7" stroke-width="8" fill="none"/><path d="M226 78 q10 14 -4 28 M236 76 q12 14 0 30" stroke="#6aa6d8" stroke-width="4" fill="none" stroke-linecap="round"/>')
+    else:
+        return paisaje_loras() if "paisaje_loras" in globals() else loras()
+    if kind == "habitat": return loras()
+    return _svg(c, t)
+
+
+def calendario_barras(filas, leyenda, titulo, alto_fila=22, ancho_nombre=200):
+    """filas = [(nombre, [(set_de_meses, color)])]; leyenda = [(color, texto)]. Barras por mes (ene..dic), vectorial."""
+    W = 760; X0 = ancho_nombre + 14; cw = (W - X0 - 12) / 12; H = 54 + alto_fila * len(filas) + 34
+    ms = "E F M A M J J A S O N D".split()
+    c = f'<rect width="{W}" height="{H}" fill="#faf5e8"/><text x="14" y="26" font-size="15" font-weight="700" fill="{VERDE_OSC}" font-family="Cinzel,Lora,serif">{escape(titulo)}</text>'
+    for k, m in enumerate(ms):
+        c += f'<text x="{X0+k*cw+cw/2:.1f}" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="{VERDE_OSC}" font-family="system-ui,sans-serif">{m}</text>'
+    for i, (nombre, tramos) in enumerate(filas):
+        y = 56 + i * alto_fila
+        if i % 2 == 0: c += f'<rect x="8" y="{y-2}" width="{W-16}" height="{alto_fila}" fill="#efe6d2"/>'
+        c += f'<text x="14" y="{y+alto_fila-8}" font-size="11.5" fill="#2f281b" font-family="Lora,Georgia,serif">{escape(nombre[:30])}</text>'
+        for meses_, col in tramos:
+            for m in sorted(meses_):
+                c += f'<rect x="{X0+(m-1)*cw+1:.1f}" y="{y+2}" width="{cw-2:.1f}" height="{alto_fila-8}" rx="4" fill="{col}"/>'
+    y = 56 + len(filas) * alto_fila + 18
+    x = 14
+    for col, tx in leyenda:
+        c += f'<rect x="{x}" y="{y-9}" width="16" height="11" rx="3" fill="{col}"/><text x="{x+22}" y="{y}" font-size="11" fill="#2f281b" font-family="system-ui,sans-serif">{escape(tx)}</text>'
+        x += 30 + 7 * len(tx)
+    return _svg(c, f"{titulo}: calendario por meses, de enero a diciembre", vb=f"0 0 {W} {H}")

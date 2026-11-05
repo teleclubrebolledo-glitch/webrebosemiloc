@@ -1,0 +1,24 @@
+# Tiempo de la cabecera (estado actual y previsión de mañana): se actualiza cada 3 horas. Sin IA, sin tokens, sin secretos.
+name: Tiempo (cabecera)
+on:
+  schedule:
+    - cron: "5 */3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  tiempo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pedir el tiempo
+        run: python3 tiempo/tiempo.py
+      - name: Guardar si ha cambiado
+        run: |
+          git config user.name "Web de Rebolledo"
+          git config user.email "teleclubrebolledo@gmail.com"
+          git add tiempo/tiempo.json
+          git diff --cached --quiet || (git commit -m "Tiempo: actualización" && git push)

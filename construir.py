@@ -3,7 +3,7 @@
 Sin dependencias, sin JavaScript en la web: todo el efecto es SVG + CSS."""
 from pathlib import Path
 from html import escape
-import graficos, fichas, json
+import graficos, fichas, json, huerta_web
 
 PEND = '<small class="pendiente">por completar</small>'
 LAT, LON = "42.6889", "-4.2271"   # de la web anterior (incrustado de Windy: 42.6889148, -4.2271223)
@@ -72,9 +72,16 @@ def _seccion_avisos():
     return subs
 for _i, _c in enumerate(CONTENIDO):
     if _c[0] == "rutas":
-        CONTENIDO.insert(_i + 1, ("avisos", "Avisos y ayudas", _seccion_avisos())); break
+        CONTENIDO.insert(_i + 1, ("avisos", "Avisos y ayudas", _seccion_avisos()))
+        CONTENIDO.insert(_i + 2, ("huerta", "Huerta", [("Este mes en la huerta", "@H:este_mes"), ("Productos de temporada", "@H:temporada"), ("Calendario de la huerta", "@H:calendario"),
+                                                       ("Hortalizas y legumbres", "@H:hortalizas"), ("Frutales y árboles de la zona", "@H:frutales"), ("Aromáticas, medicinales y silvestres", "@H:aromaticas"),
+                                                       ("Flores", "@H:flores"), ("Setas: temporadas y peligros", "@H:setas"), ("Plantas peligrosas", "@H:peligros"), ("Consejos para la huerta a 958 m", "@H:consejos")]))
+        CONTENIDO.insert(_i + 3, ("naturaleza", "Fauna y flora", [("Un territorio, muchos hábitats", "@N:habitats"), ("Aves de los cortados y del cielo", "@N:rapaces"), ("Aves del campo, del pueblo y de la noche", "@N:campo"),
+                                                                 ("Calendario de las aves", "@N:calendario"), ("Mamíferos", "@N:mamiferos"), ("Reptiles y anfibios", "@N:reptiles"), ("Insectos y polinizadores", "@N:insectos"),
+                                                                 ("Árboles y arbustos", "@N:arboles"), ("Plantas y flores silvestres", "@N:flora"), ("Mirar sin molestar", "@N:mirar")]))
+        break
 
-LEADS = {"avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
+LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m, con fichas de cultivos, frutales, flores, setas y plantas peligrosas.", "naturaleza": "Todo lo vivo de las loras y los páramos: aves, mamíferos, reptiles, insectos, árboles y flores.", "avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
          "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
@@ -121,6 +128,13 @@ def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
+    if texto.startswith("@H:") or texto.startswith("@N:"):
+        icono, cuerpo, ancha = huerta_web.card(texto[1:])
+        cls = "tarjeta ancha" if ancha else "tarjeta"
+        if cuerpo.startswith('<div class="figuras'):
+            i = cuerpo.index("</div>") + 6
+            return f'<article class="{cls}" id="{ident}">{cuerpo[:i]}<div class="texto"><h3>{escape(titulo)}</h3>{cuerpo[i:]}</div></article>'
+        return f'<article class="{cls}" id="{ident}"><figure>{graficos.icono_natural(icono)}</figure><div class="texto"><h3>{escape(titulo)}</h3>{cuerpo}</div></article>'
     if texto == "@AVISA":
         est = AVISOS.get("estado_fuentes", {}); act = AVISOS.get("actualizado", "") or "todavía no"
         li = "".join(f"<li>{escape(k)}: {escape(v.split(' (')[0].split(':')[0])}</li>" for k, v in est.items())
@@ -200,7 +214,8 @@ def barra_html(pref=""):
         items += (f'<details class="menu" name="menu"><summary data-sec="{ident}">{escape(nombre)}</summary>'
                   f'<div class="sub"><a class="todo" href="{pref}#{ident}">Ver toda la sección</a>{enl}</div></details>')
     ini = f'<a href="{pref or "#inicio"}" data-sec="inicio">Inicio</a>' if pref else '<a href="#inicio" data-sec="inicio">Inicio</a>'
-    marca = f'<a class="marca" href="{pref or "#inicio"}">Rebolledo de la Torre</a>'
+    marca = (f'<div class="cab-marca"><div class="fila"><a class="marca" href="{pref or "#inicio"}">Rebolledo de la Torre</a><span class="t-ahora" hidden></span></div>'
+             f'<div class="t-manana" hidden></div></div>')
     return f'<header class="barra">\n  {marca}\n  <nav class="navtop" aria-label="Secciones">{ini}{items}</nav>\n</header>\n'
 
 
@@ -214,6 +229,7 @@ def parchea_paginas():
         if p.exists():
             t = p.read_text()
             t2 = re.sub(r'<header class="barra">.*?</header>\n', lambda m: barra, t, flags=re.S)
+            if "js/tiempo.js" not in t2: t2 = t2.replace("</body>", '<script src="js/tiempo.js" defer></script>\n</body>', 1)
             if t2 != t: p.write_text(t2)
     (base / "barra-pagina.html").write_text(barra)
 
@@ -273,7 +289,7 @@ def main():
 
 <footer class="pie">
   <div class="envoltorio">
-    <p>Proyecto comunitario sin ánimo de lucro. Sin cookies, sin analítica, sin publicidad y sin recoger datos personales. Vídeo de portada con permiso de su autor.</p>
+    <p>Proyecto comunitario sin ánimo de lucro. Sin cookies, sin analítica, sin publicidad y sin recoger datos personales. Vídeo de portada con permiso de su autor. Datos del tiempo: Open-Meteo.com (CC BY 4.0). Avisos: BOE y BOCYL, con enlace al texto oficial.</p>
     <ul>
       <li><a href="enviar-fotos.html">Enviar fotos</a></li>
       <li><a href="enviar-rutas.html">Enviar una ruta</a></li>
@@ -286,6 +302,7 @@ def main():
 </footer>
 <a class="volver" href="#inicio">↑ Volver al inicio</a>
 <script src="js/carrusel.js" defer></script>
+<script src="js/tiempo.js" defer></script>
 </body>
 </html>
 """

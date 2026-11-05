@@ -44,3 +44,8 @@ Si se quiere recuperar un tablón o avisos de vecinos, hay que diseñarlo con mo
 - Lo hace `js/carrusel.js`: **script propio**, sin cookies, sin almacenamiento local, sin terceros ni analítica. Sin JavaScript, la web muestra todas las secciones una debajo de otra. `construir.py` genera las secciones en `#almacen`; el script mueve (no copia) la tarjeta activa a la caja. `?i=N` abre la diapositiva N (para pruebas).
 - Nuevas secciones o tarjetas: se añaden en `CONTENIDO` y entran solas en el carrusel y en los enlaces.
 - Barra superior: menús desplegables por sección (tarjetas enlazables, `#seccion-N`), con hiedra animada que baja al abrir; `barra_html()` la genera y `parchea_paginas()` la pone en todas las páginas fijas (y `barra-pagina.html` la usa la galería del bot).
+
+## Huerta, Fauna y flora, tiempo (2026-11-05)
+- **Huerta** (`huerta/datos.json`, copia pública de HuertaDigital: `python3 ~/Proyectos/huerto/exportar_a_web.py`; ficha mensual por la fecha de generación: el flujo diario la mantiene al día). Setas con avisos de seguridad y plantas peligrosas. Datos escritos de memoria, adaptados a ~958 m: orientativos.
+- **Fauna y flora** (`naturaleza/datos.json` ← `naturaleza/crear_datos.py`): aves (con sección especial), mamíferos, reptiles y anfibios, insectos, árboles y flora. ★ = citado por fuentes del Geoparque; el resto, propio de la meseta norte (por contrastar con observaciones locales).
+- **Tiempo en la cabecera** (`tiempo/tiempo.py` → `tiempo/tiempo.json`, leído por `js/tiempo.js`): Open-Meteo, consultado por el servidor (GitHub Actions cada 3 h, `.github/workflows/tiempo.yml`); las visitas no contactan con nadie. Se muestra el estado de ahora y «prev. mañana».

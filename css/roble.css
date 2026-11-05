@@ -184,3 +184,11 @@ html[data-vista="seccion"] .tabs{display:none}
 .marco-arco{position:relative}
 .piedras{position:absolute;left:0;top:0;z-index:2;pointer-events:none;overflow:visible}
 .marco-arco{padding-top:calc(var(--col) + clamp(4px,.8vw,10px))}
+
+/* fichas desplegables, avisos de seguridad */
+.alerta{background:#f6dcc4;border-radius:14px 14px 0 0;padding:.7rem 1.1rem;margin:.4rem 0 .9rem;color:#4a2010;font:.95rem/1.5 system-ui,sans-serif}
+.alerta p{margin:.35rem 0}
+details.ficha{margin:.12rem 0}
+details.ficha>summary{cursor:pointer;padding:.35rem .6rem;border-radius:10px 10px 0 0;font:.98rem var(--fuente)}
+details.ficha>summary:hover,details.ficha[open]>summary{background:var(--piedra)}
+details.ficha>ul{padding-left:1.6rem}

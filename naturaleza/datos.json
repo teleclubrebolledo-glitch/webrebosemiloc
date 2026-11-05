@@ -1,0 +1,594 @@
+{
+ "aviso": "Lista orientativa propia de la meseta norte y de los cortados de Las Loras; escrita a mano. Las especies con ★ aparecen citadas por fuentes del Geoparque Las Loras. Contrasta con guías de campo y con las observaciones de la gente del pueblo.",
+ "aves": [
+  {
+   "nombre": "Buitre leonado",
+   "cientifico": "Gyps fulvus",
+   "grupo": "rapaz",
+   "meses": "1-12",
+   "donde": "Cortados calizos; planea sobre los páramos",
+   "rasgo": "Grande (2,5 m de envergadura), pardo claro, cuello claro y alas con bordes negros",
+   "dato": "Come carroña y es clave para limpiar el campo. Anida en repisas de roca.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Buitre negro",
+   "cientifico": "Aegypius monachus",
+   "grupo": "rapaz",
+   "meses": "1-12",
+   "donde": "Cortados y bosques cercanos",
+   "rasgo": "Aún mayor (hasta 3 m), casi negro, cabeza clara",
+   "dato": "Raro y protegido; sus colonias son muy sensibles a las molestias.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Alimoche",
+   "cientifico": "Neophron percnopterus",
+   "grupo": "rapaz",
+   "meses": "3-9",
+   "donde": "Cortados y barrancos",
+   "rasgo": "Blanco con puntas de ala negras, cara amarilla, cola en cuña",
+   "dato": "Viene de África en primavera y se marcha a final del verano.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Águila real",
+   "cientifico": "Aquila chrysaetos",
+   "grupo": "rapaz",
+   "meses": "1-12",
+   "donde": "Cortados, páramos y bosque",
+   "rasgo": "Muy grande, marrón oscuro, nuca dorada",
+   "dato": "Cada pareja controla un territorio enorme.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Halcón peregrino",
+   "cientifico": "Falco peregrinus",
+   "grupo": "rapaz",
+   "meses": "1-12",
+   "donde": "Cortados",
+   "rasgo": "Dorso gris azulado, pecho claro barrado, «bigotera» negra",
+   "dato": "En picado supera los 300 km/h: el animal más rápido del planeta.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Cernícalo vulgar",
+   "cientifico": "Falco tinnunculus",
+   "grupo": "rapaz",
+   "meses": "1-12",
+   "donde": "Campos, pueblos y campanarios",
+   "rasgo": "Pequeño, rojizo, se queda quieto en el aire «cerneándose»",
+   "dato": "Caza topillos en los cultivos.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Milano real",
+   "cientifico": "Milvus milvus",
+   "grupo": "rapaz",
+   "meses": "10-3",
+   "donde": "Campos abiertos",
+   "rasgo": "Cola larga muy ahorquillada, cabeza clara",
+   "dato": "Invernan muchos en la meseta; se junta con los buitres en las carroñas.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Aguilucho cenizo",
+   "cientifico": "Circus pygargus",
+   "grupo": "rapaz",
+   "meses": "4-8",
+   "donde": "Campos de cereal",
+   "rasgo": "Macho gris con rayas negras en el ala; hembra parda",
+   "dato": "Anida en el suelo, entre el trigo: se protegen los nidos antes de cosechar.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Cuervo",
+   "cientifico": "Corvus corax",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Cortados y páramos",
+   "rasgo": "El mayor córvido, negro, cola en cuña, grazna grave",
+   "dato": "Inteligente y longevo.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Chova piquirroja",
+   "cientifico": "Pyrrhocorax pyrrhocorax",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Cortados y pueblos de piedra",
+   "rasgo": "Negra con pico y patas rojos",
+   "dato": "Vuela en bandos acrobáticos; anida en grietas y torres.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Grajilla",
+   "cientifico": "Coloeus monedula",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Pueblos, iglesias y cortados",
+   "rasgo": "Pequeña, negra con nuca gris y ojo claro",
+   "dato": "Muy sociable; anida en campanarios y tejados.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Corneja negra",
+   "cientifico": "Corvus corone",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Campos y pueblos",
+   "rasgo": "Negra, pico fuerte, grazna seco",
+   "dato": "Lista y oportunista.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Urraca",
+   "cientifico": "Pica pica",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Campos, setos y pueblos",
+   "rasgo": "Blanco y negro con cola larga y reflejos azules",
+   "dato": "Sus nidos de ramas, con cúpula, se ven en los árboles.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Arrendajo",
+   "cientifico": "Garrulus glandarius",
+   "grupo": "córvido",
+   "meses": "1-12",
+   "donde": "Robledales y encinares",
+   "rasgo": "Pardo rosado con alas azules y blancas",
+   "dato": "Entierra bellotas y así siembra robles.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Cigüeña blanca",
+   "cientifico": "Ciconia ciconia",
+   "grupo": "ave de pueblo",
+   "meses": "2-8",
+   "donde": "Campanarios y postes",
+   "rasgo": "Blanca con alas negras y pico y patas rojos",
+   "dato": "Muchas ya no migran a África y se quedan todo el año.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Golondrina común",
+   "cientifico": "Hirundo rustica",
+   "grupo": "ave de pueblo",
+   "meses": "3-10",
+   "donde": "Cuadras, porches y pueblos",
+   "rasgo": "Cola con largas puntas, vientre claro, garganta rojiza",
+   "dato": "Hace el nido de barro bajo los aleros; vuelve cada primavera al mismo sitio.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Avión roquero",
+   "cientifico": "Ptyonoprogne rupestris",
+   "grupo": "ave de roca",
+   "meses": "3-10",
+   "donde": "Cortados",
+   "rasgo": "Pardo, cola cuadrada con manchas blancas",
+   "dato": "Nidifica pegado a la pared de roca.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Vencejo común",
+   "cientifico": "Apus apus",
+   "grupo": "ave de pueblo",
+   "meses": "5-8",
+   "donde": "Cielo sobre los pueblos",
+   "rasgo": "Todo oscuro, alas de hoz, chilla en grupos",
+   "dato": "Pasa casi toda la vida volando: duerme y come en el aire.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Abubilla",
+   "cientifico": "Upupa epops",
+   "grupo": "ave de campo",
+   "meses": "3-9",
+   "donde": "Linderos, huertas y praderas",
+   "rasgo": "Cresta de plumas, pico curvo, alas listadas",
+   "dato": "Su «up-up-up» se oye en primavera.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Perdiz roja",
+   "cientifico": "Alectoris rufa",
+   "grupo": "ave de campo",
+   "meses": "1-12",
+   "donde": "Campos y matorral bajo",
+   "rasgo": "Collar negro, flancos rayados, patas rojas",
+   "dato": "Corre más que vuela.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Codorniz común",
+   "cientifico": "Coturnix coturnix",
+   "grupo": "ave de campo",
+   "meses": "5-9",
+   "donde": "Cereal y prados",
+   "rasgo": "Pequeña y críptica, se oye más que se ve («pica-pa-pic»)",
+   "dato": "Pasa el invierno en África.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Alondra común",
+   "cientifico": "Alauda arvensis",
+   "grupo": "ave de campo",
+   "meses": "1-12",
+   "donde": "Campos abiertos",
+   "rasgo": "Parda con pequeña cresta; canta sin parar subiendo en vertical",
+   "dato": "Su canto es de los más típicos de primavera.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Calandria",
+   "cientifico": "Melanocorypha calandra",
+   "grupo": "ave de campo",
+   "meses": "1-12",
+   "donde": "Cereal y páramo",
+   "rasgo": "Grande, con manchas negras en el cuello",
+   "dato": "Típica de los páramos cerealistas.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Triguero",
+   "cientifico": "Emberiza calandra",
+   "grupo": "ave de campo",
+   "meses": "1-12",
+   "donde": "Cultivos, setos y cables",
+   "rasgo": "Gordito y pardo, canta como unas llaves que tintinean",
+   "dato": "Se posa en lo más alto de los cables.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Roquero solitario",
+   "cientifico": "Monticola solitarius",
+   "grupo": "ave de roca",
+   "meses": "1-12",
+   "donde": "Cortados",
+   "rasgo": "Macho azul pizarra, hembra parda",
+   "dato": "Canta desde lo alto de las rocas.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Mochuelo común",
+   "cientifico": "Athene noctua",
+   "grupo": "nocturna",
+   "meses": "1-12",
+   "donde": "Pueblos, tapias y majadas",
+   "rasgo": "Pequeño, mirada seria, de día se ve en muros",
+   "dato": "Cría en huecos de piedra.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Lechuza común",
+   "cientifico": "Tyto alba",
+   "grupo": "nocturna",
+   "meses": "1-12",
+   "donde": "Campanarios y pajares",
+   "rasgo": "Cara en forma de corazón, blanca por debajo",
+   "dato": "Un par de lechuzas se come miles de ratones al año.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Búho real",
+   "cientifico": "Bubo bubo",
+   "grupo": "nocturna",
+   "meses": "1-12",
+   "donde": "Cortados y barrancos",
+   "rasgo": "El mayor búho, con «orejas»",
+   "dato": "Su «uuh-hu» grave se oye en invierno.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Pito real",
+   "cientifico": "Picus sharpei",
+   "grupo": "ave de bosque",
+   "meses": "1-12",
+   "donde": "Robledales, encinares y fresnedas",
+   "rasgo": "Verde con cabeza roja; ríe al volar",
+   "dato": "Busca hormigas en el suelo.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Petirrojo",
+   "cientifico": "Erithacus rubecula",
+   "grupo": "ave de bosque",
+   "meses": "10-3",
+   "donde": "Huertas, setos y bosques",
+   "rasgo": "Pecho y cara naranja",
+   "dato": "En invierno se acerca a los huertos y casas.",
+   "geoparque": false
+  }
+ ],
+ "mamiferos": [
+  {
+   "nombre": "Corzo",
+   "cientifico": "Capreolus capreolus",
+   "donde": "Bosques y linderos; al amanecer y al atardecer",
+   "rasgo": "Pequeño ciervo, sin cola visible, manchón blanco en la grupa",
+   "dato": "Muy discreto; los machos llevan cuernas cortas."
+  },
+  {
+   "nombre": "Jabalí",
+   "cientifico": "Sus scrofa",
+   "donde": "Bosque y cultivos",
+   "rasgo": "Cuerpo robusto, pelo oscuro y áspero",
+   "dato": "Se delata por las «hozaduras» (tierra removida)."
+  },
+  {
+   "nombre": "Zorro",
+   "cientifico": "Vulpes vulpes",
+   "donde": "En cualquier sitio, sobre todo al anochecer",
+   "rasgo": "Rojizo, cola espesa con punta blanca",
+   "dato": "Caza topillos y conejos."
+  },
+  {
+   "nombre": "Lobo",
+   "cientifico": "Canis lupus",
+   "donde": "Montes y páramos; muy esquivo",
+   "rasgo": "Mayor que un perro, cola recta y baja",
+   "dato": "Presente en la comarca pero casi imposible de ver; respétalo y no lo busques."
+  },
+  {
+   "nombre": "Liebre ibérica",
+   "cientifico": "Lepus granatensis",
+   "donde": "Campos abiertos",
+   "rasgo": "Orejas largas con punta negra, patas largas",
+   "dato": "Duerme en una «encame» sobre el suelo."
+  },
+  {
+   "nombre": "Conejo",
+   "cientifico": "Oryctolagus cuniculus",
+   "donde": "Linderos y majanos",
+   "rasgo": "Más pequeño que la liebre, orejas cortas",
+   "dato": "Presa clave de águilas y zorros."
+  },
+  {
+   "nombre": "Tejón",
+   "cientifico": "Meles meles",
+   "donde": "Madrigueras en lindes y bosque; vida nocturna",
+   "rasgo": "Cabeza blanca con dos rayas negras",
+   "dato": "Excava madrigueras enormes y muy antiguas."
+  },
+  {
+   "nombre": "Garduña",
+   "cientifico": "Martes foina",
+   "donde": "Bosques, tapias y pueblos",
+   "rasgo": "Marrón oscuro con babero blanco",
+   "dato": "A veces entra en desvanes y motores."
+  },
+  {
+   "nombre": "Gineta",
+   "cientifico": "Genetta genetta",
+   "donde": "Bosques y barrancos; nocturna",
+   "rasgo": "Cola anillada, cuerpo moteado, muy felina",
+   "dato": "Casi nunca se ve; se delata en fotos de cámaras."
+  },
+  {
+   "nombre": "Gato montés",
+   "cientifico": "Felis silvestris",
+   "donde": "Bosque y matorral",
+   "rasgo": "Como un gato atigrado grande, cola gruesa con anillos",
+   "dato": "Muy esquivo y protegido."
+  },
+  {
+   "nombre": "Erizo europeo",
+   "cientifico": "Erinaceus europaeus",
+   "donde": "Huertas, setos y jardines",
+   "rasgo": "Cubierto de púas",
+   "dato": "Hiberna en invierno; deja un hueco libre en la valla."
+  },
+  {
+   "nombre": "Murciélagos",
+   "cientifico": "varias especies",
+   "donde": "Iglesias, cuevas, puentes; de noche",
+   "rasgo": "Pequeños voladores nocturnos",
+   "dato": "Comen toneladas de insectos; protégelos."
+  }
+ ],
+ "reptiles": [
+  {
+   "nombre": "Lagarto ocelado",
+   "cientifico": "Timon lepidus",
+   "grupo": "reptil",
+   "donde": "Muros y pedregales soleados",
+   "dato": "El mayor lagarto de la península; verde con manchas azules en los lados."
+  },
+  {
+   "nombre": "Lagartija ibérica",
+   "cientifico": "Podarcis hispanicus",
+   "grupo": "reptil",
+   "donde": "Piedras, tapias y huertas",
+   "dato": "Pequeña, muy ágil, se calienta al sol."
+  },
+  {
+   "nombre": "Culebra bastarda",
+   "cientifico": "Malpolon monspessulanus",
+   "grupo": "reptil",
+   "donde": "Matorral y piedras",
+   "dato": "Grande y de rápido movimiento; sus colmillos están al fondo de la boca y no es peligrosa para las personas."
+  },
+  {
+   "nombre": "Culebra de collar",
+   "cientifico": "Natrix helvetica",
+   "grupo": "reptil",
+   "donde": "Arroyos y charcas",
+   "dato": "Collar claro tras la cabeza; nada muy bien. Inofensiva."
+  },
+  {
+   "nombre": "Víbora áspid",
+   "cientifico": "Vipera aspis",
+   "grupo": "reptil",
+   "donde": "Pedregales y bordes de bosque",
+   "dato": "La única peligrosa de la zona: cabeza triangular, pupila vertical. Si ves una, déjala pasar y no la toques."
+  },
+  {
+   "nombre": "Sapo común",
+   "cientifico": "Bufo spinosus",
+   "grupo": "anfibio",
+   "donde": "Humedales, caminos con lluvia",
+   "dato": "Piel áspera; se come muchos caracoles y babosas."
+  },
+  {
+   "nombre": "Rana común",
+   "cientifico": "Pelophylax perezi",
+   "grupo": "anfibio",
+   "donde": "Arroyos, charcas y balsas",
+   "dato": "Verde brillante; canta en coro en verano."
+  },
+  {
+   "nombre": "Tritón jaspeado",
+   "cientifico": "Triturus marmoratus",
+   "grupo": "anfibio",
+   "donde": "Charcas y abrevaderos",
+   "dato": "Verde con manchas negras; cría en agua limpia."
+  }
+ ],
+ "insectos": [
+  {
+   "nombre": "Abejorros y abejas silvestres",
+   "dato": "Cientos de especies que polinizan huertos y prados; sin ellas no hay manzanas."
+  },
+  {
+   "nombre": "Mariposas diurnas",
+   "dato": "Macaón, vanesas, blancas de la col y blanquiverdes visitan flores desde mayo; los prados sin segar son su casa."
+  },
+  {
+   "nombre": "Luciérnagas",
+   "dato": "En las noches calurosas de junio y julio brillan en linderos y prados: indican cielo y campo sin contaminar."
+  },
+  {
+   "nombre": "Libélulas y caballitos del diablo",
+   "dato": "Siguen los arroyos y balsas; sus larvas viven en agua limpia."
+  },
+  {
+   "nombre": "Escarabajos peloteros",
+   "dato": "Entierran el estiércol y mejoran el suelo del pasto."
+  },
+  {
+   "nombre": "Saltamontes y grillos",
+   "dato": "Su canto marca los atardeceres de verano y alimentan a muchas aves."
+  }
+ ],
+ "arboles": [
+  {
+   "nombre": "Quejigo",
+   "cientifico": "Quercus faginea",
+   "dato": "Roble de hoja algo coriácea que seca y queda en la rama; forma los bosques de las laderas.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Roble melojo",
+   "cientifico": "Quercus pyrenaica",
+   "dato": "Hojas grandes y lobuladas con pelillos; vive en suelos silíceos y frescos.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Coscoja",
+   "cientifico": "Quercus coccifera",
+   "dato": "Pequeño arbusto con hojas espinosas, en laderas secas soleadas.",
+   "geoparque": true
+  },
+  {
+   "nombre": "Encina",
+   "cientifico": "Quercus ilex",
+   "dato": "Siempre verde, bellotas dulces; es la base de muchos bosques de la meseta.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Enebro",
+   "cientifico": "Juniperus communis",
+   "dato": "Arbusto de hojas punzantes y «gálbulas» azuladas; resiste el frío y la sequía.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Espino albar",
+   "cientifico": "Crataegus monogyna",
+   "dato": "Setos con flores blancas en mayo y frutos rojos en otoño; refugio de pájaros.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Endrino",
+   "cientifico": "Prunus spinosa",
+   "dato": "Espinoso, flor blanca antes que la hoja; sus endrinas dan el pacharán.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Rosal silvestre",
+   "cientifico": "Rosa canina",
+   "dato": "Escaramujos rojos en otoño, ricos en vitamina C.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Chopo y sauce",
+   "cientifico": "Populus / Salix",
+   "dato": "En arroyos y riberas; sujetan las orillas.",
+   "geoparque": false
+  },
+  {
+   "nombre": "Brezo y tomillo",
+   "cientifico": "Calluna / Thymus",
+   "dato": "Matorral bajo de laderas y páramos, muy melífero.",
+   "geoparque": false
+  }
+ ],
+ "flora": [
+  {
+   "nombre": "Narcisos",
+   "cientifico": "Narcissus",
+   "dato": "En primavera cubren claros y prados húmedos del norte de Burgos."
+  },
+  {
+   "nombre": "Orquídeas silvestres",
+   "cientifico": "Orchidaceae",
+   "dato": "Hay muchas especies pequeñas en prados y claros; no se arrancan nunca (protegidas)."
+  },
+  {
+   "nombre": "Amapolas, acianos y margaritas",
+   "cientifico": "Papaver / Centaurea / Leucanthemum",
+   "dato": "El color de los campos y linderos en mayo y junio."
+  },
+  {
+   "nombre": "Tomillo, cantueso y espliego",
+   "cientifico": "Thymus / Lavandula",
+   "dato": "Aromáticas del páramo que llenan de olor y abejas las laderas en verano."
+  },
+  {
+   "nombre": "Setas",
+   "cientifico": "Fungi",
+   "dato": "Salen tras las lluvias de otoño y primavera; mira la sección de la huerta antes de tocar ninguna."
+  }
+ ],
+ "habitats": [
+  {
+   "nombre": "Cortados y barrancos calizos",
+   "dato": "Las paredes de las loras guardan buitres, águila real, halcón peregrino, chovas y cuervos; en las grietas, aviones roqueros y roqueros solitarios."
+  },
+  {
+   "nombre": "Páramos y campos de cereal",
+   "dato": "Aves del campo (alondras, calandrias, trigueros, perdices, aguiluchos), liebres, zorros y mucha vida pequeña entre las lindes."
+  },
+  {
+   "nombre": "Bosques de quejigo, melojo y encina",
+   "dato": "Corzos, jabalíes, tejones, gatos monteses, pitos, arrendajos y, en el suelo, setas y orquídeas."
+  },
+  {
+   "nombre": "Arroyos y riberas",
+   "dato": "Chopos, sauces, ranas, tritones, culebras de collar, libélulas y aves que beben y se bañan."
+  },
+  {
+   "nombre": "Pueblos, huertas y tapias",
+   "dato": "Cigüeñas, golondrinas, vencejos, mochuelos, lechuzas, murciélagos, erizos y lagartijas."
+  }
+ ],
+ "mirar": [
+  "Mira desde lejos y con prismáticos: si el animal cambia de conducta, estás demasiado cerca.",
+  "De marzo a julio las aves crían: ni te acerques a nidos ni a cortados con buitres.",
+  "Nada de drones cerca de cortados, nidos o rebaños.",
+  "Perros atados en campo y monte: los nidos están en el suelo.",
+  "No cojas ni plantas, ni setas, ni huevos, ni crías; no arranques orquídeas.",
+  "Si encuentras un animal herido, no lo cojas: avisa al 112 (en Castilla y León, al Centro de Recuperación de Fauna) o a los agentes medioambientales."
+ ]
+}
