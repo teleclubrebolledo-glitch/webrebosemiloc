@@ -159,6 +159,18 @@
   if (window.ResizeObserver) new ResizeObserver(piedras).observe(document.querySelector('.marco-arco')); else window.addEventListener('resize', piedras);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(piedras);
 
+  /* Cinta negra de avisos bajo el vídeo: pasa una entrada cada 7 s (quieta con «movimiento reducido»), se detiene al pasar el ratón o el foco, y con flechas. */
+  (function () {
+    var cinta = document.querySelector('.cinta'); if (!cinta) return;
+    var its = [].slice.call(cinta.querySelectorAll('.cinta-item')), k = 0, t = null, dentro2 = false;
+    function ver(n) { its[k].classList.remove('activo'); k = (n + its.length) % its.length; its[k].classList.add('activo'); }
+    function auto() { if (t) clearInterval(t); if (!reducido && !dentro2 && its.length > 1) t = setInterval(function () { ver(k + 1); }, 7000); }
+    [].forEach.call(cinta.querySelectorAll('.cinta-b'), function (b) { b.addEventListener('click', function () { ver(k + parseInt(b.getAttribute('data-d'), 10)); auto(); }); });
+    cinta.addEventListener('mouseenter', function () { dentro2 = true; auto(); }); cinta.addEventListener('mouseleave', function () { dentro2 = false; auto(); });
+    cinta.addEventListener('focusin', function () { dentro2 = true; auto(); }); cinta.addEventListener('focusout', function () { dentro2 = false; auto(); });
+    auto();
+  })();
+
   var p = new URLSearchParams(location.search).get('i');
   if (p !== null && !isNaN(parseInt(p, 10))) i = parseInt(p, 10);
   etiqueta();

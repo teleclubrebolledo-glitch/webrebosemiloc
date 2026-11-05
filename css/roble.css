@@ -192,3 +192,21 @@ details.ficha{margin:.12rem 0}
 details.ficha>summary{cursor:pointer;padding:.35rem .6rem;border-radius:10px 10px 0 0;font:.98rem var(--fuente)}
 details.ficha>summary:hover,details.ficha[open]>summary{background:var(--piedra)}
 details.ficha>ul{padding-left:1.6rem}
+
+/* ── cinta negra de avisos bajo el vídeo: estrecha, sin arco, letra legible ── */
+.cinta{display:flex;align-items:center;gap:.8rem;background:#0b0b0b;color:#f4f1e8;padding:0 .4rem 0 clamp(10px,3vw,34px);min-height:42px;font:600 .95rem/1.3 system-ui,sans-serif}
+.cinta-etq{flex:none;color:var(--trigo);font:700 .72rem system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;padding:4px 0}
+.cinta-etq:hover{text-decoration:underline}
+.cinta-pista{position:relative;flex:1 1 auto;min-width:0;height:2.6em;overflow:hidden}
+.cinta-item{position:absolute;inset:0;display:flex;align-items:center;gap:.5rem;color:#f4f1e8;text-decoration:none;opacity:0;visibility:hidden;transform:translateY(60%);transition:opacity .6s,transform .6s,visibility 0s .6s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;line-height:2.6em}
+.cinta-item.activo{opacity:1;visibility:visible;transform:none;transition:opacity .6s,transform .6s}
+.cinta-item:hover,.cinta-item:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.cinta-cat{color:#ffd77a;font-weight:700;margin-right:.35rem}
+.cinta-cat::after{content:" ·";color:#8a8a80}
+.cinta-b{flex:none;background:transparent;color:#f4f1e8;border:0;font:700 1.4rem/1 system-ui,sans-serif;padding:.2rem .55rem;cursor:pointer;border-radius:8px}
+.cinta-b:hover{background:#2a2a2a}.cinta-b:focus-visible{outline:3px solid var(--trigo);outline-offset:1px}
+@media (prefers-reduced-motion:reduce){.cinta-item,.cinta-item.activo{transition:none}}
+@media (max-width:640px){.cinta{font-size:.88rem}.cinta-etq{display:none}}
+html.js[data-vista="seccion"] .cinta{display:none}
+@media (max-width:640px){.cinta-cat{display:none}}

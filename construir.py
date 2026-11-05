@@ -227,6 +227,15 @@ def seccion(i, ident, nombre, subs):
             f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>\n'
             f'      <p class="lead">{LEADS[ident]}</p>\n      <div class="rejilla{BANNER}">\n      {tarjetas}\n      </div>\n    </div>\n  </section>\n')
 
+def cinta_avisos():
+    """Cinta estrecha y negra bajo el vídeo con las entradas de «Avisos y ayudas»; al pulsar el texto se abre la entrada ampliada dentro de la web."""
+    items = AVISOS.get("items", [])[:10] if isinstance(AVISOS, dict) else []
+    if not items: return ""
+    li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="#avisos-{i + 2}"><span class="cinta-cat">{escape(CATEGORIAS_AVISOS.get([k for k in a["categorias"] if k != "noticias"][0] if [k for k in a["categorias"] if k != "noticias"] else a["categorias"][0], ""))}</span> {escape(_recorta(a["titulo_natural"], 150))}</a>' for i, a in enumerate(items))
+    return (f'<div class="cinta" role="region" aria-label="Últimos avisos y ayudas"><a class="cinta-etq" href="#avisos">Avisos y ayudas</a><div class="cinta-pista">{li}</div>'
+            f'<button type="button" class="cinta-b" data-d="-1" aria-label="Aviso anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Aviso siguiente">›</button></div>')
+
+
 def barra_html(pref=""):
     """Barra superior con menús desplegables (hiedra que baja al abrir). pref = "" en la portada, "index.html" en el resto de páginas."""
     items = ""
@@ -256,6 +265,7 @@ def parchea_paginas():
 
 
 def main():
+    cinta = cinta_avisos()
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
     navtop = '<a href="#inicio" data-sec="inicio">Inicio</a>' + tabs
     secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
@@ -288,6 +298,7 @@ def main():
           <p>Naturaleza, historia y estrellas</p>
         </div>
       </section>
+      {cinta}
       <p class="aviso"><strong>Importante:</strong> esta web es un proyecto comunitario y <strong>no es la web oficial del Ayuntamiento</strong>. Para trámites, avisos oficiales o información municipal, consulte al Ayuntamiento (<a href="https://www.rebolledodelatorre.es" rel="noopener">rebolledodelatorre.es</a>).</p>
       <section id="carrusel" class="carrusel" aria-roledescription="carrusel" aria-label="Secciones del portal">
         <div class="caja" data-par="0">
