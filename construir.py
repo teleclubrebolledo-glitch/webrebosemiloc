@@ -34,6 +34,7 @@ CONTENIDO = [
 
     ("patrimonio", "Patrimonio", [("Iglesia románica", 'San Julián y Santa Basilisa: una de las galerías porticadas más bellas del románico castellano, firmada por Juan de Piasca en 1186, y una pila bautismal de 1195. La torre de la iglesia es renacentista. <a href="https://www.turismocastillayleon.com/es/patrimonio-cultura/iglesias-ermitas/iglesia-san-julian-santa-basilisa" rel="noopener">Turismo de Castilla y León</a>'),
                                   ("La torre-castillo", 'Dos torres esbeltas se alzan sobre el caserío: la de la iglesia y la del castillo medieval que perteneció a la familia Lasso de la Vega. <a href="https://www.terranostrum.es/turismo/burgos/sedano-y-las-loras/iglesia-de-san-julian-y-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Terra Nostrum</a>'),
+                                  ("Fiestas del pueblo", "@FIESTAS"),
                                   ("Costumbres", 'Las fiestas patronales de San Julián y Santa Basilisa se celebran en torno al 9 de enero. <a href="https://www.festivalesdeespana.com/festival/fiestas-san-julian-santa-basilisa-rebolledo-de-la-torre" rel="noopener">Festivales de España</a> ' + PEND)]),
     ("eventos", "Eventos", [("El eclipse en la plaza", "Gafas especiales, silencio al cubrirse el Sol y aplausos: una tarde que el pueblo recuerda."),
                             ("Próximo evento", "Aquí se anunciará. " + PEND)]),
@@ -135,6 +136,26 @@ def tarjeta(ident, titulo, texto):
             i = cuerpo.index("</div>") + 6
             return f'<article class="{cls}" id="{ident}">{cuerpo[:i]}<div class="texto"><h3>{escape(titulo)}</h3>{cuerpo[i:]}</div></article>'
         return f'<article class="{cls}" id="{ident}"><figure>{graficos.icono_natural(icono)}</figure><div class="texto"><h3>{escape(titulo)}</h3>{cuerpo}</div></article>'
+    if texto == "@FIESTAS":
+        base = Path(__file__).parent / "contenido" / "fiestas"
+        try: ids = json.loads((base / "index.json").read_text())
+        except Exception: ids = []
+        docs = []
+        for i in ids:
+            try: docs.append(json.loads((base / f"{i}.json").read_text()))
+            except Exception: pass
+        if not docs:
+            cuerpo = ('<p>Aún no hay fiestas contadas aquí. Las contará la gente del pueblo, con sus palabras: cómo se preparan, qué se hace hora a hora, qué se come, qué ha cambiado.</p>'
+                      '<p><a href="contar-fiestas.html">Cómo contar una fiesta</a> (el bot de Telegram te lo pregunta paso a paso, por escrito o con notas de voz).</p>')
+        else:
+            det = ""
+            for dd in docs:
+                aut = f" · contado por {escape(dd['autor'])}" if dd.get("autor") else ""
+                det += (f'<details class="ficha"><summary><strong>{escape(dd["titulo"])}</strong>{aut}</summary><ul class="guia" style="margin:.3rem 0">'
+                        + "".join(f'<li><strong>{escape(c_["pregunta"])}</strong> {escape(c_["respuesta"])}</li>' for c_ in dd["campos"] if c_.get("id") != "nombre") + "</ul>"
+                        + "".join(f'<figure style="margin:.4rem 0"><img src="contenido/fiestas/{escape(f["archivo"])}" alt="Foto de la fiesta {escape(dd["titulo"])}" loading="lazy" style="max-width:100%;border-radius:12px 12px 0 0"><figcaption class="nota">{escape(f["pie"])}</figcaption></figure>' for f in dd.get("fotos", [])) + "</details>")
+            cuerpo = f'<p>Las fiestas, contadas por quienes las viven.</p>{det}<p><a href="contar-fiestas.html">Cuenta tú otra fiesta</a>.</p>'
+        return (f'<article class="tarjeta ancha" id="{ident}"><figure>{graficos.icono_natural("calendario")}</figure><div class="texto"><h3>{escape(titulo)}</h3>{cuerpo}</div></article>')
     if texto == "@AVISA":
         est = AVISOS.get("estado_fuentes", {}); act = AVISOS.get("actualizado", "") or "todavía no"
         li = "".join(f"<li>{escape(k)}: {escape(v.split(' (')[0].split(':')[0])}</li>" for k, v in est.items())
@@ -224,7 +245,7 @@ def parchea_paginas():
     import re
     base = Path(__file__).parent
     barra = barra_html("index.html")
-    for f in ("aviso-legal", "privacidad", "accesibilidad", "colabora", "enviar-fotos", "enviar-rutas"):
+    for f in ("aviso-legal", "privacidad", "accesibilidad", "colabora", "enviar-fotos", "enviar-rutas", "contar-fiestas"):
         p = base / f"{f}.html"
         if p.exists():
             t = p.read_text()
