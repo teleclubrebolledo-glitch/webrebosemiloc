@@ -212,9 +212,9 @@
       }
       for (z = 0; z < nf; z++) {
         var fx = g.x + g.w * (.05 + .9 * rnd()), fy = g.y + g.h * (.1 + .8 * rnd()), l = 1.6 + 2.6 * rnd(), a = Math.floor(rnd() * 180);
-        fl += '<rect x="' + fx.toFixed(1) + '" y="' + fy.toFixed(1) + '" width="' + l.toFixed(1) + '" height="' + (l * .45).toFixed(1) + '" rx=".6" fill="' + (rnd() < .55 ? '#ece3cb' : '#a99a7a') + '" opacity=".85" transform="rotate(' + a + ' ' + fx.toFixed(1) + ' ' + fy.toFixed(1) + ')"/>';
+        fl += '<rect x="' + fx.toFixed(1) + '" y="' + fy.toFixed(1) + '" width="' + l.toFixed(1) + '" height="' + (l * .45).toFixed(1) + '" rx=".6" fill="' + (rnd() < .55 ? '#e7d9ab' : '#a99a7a') + '" opacity=".85" transform="rotate(' + a + ' ' + fx.toFixed(1) + ' ' + fy.toFixed(1) + ')"/>';
       }
-      cl += '<g clip-path="url(#pf-' + n + ')"><path d="' + s + '" stroke="#8a7e66" stroke-width=".9" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/><path d="' + s + '" transform="translate(.9 .9)" stroke="#f1e9d3" stroke-width=".5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>' + fl + '</g>';
+      cl += '<g clip-path="url(#pf-' + n + ')"><path d="' + s + '" stroke="#8a7e66" stroke-width=".9" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/><path d="' + s + '" transform="translate(.9 .9)" stroke="#e9dcb3" stroke-width=".5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>' + fl + '</g>';
     });
     if (gr) gr.innerHTML = cl;
     var chp = svg.querySelector('#piedras-chips'), dc = '';
