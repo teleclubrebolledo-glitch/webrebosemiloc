@@ -168,7 +168,7 @@
     var b = sonda.offsetHeight; sonda.style.height = 'var(--cap)'; var capAlto = sonda.offsetHeight; marco.removeChild(sonda);
     var m = marco.getBoundingClientRect(), r = por.getBoundingClientRect();
     var a = r.width / 2, cx = r.left - m.left + a, top = r.top - m.top, cy = top + b;
-    var T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width, top);      /* grosor = ancho del capitel */
+    var T = Math.min((marco.querySelector('.pilar') || marco).getBoundingClientRect().width - 11, top);      /* grosor = ancho del capitel */
     var M = 160, P = [], O = [], L = [0], k, th, nx, ny, nn, i;
     for (k = 0; k <= M; k++) {                                   /* arco interior (elipse) y curva paralela a distancia T: el grosor no cambia en ningún punto */
       th = Math.PI * k / M;
