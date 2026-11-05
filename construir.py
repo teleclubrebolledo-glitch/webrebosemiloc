@@ -395,21 +395,6 @@ def main():
 {barra_html()}
 
 <main id="contenido">
-  <svg class="defs-piedra" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-    <filter id="pdr-todo" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="3" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G" result="d"/>
-      <feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="7" result="f"/>
-      <feColorMatrix in="f" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1" result="fg"/>
-      <feComponentTransfer in="fg" result="fg2"><feFuncR type="linear" slope=".55" intercept=".52"/><feFuncG type="linear" slope=".55" intercept=".52"/><feFuncB type="linear" slope=".55" intercept=".52"/></feComponentTransfer>
-      <feBlend in="d" in2="fg2" mode="multiply" result="m1"/>
-      <feTurbulence type="turbulence" baseFrequency=".09" numOctaves="2" seed="11" result="p"/>
-      <feColorMatrix in="p" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1" result="pg"/>
-      <feComponentTransfer in="pg" result="pits"><feFuncR type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/><feFuncG type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/><feFuncB type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/></feComponentTransfer>
-      <feBlend in="m1" in2="pits" mode="multiply" result="m2"/>
-      <feComposite in="m2" in2="d" operator="in"/>
-    </filter>
-  </defs></svg>
   <div class="marco-arco" data-fotos="{fotos_piedras}">
     <div class="pilar" aria-hidden="true"></div>
     <div class="centro">

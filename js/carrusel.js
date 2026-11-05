@@ -188,7 +188,7 @@
     svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
     /* el anillo termina justo en la cara superior del capitel (ni un pixel por debajo): recorte horizontal a esa altura */
     svg.innerHTML = '<defs><clipPath id="piedras-corte"><rect x="0" y="0" width="' + m.width + '" height="' + (cy - capAlto) + '"/></clipPath></defs><g clip-path="url(#piedras-corte)">' +
-      '<path d="' + banda + '" fill="#cbbd9b" filter="url(#pdr-todo)"/><g id="piedras-grietas"></g><g id="piedras-fotos"></g><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round" filter="url(#pdr-todo)"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round" filter="url(#pdr-todo)"/></g>';
+      '<path d="' + banda + '" fill="#cbbd9b"/><g id="piedras-grietas"></g><g id="piedras-fotos"></g><g id="piedras-chips"></g><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
     J.push(M);
     var defs = svg.querySelector('defs'), capa = svg.querySelector('#piedras-fotos'), geo = [];
     for (i = 0; i < N; i++) {                                    /* polígono de cada piedra: borde exterior de una junta a la siguiente y vuelta por el interior */
@@ -201,15 +201,21 @@
       var x0 = Math.min.apply(null, xs), y0 = Math.min.apply(null, ys);
       geo.push({ x: x0, y: y0, w: Math.max.apply(null, xs) - x0, h: Math.max.apply(null, ys) - y0 });
     }
-    var gr = svg.querySelector('#piedras-grietas'), sem = 17, rnd = function () { sem = (sem * 16807) % 2147483647; return sem / 2147483647; }, dg = '';
-    geo.forEach(function (g) {                                   /* alguna grieta fina por piedra (siempre las mismas: generador con semilla); quedan bajo las fotos */
-      var n = rnd() < .75 ? 1 : 0; for (var q = 0; q < n; q++) {
-        var x = g.x + g.w * (.2 + .6 * rnd()), y = g.y + g.h * (.2 + .6 * rnd()), s = 'M' + x.toFixed(1) + ' ' + y.toFixed(1);
-        for (var z = 0; z < 4; z++) { x += (rnd() - .5) * g.w * .35; y += (rnd() - .35) * g.h * .3; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); }
-        dg += s;
-      }
+    var gr = svg.querySelector('#piedras-grietas'), sem = 29, rnd = function () { sem = (sem * 16807) % 2147483647; return sem / 2147483647; }, dg = '', pt = '', ch = '', cl = '';
+    geo.forEach(function (g, n) {                                /* retoques mínimos y siempre iguales (semilla fija): una grieta fina, alguna picadura y un pequeño desconchón; todo bajo las fotos */
+      var x = g.x + g.w * (.25 + .5 * rnd()), y = g.y + g.h * (.25 + .5 * rnd());
+      if (rnd() < .6) { var s = 'M' + x.toFixed(1) + ' ' + y.toFixed(1); for (var z = 0; z < 3; z++) { x += (rnd() - .5) * g.w * .22; y += (rnd() - .3) * g.h * .22; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); } dg += s; cl += '<g clip-path="url(#pf-' + n + ')"><path d="' + s + '" stroke="#8f836b" stroke-width=".8" fill="none" opacity=".55" stroke-linecap="round" stroke-linejoin="round"/></g>'; }
+      for (var q = 0, np = Math.floor(rnd() * 3); q < np; q++) pt += 'M' + (g.x + g.w * (.15 + .7 * rnd())).toFixed(1) + ' ' + (g.y + g.h * (.2 + .6 * rnd())).toFixed(1) + 'h.01';
     });
-    if (gr) gr.innerHTML = '<path d="' + dg + '" stroke="#6e644f" stroke-width="1.1" fill="none" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/>';
+    if (gr) gr.innerHTML = cl + '<path d="' + pt + '" stroke="#8f836b" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>';
+    var chp = svg.querySelector('#piedras-chips'), dc = '';
+    for (i = 0; i < N; i++) {                                    /* pequeños desconchones en el borde exterior (triángulos del color de la pared), en unas pocas piedras */
+      if (rnd() > .45) continue;
+      var kk = J[i] + Math.max(1, Math.round((J[i + 1] - J[i]) * (.2 + .6 * rnd()))), q0 = O[kk], q1 = O[Math.min(M, kk + 1)], q2 = P[kk];
+      var tx = q1[0] - q0[0], ty = q1[1] - q0[1], tn = Math.hypot(tx, ty) || 1, ix = q2[0] - q0[0], iy = q2[1] - q0[1], inn = Math.hypot(ix, iy) || 1, u = 2.5 + 2.5 * rnd(), w = 1.6 + 1.6 * rnd();
+      dc += 'M' + q0[0].toFixed(1) + ' ' + q0[1].toFixed(1) + 'L' + (q0[0] + tx / tn * u).toFixed(1) + ' ' + (q0[1] + ty / tn * u).toFixed(1) + 'L' + (q0[0] + tx / tn * u * .4 + ix / inn * w).toFixed(1) + ' ' + (q0[1] + ty / tn * u * .4 + iy / inn * w).toFixed(1) + 'Z';
+    }
+    if (chp) chp.innerHTML = '<path d="' + dc + '" fill="#d9cdb0"/>';
     fotosPiedra.geo = geo; fotosPiedra.capa = capa; fotosPiedra.repinta();
   }
 

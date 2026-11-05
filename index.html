@@ -19,21 +19,6 @@
 
 
 <main id="contenido">
-  <svg class="defs-piedra" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-    <filter id="pdr-todo" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="3" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G" result="d"/>
-      <feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="7" result="f"/>
-      <feColorMatrix in="f" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1" result="fg"/>
-      <feComponentTransfer in="fg" result="fg2"><feFuncR type="linear" slope=".55" intercept=".52"/><feFuncG type="linear" slope=".55" intercept=".52"/><feFuncB type="linear" slope=".55" intercept=".52"/></feComponentTransfer>
-      <feBlend in="d" in2="fg2" mode="multiply" result="m1"/>
-      <feTurbulence type="turbulence" baseFrequency=".09" numOctaves="2" seed="11" result="p"/>
-      <feColorMatrix in="p" type="matrix" values="1 0 0 0 0  1 0 0 0 0  1 0 0 0 0  0 0 0 0 1" result="pg"/>
-      <feComponentTransfer in="pg" result="pits"><feFuncR type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/><feFuncG type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/><feFuncB type="discrete" tableValues="1 1 1 1 1 1 1 .75 .55 .38"/></feComponentTransfer>
-      <feBlend in="m1" in2="pits" mode="multiply" result="m2"/>
-      <feComposite in="m2" in2="d" operator="in"/>
-    </filter>
-  </defs></svg>
   <div class="marco-arco" data-fotos="naturaleza/fotos/buitre-leonado.jpg|naturaleza/fotos/buitre-negro.jpg|naturaleza/fotos/alimoche.jpg|naturaleza/fotos/aguila-real.jpg|naturaleza/fotos/halcon-peregrino.jpg|naturaleza/fotos/cernicalo-vulgar.jpg|naturaleza/fotos/milano-real.jpg|naturaleza/fotos/aguilucho-cenizo.jpg|naturaleza/fotos/cuervo.jpg|naturaleza/fotos/chova-piquirroja.jpg|naturaleza/fotos/grajilla.jpg|naturaleza/fotos/corneja-negra.jpg|naturaleza/fotos/urraca.jpg|naturaleza/fotos/arrendajo.jpg|naturaleza/fotos/cigue-a-blanca.jpg|naturaleza/fotos/golondrina-comun.jpg|naturaleza/fotos/avion-roquero.jpg|naturaleza/fotos/vencejo-comun.jpg|naturaleza/fotos/abubilla.jpg|naturaleza/fotos/perdiz-roja.jpg|naturaleza/fotos/codorniz-comun.jpg|naturaleza/fotos/alondra-comun.jpg|naturaleza/fotos/calandria.jpg|naturaleza/fotos/triguero.jpg|naturaleza/fotos/roquero-solitario.jpg|naturaleza/fotos/mochuelo-comun.jpg|naturaleza/fotos/lechuza-comun.jpg|naturaleza/fotos/buho-real.jpg|naturaleza/fotos/pito-real.jpg|naturaleza/fotos/petirrojo.jpg|naturaleza/fotos/corzo.jpg|naturaleza/fotos/jabali.jpg|naturaleza/fotos/zorro.jpg|naturaleza/fotos/lobo.jpg|naturaleza/fotos/liebre-iberica.jpg|naturaleza/fotos/conejo.jpg|naturaleza/fotos/tejon.jpg|naturaleza/fotos/gardu-a.jpg|naturaleza/fotos/gineta.jpg|naturaleza/fotos/gato-montes.jpg|naturaleza/fotos/erizo-europeo.jpg|naturaleza/fotos/murcielagos.jpg|naturaleza/fotos/lagarto-ocelado.jpg|naturaleza/fotos/lagartija-iberica.jpg|naturaleza/fotos/culebra-bastarda.jpg|naturaleza/fotos/culebra-de-collar.jpg|naturaleza/fotos/vibora-aspid.jpg|naturaleza/fotos/sapo-comun.jpg|naturaleza/fotos/rana-comun.jpg|naturaleza/fotos/triton-jaspeado.jpg|naturaleza/fotos/quejigo.jpg|naturaleza/fotos/roble-melojo.jpg|naturaleza/fotos/coscoja.jpg|naturaleza/fotos/encina.jpg|naturaleza/fotos/enebro.jpg|naturaleza/fotos/espino-albar.jpg|naturaleza/fotos/endrino.jpg|naturaleza/fotos/rosal-silvestre.jpg|naturaleza/fotos/chopo-y-sauce.jpg|naturaleza/fotos/brezo-y-tomillo.jpg|naturaleza/fotos/narcisos.jpg|naturaleza/fotos/orquideas-silvestres.jpg|naturaleza/fotos/amapolas-acianos-y-margaritas.jpg|naturaleza/fotos/tomillo-cantueso-y-espliego.jpg|naturaleza/fotos/setas.jpg|naturaleza/fotos/abejorros-y-abejas-silvestres.jpg|naturaleza/fotos/mariposas-diurnas.jpg|naturaleza/fotos/luciernagas.jpg|naturaleza/fotos/libelulas-y-caballitos-del-diablo.jpg|naturaleza/fotos/escarabajos-peloteros.jpg|naturaleza/fotos/saltamontes-y-grillos.jpg">
     <div class="pilar" aria-hidden="true"></div>
     <div class="centro">
