@@ -109,9 +109,10 @@ def card(marker):
         setas = sorted([e for e in esp if e["tipo"] == "hongo"], key=lambda e: e["nombre"].lower())
         def nivel(e):
             p = e["precaucion"].upper()
+            if p.startswith("TÓXICA CRUDA") or p.startswith("TOXICA CRUDA"): return ("comestible solo bien cocinada y con experto", "#b58a1a")
             return ("MORTAL", "#a3441a") if p.startswith("MORTAL") else (("TÓXICA", "#c26b1a") if p.startswith(("TÓXICA", "TOXICA", "TÓXICA CRUDA")) or "TÓXICA" in p[:40] else ("comestible solo con identificación experta", "#4c6b2e"))
         filas = [(e["nombre"], [(meses(e["cosecha"]), nivel(e)[1])]) for e in setas]
-        svg = G.calendario_barras(filas, [("#4c6b2e", "Comestible (con experto)"), ("#c26b1a", "Tóxica"), ("#a3441a", "MORTAL")], "Temporadas de setas en la zona", alto_fila=19)
+        svg = G.calendario_barras(filas, [("#4c6b2e", "Comestible (con experto)"), ("#b58a1a", "Solo bien cocinada"), ("#c26b1a", "Tóxica"), ("#a3441a", "MORTAL")], "Temporadas de setas en la zona", alto_fila=19)
         det = ""
         for e in setas:
             n, col = nivel(e)
