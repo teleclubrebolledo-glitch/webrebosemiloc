@@ -600,20 +600,21 @@ def icono_natural(kind):
 
 
 def calendario_barras(filas, leyenda, titulo, alto_fila=22, ancho_nombre=200):
-    """filas = [(nombre, [(set_de_meses, color)])]; leyenda = [(color, texto)]. Barras por mes (ene..dic), vectorial."""
-    W = 760; X0 = ancho_nombre + 14; cw = (W - X0 - 12) / 12; H = 54 + alto_fila * len(filas) + 34
+    """filas = [(nombre, [(set_de_meses, color)])]; leyenda = [(color, texto)]. Barras por mes (ene..dic), vectorial.
+    El título va CENTRADO arriba, donde el arco de la tarjeta es más alto, y la cabecera de meses y las filas empiezan más abajo para que la curva no las corte."""
+    W = 760; X0 = ancho_nombre + 14; cw = (W - X0 - 12) / 12; T0 = 66; H = T0 + 30 + alto_fila * len(filas) + 34
     ms = "E F M A M J J A S O N D".split()
-    c = f'<rect width="{W}" height="{H}" fill="#faf5e8"/><text x="14" y="26" font-size="15" font-weight="700" fill="{VERDE_OSC}" font-family="Cinzel,Lora,serif">{escape(titulo)}</text>'
+    c = f'<rect width="{W}" height="{H}" fill="#faf5e8"/><text x="{W/2}" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="{VERDE_OSC}" font-family="Cinzel,Lora,serif">{escape(titulo)}</text>'
     for k, m in enumerate(ms):
-        c += f'<text x="{X0+k*cw+cw/2:.1f}" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="{VERDE_OSC}" font-family="system-ui,sans-serif">{m}</text>'
+        c += f'<text x="{X0+k*cw+cw/2:.1f}" y="{T0+22}" text-anchor="middle" font-size="12" font-weight="700" fill="{VERDE_OSC}" font-family="system-ui,sans-serif">{m}</text>'
     for i, (nombre, tramos) in enumerate(filas):
-        y = 56 + i * alto_fila
+        y = T0 + 32 + i * alto_fila
         if i % 2 == 0: c += f'<rect x="8" y="{y-2}" width="{W-16}" height="{alto_fila}" fill="#efe6d2"/>'
         c += f'<text x="14" y="{y+alto_fila-8}" font-size="11.5" fill="#2f281b" font-family="Lora,Georgia,serif">{escape(nombre[:30])}</text>'
         for meses_, col in tramos:
             for m in sorted(meses_):
                 c += f'<rect x="{X0+(m-1)*cw+1:.1f}" y="{y+2}" width="{cw-2:.1f}" height="{alto_fila-8}" rx="4" fill="{col}"/>'
-    y = 56 + len(filas) * alto_fila + 18
+    y = T0 + 32 + len(filas) * alto_fila + 18
     x = 14
     for col, tx in leyenda:
         c += f'<rect x="{x}" y="{y-9}" width="16" height="11" rx="3" fill="{col}"/><text x="{x+22}" y="{y}" font-size="11" fill="#2f281b" font-family="system-ui,sans-serif">{escape(tx)}</text>'
