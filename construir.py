@@ -129,6 +129,9 @@ def _sol_txt(filas):
     li = "".join(f"<li><strong>{n}.</strong> Sale hacia {az:.0f}° (desde el norte) y se pone hacia {360-az:.0f}°; sube a {alt:.0f}° al mediodía y el día dura unas {int(d)} h {round((d % 1) * 60):02d} min.</li>" for n, alt, az, d, _ in filas)
     return f'<ol class="guia" style="list-style:none;padding:0">{li}</ol><p class="nota">Cálculo geométrico para la latitud de Rebolledo (sin refracción: el día real dura unos minutos más). 90° = este, 180° = sur, 270° = oeste.</p>'
 
+# fondos elegidos a mano para tarjetas concretas (por título)
+FONDO_TITULO = {"Horario del Teleclub": "#f4c08f", "Horario de visitas a la iglesia": "#c3a3d6", "Horario del Ayuntamiento": "#c4c4c0", "Cómo llegar": "#72b052"}
+
 def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
@@ -220,7 +223,11 @@ def tarjeta(ident, titulo, texto):
              "lunas": graficos.lunas, "respeto": graficos.respeto, "panorama": graficos.panorama_abierto, "geoparque": graficos.cielo_loras, "observatorios": graficos.telescopio}[nombre]
     else:
         g = graficos.GRAFICOS.get(ident) or graficos.POR_TITULO.get(titulo)
-    fig = f'<figure>{g()}</figure>' if g else ""
+    svg_g = g() if g else ""
+    if titulo in FONDO_TITULO and svg_g:
+        import re as _re
+        svg_g = _re.sub(r'(<rect[^>]*width="300"[^>]*height="200"[^>]*fill=")#[0-9a-f]{6}', lambda m: m.group(1) + FONDO_TITULO[titulo], svg_g, count=1)
+    fig = f'<figure>{svg_g}</figure>' if g else ""
     return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 
 # ── fondos de los dibujos: que no se confundan con el fondo de la tarjeta (--cal) ni con el de la banda de la sección ──
