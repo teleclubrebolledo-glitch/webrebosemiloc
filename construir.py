@@ -236,6 +236,28 @@ def cinta_avisos():
             f'<button type="button" class="cinta-b" data-d="-1" aria-label="Aviso anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Aviso siguiente">›</button></div>')
 
 
+def pagina_creditos():
+    """creditos-fotos.html: autoría y licencia de cada foto de ejemplo (Wikimedia Commons)."""
+    import re
+    fot = {}
+    try: fot = json.loads((Path(__file__).parent / "naturaleza" / "fotos.json").read_text())
+    except Exception: pass
+    li = ""
+    for nombre, f in sorted(fot.items(), key=lambda kv: kv[0].lower()):
+        if not f.get("archivo"): continue
+        lic = f'<a href="{escape(f["url_licencia"])}" rel="noopener">{escape(f["licencia"])}</a>' if f.get("url_licencia") else escape(f["licencia"])
+        li += f'<li><strong>{escape(nombre)}</strong> — {escape(f["autor"])} · {lic} · <a href="{escape(f["pagina"])}" rel="noopener">archivo original en Wikimedia Commons</a></li>\n'
+    base = (Path(__file__).parent / "enviar-fotos.html").read_text()
+    pag = re.sub(r"<title>.*?</title>", "<title>Créditos de las fotografías · Rebolledo de la Torre</title>", base)
+    pag = re.sub(r'<meta name="description" content=".*?">', '<meta name="description" content="Autoría y licencia de cada fotografía de ejemplo de la sección Fauna y flora.">', pag)
+    i, j = pag.index("<main"), pag.index("</main>")
+    cuerpo = ('<main id="contenido" class="envoltorio legal">\n  <p><a href="index.html">← Volver a la página principal</a></p>\n  <h1>Créditos de las fotografías</h1>\n'
+              '  <p>Las fotos de ejemplo de la sección <strong>Fauna y flora</strong> vienen de <a href="https://commons.wikimedia.org" rel="noopener">Wikimedia Commons</a> y tienen licencia libre '
+              '(dominio público, CC0, CC BY o CC BY-SA). Se muestran reducidas de tamaño y siempre con su autoría. Son ejemplos de cada especie, no fotos tomadas en Rebolledo: '
+              'las fotos del pueblo irán entrando por el bot, con permiso de quien las haga.</p>\n  <ul class="guia">\n' + li + '  </ul>\n')
+    (Path(__file__).parent / "creditos-fotos.html").write_text(pag[:i] + cuerpo + pag[j:])
+
+
 def barra_html(pref=""):
     """Barra superior con menús desplegables (hiedra que baja al abrir). pref = "" en la portada, "index.html" en el resto de páginas."""
     items = ""
@@ -254,7 +276,7 @@ def parchea_paginas():
     import re
     base = Path(__file__).parent
     barra = barra_html("index.html")
-    for f in ("aviso-legal", "privacidad", "accesibilidad", "colabora", "enviar-fotos", "enviar-rutas", "contar-fiestas"):
+    for f in ("aviso-legal", "privacidad", "accesibilidad", "colabora", "enviar-fotos", "enviar-rutas", "contar-fiestas", "creditos-fotos"):
         p = base / f"{f}.html"
         if p.exists():
             t = p.read_text()
@@ -326,6 +348,7 @@ def main():
       <li><a href="enviar-fotos.html">Enviar fotos</a></li>
       <li><a href="enviar-rutas.html">Enviar una ruta</a></li>
       <li><a href="galeria.html">Galería</a></li>
+      <li><a href="creditos-fotos.html">Créditos de las fotos</a></li>
       <li><a href="aviso-legal.html">Aviso legal</a></li>
       <li><a href="privacidad.html">Privacidad y cookies</a></li>
       <li><a href="accesibilidad.html">Accesibilidad</a></li>
@@ -339,6 +362,7 @@ def main():
 </html>
 """
     Path(__file__).with_name("index.html").write_text(pagina)
+    pagina_creditos()
     parchea_paginas()
     print("index.html generado")
 

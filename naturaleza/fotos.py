@@ -19,6 +19,9 @@ OVERRIDE = {  # cuando el nombre científico del dato es un grupo o varias espec
     "Escarabajos peloteros": "Scarabaeus laticollis", "Saltamontes y grillos": "Tettigonia viridissima", "Lobo": "Canis lupus", "Búho real": "Bubo bubo"}
 
 
+ARCHIVO_FORZADO = {"Búho real": "Bubo_bubo_3_(Martin_Mecnarowski).jpg"}   # cuando la imagen automática no es buena
+
+
 def api(url):
     for i in range(3):
         try:
@@ -90,7 +93,7 @@ if __name__ == "__main__":
         if nombre in res and res[nombre].get("archivo") and not solo: continue
         if not cient: res[nombre] = {"error": "sin nombre científico"}; continue
         elegido = None
-        for arch in candidatos(cient)[:5]:
+        for arch in ([ARCHIVO_FORZADO[nombre]] if nombre in ARCHIVO_FORZADO else candidatos(cient)[:5]):
             if not re.search(r"\.(jpe?g|png|webp)$", arch, re.I): continue
             i = info(arch); time.sleep(0.4)
             if i["miniatura"] and libre(i["licencia"]) and i["mime"].startswith("image/"):

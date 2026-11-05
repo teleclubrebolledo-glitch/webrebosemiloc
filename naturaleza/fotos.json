@@ -1,0 +1,570 @@
+{
+ "Buitre leonado": {
+  "archivo": "fotos/buitre-leonado.jpg",
+  "autor": "Markel Olano, goierritarra1",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Gyps_fulvus_-Basque_Country-8.jpg",
+  "buscado": "Gyps fulvus"
+ },
+ "Buitre negro": {
+  "archivo": "fotos/buitre-negro.jpg",
+  "autor": "Ghasem bavi",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Cinereous_vulture_-_Al-_Al-Liyah_reserve_3.jpg",
+  "buscado": "Aegypius monachus"
+ },
+ "Alimoche": {
+  "archivo": "fotos/alimoche.jpg",
+  "autor": "Saswat Mishra",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Egyptian_Vultures_-_Immature(L)_and_Adult_(R).jpg",
+  "buscado": "Neophron percnopterus"
+ },
+ "Águila real": {
+  "archivo": "fotos/aguila-real.jpg",
+  "autor": "Jarkko Järvinen",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Maakotka_(Aquila_chrysaetos)_by_Jarkko_J%C3%A4rvinen.jpg",
+  "buscado": "Aquila chrysaetos"
+ },
+ "Halcón peregrino": {
+  "archivo": "fotos/halcon-peregrino.jpg",
+  "autor": "Georges Lignier (georges.lignier@wanadoo.fr)",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Faucon_pelerin_7_mai.jpg",
+  "buscado": "Falco peregrinus"
+ },
+ "Cernícalo vulgar": {
+  "archivo": "fotos/cernicalo-vulgar.jpg",
+  "autor": "Andreas Trepte",
+  "licencia": "CC BY-SA 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Common_kestrel_falco_tinnunculus.jpg",
+  "buscado": "Falco tinnunculus"
+ },
+ "Milano real": {
+  "archivo": "fotos/milano-real.jpg",
+  "autor": "Noel Reynolds",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Milvus_milvus_Jura.jpg",
+  "buscado": "Milvus milvus"
+ },
+ "Aguilucho cenizo": {
+  "archivo": "fotos/aguilucho-cenizo.jpg",
+  "autor": "Donald Macauley",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Flickr_-_don_macauley_-_Bird_015.jpg",
+  "buscado": "Circus pygargus"
+ },
+ "Cuervo": {
+  "archivo": "fotos/cuervo.jpg",
+  "autor": "Accipiter (R. Altenkamp, Berlin)",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Corvus_corax_ad_berlin_090516.jpg",
+  "buscado": "Corvus corax"
+ },
+ "Chova piquirroja": {
+  "archivo": "fotos/chova-piquirroja.jpg",
+  "autor": "Alun Williams333",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Bran_goesgoch_Pyrrhocorax_pyrrhocorax.jpg",
+  "buscado": "Pyrrhocorax pyrrhocorax"
+ },
+ "Grajilla": {
+  "archivo": "fotos/grajilla.jpg",
+  "autor": "Darkone",
+  "licencia": "CC BY-SA 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Dohle_(Corvus_monedula)_d1.jpg",
+  "buscado": "Coloeus monedula"
+ },
+ "Corneja negra": {
+  "archivo": "fotos/corneja-negra.jpg",
+  "autor": "Alexis Lours",
+  "licencia": "CC BY 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Carrion_crow_2022_04_05_05_02.jpg",
+  "buscado": "Corvus corone"
+ },
+ "Urraca": {
+  "archivo": "fotos/urraca.jpg",
+  "autor": "Rhododendrites",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Eurasian_magpie_(10860).jpg",
+  "buscado": "Pica pica"
+ },
+ "Arrendajo": {
+  "archivo": "fotos/arrendajo.jpg",
+  "autor": "Luc Viatour",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Garrulus_glandarius_1_Luc_Viatour.jpg",
+  "buscado": "Garrulus glandarius"
+ },
+ "Cigüeña blanca": {
+  "archivo": "fotos/cigue-a-blanca.jpg",
+  "autor": "Krzysztof Kin",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ciconia_ciconia.jpg",
+  "buscado": "Ciconia ciconia"
+ },
+ "Golondrina común": {
+  "archivo": "fotos/golondrina-comun.jpg",
+  "autor": "Andreas Trepte",
+  "licencia": "CC BY-SA 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rauchschwalbe_Hirundo_rustica.jpg",
+  "buscado": "Hirundo rustica"
+ },
+ "Avión roquero": {
+  "archivo": "fotos/avion-roquero.jpg",
+  "autor": "Martien Brand",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Ptyonoprogne_rupestris_-Europe-8.jpg",
+  "buscado": "Ptyonoprogne rupestris"
+ },
+ "Vencejo común": {
+  "archivo": "fotos/vencejo-comun.jpg",
+  "autor": "Alexis Lours",
+  "licencia": "CC BY 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Common_Swift_2025_07_18_02_(cropped).jpg",
+  "buscado": "Apus apus"
+ },
+ "Abubilla": {
+  "archivo": "fotos/abubilla.jpg",
+  "autor": "Luc Viatour",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Upupa_epops_3_Luc_Viatour.jpg",
+  "buscado": "Upupa epops"
+ },
+ "Perdiz roja": {
+  "archivo": "fotos/perdiz-roja.jpg",
+  "autor": "Arturo Nikolai",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:AlectorisRufa.jpg",
+  "buscado": "Alectoris rufa"
+ },
+ "Codorniz común": {
+  "archivo": "fotos/codorniz-comun.jpg",
+  "autor": "christoph_moning",
+  "licencia": "CC BY 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Coturnix_coturnix,_Fraunberg,_Bayern,_Deutschland_2,_Ausschnitt.jpg",
+  "buscado": "Coturnix coturnix"
+ },
+ "Alondra común": {
+  "archivo": "fotos/alondra-comun.jpg",
+  "autor": "El Golli Mohamed",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Alouette_des_champs_Zaghouan001.jpg",
+  "buscado": "Alauda arvensis"
+ },
+ "Calandria": {
+  "archivo": "fotos/calandria.jpg",
+  "autor": "Dûrzan cîrano",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Bere%C5%9Fe.jpg",
+  "buscado": "Melanocorypha calandra"
+ },
+ "Triguero": {
+  "archivo": "fotos/triguero.jpg",
+  "autor": "Steve Riall",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Miliaria_calandra-Corn_Bunting.jpg",
+  "buscado": "Emberiza calandra"
+ },
+ "Roquero solitario": {
+  "archivo": "fotos/roquero-solitario.jpg",
+  "autor": "jose maria carretero palacios from jerez de los caballeros, españa",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Monticola_solitarius,_Spain_1.jpg",
+  "buscado": "Monticola solitarius"
+ },
+ "Mochuelo común": {
+  "archivo": "fotos/mochuelo-comun.jpg",
+  "autor": "Frank Vassen from Brussels, Belgium",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Athene_noctua,_Ambula,_Montenegro_2.jpg",
+  "buscado": "Athene noctua"
+ },
+ "Lechuza común": {
+  "archivo": "fotos/lechuza-comun.jpg",
+  "autor": "User:Alun Williams333",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Tyto_alba_tylluan_wen_detail.jpg",
+  "buscado": "Tyto alba"
+ },
+ "Búho real": {
+  "archivo": "fotos/buho-real.jpg",
+  "autor": "Martin Mecnarowski (http://www.photomecan.eu/)",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Bubo_bubo_3_(Martin_Mecnarowski).jpg",
+  "buscado": "Bubo bubo"
+ },
+ "Pito real": {
+  "archivo": "fotos/pito-real.jpg",
+  "autor": "Luis García (Zaqarbal)",
+  "licencia": "CC BY-SA 3.0 es",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0/es/deed.en",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Picus_viridis_sharpei_033.jpg",
+  "buscado": "Picus sharpei"
+ },
+ "Petirrojo": {
+  "archivo": "fotos/petirrojo.jpg",
+  "autor": "Francis C. Franklin",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Erithacus_rubecula_with_cocked_head.jpg",
+  "buscado": "Erithacus rubecula"
+ },
+ "Corzo": {
+  "archivo": "fotos/corzo.jpg",
+  "autor": "Jerzystrzelecki",
+  "licencia": "CC BY 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Capreolus_(js)11.jpg",
+  "buscado": "Capreolus capreolus"
+ },
+ "Jabalí": {
+  "archivo": "fotos/jabali.jpg",
+  "autor": "Valentin Panzirsch",
+  "licencia": "CC BY-SA 3.0 at",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Wildschwein,_N%C3%A4he_Pulverstampftor.jpg",
+  "buscado": "Sus scrofa"
+ },
+ "Zorro": {
+  "archivo": "fotos/zorro.jpg",
+  "autor": "Peter Trimming",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Fox_at_the_British_Wildlife_Centre,_Newchapel,_Surrey_-_geograph.org.uk_-_2221750.jpg",
+  "buscado": "Vulpes vulpes"
+ },
+ "Lobo": {
+  "archivo": "fotos/lobo.jpg",
+  "autor": "User:Mas3cf",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Eurasian_wolf_2.jpg",
+  "buscado": "Canis lupus"
+ },
+ "Liebre ibérica": {
+  "archivo": "fotos/liebre-iberica.jpg",
+  "autor": "Luis Egido",
+  "licencia": "CC BY 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:LiebreIberica_(cropped).jpg",
+  "buscado": "Lepus granatensis"
+ },
+ "Conejo": {
+  "archivo": "fotos/conejo.jpg",
+  "autor": "JJ Harrison",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Oryctolagus_cuniculus_Tasmania_2_(cropped).jpg",
+  "buscado": "Oryctolagus cuniculus"
+ },
+ "Tejón": {
+  "archivo": "fotos/tejon.jpg",
+  "autor": "Charles J. Sharp",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:European_badger_(Meles_meles_taxus)_Drenthe.jpg",
+  "buscado": "Meles meles"
+ },
+ "Garduña": {
+  "archivo": "fotos/gardu-a.jpg",
+  "autor": "Steinmarder_01.jpg: Zefram derivative work: Mariomassone (talk)",
+  "licencia": "CC BY 2.0 de",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0/de/deed.en",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Steinmarder_(cropped).jpg",
+  "buscado": "Martes foina"
+ },
+ "Gineta": {
+  "archivo": "fotos/gineta.jpg",
+  "autor": "Frédéric SALEIN",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:A_female_common_genet_in_the_dining_room,_Satao_Camp_(cropped).jpg",
+  "buscado": "Genetta genetta"
+ },
+ "Gato montés": {
+  "archivo": "fotos/gato-montes.jpg",
+  "autor": "Peter Trimming",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Wildcat_at_British_Wildlife_Centre.jpg",
+  "buscado": "Felis silvestris"
+ },
+ "Erizo europeo": {
+  "archivo": "fotos/erizo-europeo.jpg",
+  "autor": "Michael Gäbler",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Erinaceus_europaeus_(Linnaeus,_1758).jpg",
+  "buscado": "Erinaceus europaeus"
+ },
+ "Murciélagos": {
+  "archivo": "fotos/murcielagos.jpg",
+  "autor": "autoría indicada en Wikimedia Commons",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Pipistrellus_pipistrellus_lateral.jpg",
+  "buscado": "Pipistrellus pipistrellus"
+ },
+ "Lagarto ocelado": {
+  "archivo": "fotos/lagarto-ocelado.jpg",
+  "autor": "Arturo Nikolai",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:LagartoOcelado.jpg",
+  "buscado": "Timon lepidus"
+ },
+ "Lagartija ibérica": {
+  "archivo": "fotos/lagartija-iberica.jpg",
+  "autor": "de:Benutzer:Janekpfeifer",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Eidechse.1024.jpg",
+  "buscado": "Podarcis hispanicus"
+ },
+ "Culebra bastarda": {
+  "archivo": "fotos/culebra-bastarda.jpg",
+  "autor": "Hubert Laroche",
+  "licencia": "CC BY 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Couleuvre_montpellier.jpg",
+  "buscado": "Malpolon monspessulanus"
+ },
+ "Culebra de collar": {
+  "archivo": "fotos/culebra-de-collar.jpg",
+  "autor": "Bernard DUPONT from FRANCE",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Grass_Snake_(Natrix_natrix_helvetica)_playing_dead_(14178349634).jpg",
+  "buscado": "Natrix helvetica"
+ },
+ "Víbora áspid": {
+  "archivo": "fotos/vibora-aspid.jpg",
+  "autor": "Felix Reimann",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Vipera_aspis_aspis.jpg",
+  "buscado": "Vipera aspis"
+ },
+ "Sapo común": {
+  "archivo": "fotos/sapo-comun.jpg",
+  "autor": "Dimitri Laurent",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Bufo_bufo_spinosus_2.png",
+  "buscado": "Bufo spinosus"
+ },
+ "Rana común": {
+  "archivo": "fotos/rana-comun.jpg",
+  "autor": "David Perez",
+  "licencia": "CC BY 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Pelophylax_perezi_by-dpc.jpg",
+  "buscado": "Pelophylax perezi"
+ },
+ "Tritón jaspeado": {
+  "archivo": "fotos/triton-jaspeado.jpg",
+  "autor": "Clara Cartier",
+  "licencia": "CC BY-SA 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Triturus_marmoratus1.JPG",
+  "buscado": "Triturus marmoratus"
+ },
+ "Quejigo": {
+  "archivo": "fotos/quejigo.jpg",
+  "autor": "Carlosblh",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Quercus_faginea_centenario.jpg",
+  "buscado": "Quercus faginea"
+ },
+ "Roble melojo": {
+  "archivo": "fotos/roble-melojo.jpg",
+  "autor": "Erfil",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Melojar_soto.JPG",
+  "buscado": "Quercus pyrenaica"
+ },
+ "Coscoja": {
+  "archivo": "fotos/coscoja.jpg",
+  "autor": "Javier martin",
+  "licencia": "Public domain",
+  "url_licencia": "",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Quercus_coccifera_Bellotas_2010-10-03_DehesaBoyaldePuertollano.jpg",
+  "buscado": "Quercus coccifera"
+ },
+ "Encina": {
+  "archivo": "fotos/encina.jpg",
+  "autor": "Lucarelli",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Quercus_ilex,_Livorno.JPG",
+  "buscado": "Quercus ilex"
+ },
+ "Enebro": {
+  "archivo": "fotos/enebro.jpg",
+  "autor": "Rasbak at Dutch Wikipedia",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Jeneverbes.jpg",
+  "buscado": "Juniperus communis"
+ },
+ "Espino albar": {
+  "archivo": "fotos/espino-albar.jpg",
+  "autor": "Didier Descouens",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:(MHNT)_Crataegus_monogyna_-_flowers_and_buds.jpg",
+  "buscado": "Crataegus monogyna"
+ },
+ "Endrino": {
+  "archivo": "fotos/endrino.jpg",
+  "autor": "Martin Olsson (mnemo on en/sv wikipedia and commons, martin@minimum.se)",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Closeup_of_blackthorn_aka_sloe_aka_prunus_spinosa_sweden_20050924.jpg",
+  "buscado": "Prunus spinosa"
+ },
+ "Rosal silvestre": {
+  "archivo": "fotos/rosal-silvestre.jpg",
+  "autor": "Roberta F.",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Divlja_ruza_cvijet_270508.jpg",
+  "buscado": "Rosa canina"
+ },
+ "Chopo y sauce": {
+  "archivo": "fotos/chopo-y-sauce.jpg",
+  "autor": "Kenraiz",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Populus_nigra_kz1.jpg",
+  "buscado": "Populus nigra"
+ },
+ "Brezo y tomillo": {
+  "archivo": "fotos/brezo-y-tomillo.jpg",
+  "autor": "Foxypar4",
+  "licencia": "CC BY 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Heather_(Highlands).jpg",
+  "buscado": "Calluna vulgaris"
+ },
+ "Narcisos": {
+  "archivo": "fotos/narcisos.jpg",
+  "autor": "autoría indicada en Wikimedia Commons",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "http://creativecommons.org/licenses/by-sa/3.0/",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Narcissus_pseudonarcissus_030405.jpg",
+  "buscado": "Narcissus pseudonarcissus"
+ },
+ "Orquídeas silvestres": {
+  "archivo": "fotos/orquideas-silvestres.jpg",
+  "autor": "Didier Descouens",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:(MHNT)_Ophrys_apifera_-_Villeneuve-l%C3%A8s-Bouloc_-_Flower.jpg",
+  "buscado": "Ophrys apifera"
+ },
+ "Amapolas, acianos y margaritas": {
+  "archivo": "fotos/amapolas-acianos-y-margaritas.jpg",
+  "autor": "Jörg Hempel",
+  "licencia": "CC BY-SA 2.5",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.5",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Papaver_rhoeas_LC0050.jpg",
+  "buscado": "Papaver rhoeas"
+ },
+ "Tomillo, cantueso y espliego": {
+  "archivo": "fotos/tomillo-cantueso-y-espliego.jpg",
+  "autor": "Isidre blanc",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:THYMUS_VULGARIS_-_AGUDA_-_IB-910_(Tim%C3%B3).JPG",
+  "buscado": "Thymus vulgaris"
+ },
+ "Setas": {
+  "archivo": "fotos/setas.jpg",
+  "autor": "Onderwijsgek",
+  "licencia": "CC BY-SA 3.0 nl",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0/nl/deed.en",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Amanita_muscaria_3_vliegenzwammen_op_rij.jpg",
+  "buscado": "Amanita muscaria"
+ },
+ "Abejorros y abejas silvestres": {
+  "archivo": "fotos/abejorros-y-abejas-silvestres.jpg",
+  "autor": "Alvesgaspar",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Bumblebee_October_2007-3a.jpg",
+  "buscado": "Bombus terrestris"
+ },
+ "Mariposas diurnas": {
+  "archivo": "fotos/mariposas-diurnas.jpg",
+  "autor": "Michael Wittwer",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Aix-en-provence_1980_-_Schwalbenschwanz_(ExaI0327).jpg",
+  "buscado": "Papilio machaon"
+ },
+ "Luciérnagas": {
+  "archivo": "fotos/luciernagas.jpg",
+  "autor": "Hectonichus",
+  "licencia": "CC BY-SA 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Lampyridae_-_Lampyris_noctiluca.JPG",
+  "buscado": "Lampyris noctiluca"
+ },
+ "Libélulas y caballitos del diablo": {
+  "archivo": "fotos/libelulas-y-caballitos-del-diablo.jpg",
+  "autor": "Quartl",
+  "licencia": "CC BY 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Anax_imperator_qtl2.jpg",
+  "buscado": "Anax imperator"
+ },
+ "Escarabajos peloteros": {
+  "archivo": "fotos/escarabajos-peloteros.jpg",
+  "autor": "Holger Krisp",
+  "licencia": "CC BY 3.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/3.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Scarabaeus-laticollis-mistk%C3%A4fer.jpg",
+  "buscado": "Scarabaeus laticollis"
+ },
+ "Saltamontes y grillos": {
+  "archivo": "fotos/saltamontes-y-grillos.jpg",
+  "autor": "Didier Descouens",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:(MHNT)_Tettigonia_viridissima_on_Avena_fatua.jpg",
+  "buscado": "Tettigonia viridissima"
+ }
+}

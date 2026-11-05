@@ -14,7 +14,7 @@ def _json(p):
     except Exception: return {}
 
 
-H = _json("huerta/datos.json"); N = _json("naturaleza/datos.json")
+H = _json("huerta/datos.json"); N = _json("naturaleza/datos.json"); FOT = _json("naturaleza/fotos.json")
 
 
 def meses(txt):
@@ -52,6 +52,19 @@ def _lista(esp, campo, mes, solo_huerta=False):
 
 def _nombres(lst):
     return ", ".join(sorted({e["nombre"] for e in lst}, key=str.lower)) or "—"
+
+
+def _mini(nombre):
+    f = FOT.get(nombre, {})
+    return f'<img class="mini" src="naturaleza/{escape(f["archivo"])}" alt="" width="44" height="44" loading="lazy"> ' if f.get("archivo") else ""
+
+
+def _ejemplo(nombre):
+    f = FOT.get(nombre, {})
+    if not f.get("archivo"): return ""
+    lic = f'<a href="{escape(f["url_licencia"])}" rel="noopener">{escape(f["licencia"])}</a>' if f.get("url_licencia") else escape(f.get("licencia", ""))
+    return (f'<figure class="ejemplo"><img src="naturaleza/{escape(f["archivo"])}" alt="Foto de ejemplo: {escape(nombre)}" loading="lazy">'
+            f'<figcaption>Foto de ejemplo: {escape(f["autor"])} · {lic} · <a href="{escape(f["pagina"])}" rel="noopener">Wikimedia Commons</a></figcaption></figure>')
 
 
 def card(marker):
@@ -134,8 +147,8 @@ def card(marker):
     def aves_de(grupos):
         return [a for a in N["aves"] if a["grupo"] in grupos]
     def det_aves(lst):
-        return "".join(f'<details class="ficha"><summary><strong>{escape(a["nombre"])}{" ★" if a["geoparque"] else ""}</strong> <em>{escape(a["cientifico"])}</em> · {"todo el año" if a["meses"] == "1-12" else fmt(a["meses"])}</summary>'
-                       f'<ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(a["donde"])}</li><li><strong>Cómo reconocerla:</strong> {escape(a["rasgo"])}</li><li>{escape(a["dato"])}</li></ul></details>' for a in lst)
+        return "".join(f'<details class="ficha"><summary>{_mini(a["nombre"])}<strong>{escape(a["nombre"])}{" ★" if a["geoparque"] else ""}</strong> <em>{escape(a["cientifico"])}</em> · {"todo el año" if a["meses"] == "1-12" else fmt(a["meses"])}</summary>'
+                       f'{_ejemplo(a["nombre"])}<ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(a["donde"])}</li><li><strong>Cómo reconocerla:</strong> {escape(a["rasgo"])}</li><li>{escape(a["dato"])}</li></ul></details>' for a in lst)
     if marker == "N:habitats":
         return "habitat", "<ul class=\"guia\">" + "".join(f"<li><strong>{escape(h['nombre'])}.</strong> {escape(h['dato'])}</li>" for h in N["habitats"]) + f"</ul>{aviso_n}", False
     if marker == "N:rapaces":
@@ -152,17 +165,17 @@ def card(marker):
         return "ave", f'<div class="figuras una" style="background:#faf5e8">{svg}</div><p class="nota">Los meses son orientativos: llegan y se van según el tiempo de cada año.</p>', True
     if marker == "N:mamiferos":
         return "mamifero", "<p>Mamíferos de la zona; casi todos de costumbres nocturnas o muy discretos.</p>" + "".join(
-            f'<details class="ficha"><summary><strong>{escape(m["nombre"])}</strong> <em>{escape(m["cientifico"])}</em></summary><ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(m["donde"])}</li><li><strong>Cómo reconocerlo:</strong> {escape(m["rasgo"])}</li><li>{escape(m["dato"])}</li></ul></details>' for m in N["mamiferos"]) + aviso_n, True
+            f'<details class="ficha"><summary>{_mini(m["nombre"])}<strong>{escape(m["nombre"])}</strong> <em>{escape(m["cientifico"])}</em></summary>{_ejemplo(m["nombre"])}<ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(m["donde"])}</li><li><strong>Cómo reconocerlo:</strong> {escape(m["rasgo"])}</li><li>{escape(m["dato"])}</li></ul></details>' for m in N["mamiferos"]) + aviso_n, True
     if marker == "N:reptiles":
         return "reptil", "<p>Reptiles y anfibios. Casi todos son inofensivos; la única víbora venenosa (áspid) se deja pasar y no se toca.</p>" + "".join(
-            f'<details class="ficha"><summary><strong>{escape(r["nombre"])}</strong> <em>{escape(r["cientifico"])}</em> · {escape(r["grupo"])}</summary><ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(r["donde"])}</li><li>{escape(r["dato"])}</li></ul></details>' for r in N["reptiles"]) + aviso_n, True
+            f'<details class="ficha"><summary>{_mini(r["nombre"])}<strong>{escape(r["nombre"])}</strong> <em>{escape(r["cientifico"])}</em> · {escape(r["grupo"])}</summary>{_ejemplo(r["nombre"])}<ul class="guia" style="margin:.3rem 0"><li><strong>Dónde:</strong> {escape(r["donde"])}</li><li>{escape(r["dato"])}</li></ul></details>' for r in N["reptiles"]) + aviso_n, True
     if marker == "N:insectos":
-        return "insecto", "<ul class=\"guia\">" + "".join(f"<li><strong>{escape(i['nombre'])}.</strong> {escape(i['dato'])}</li>" for i in N["insectos"]) + "</ul>", False
+        return "insecto", "".join(f'<details class="ficha"><summary>{_mini(i["nombre"])}<strong>{escape(i["nombre"])}</strong></summary>{_ejemplo(i["nombre"])}<ul class="guia" style="margin:.3rem 0"><li>{escape(i["dato"])}</li></ul></details>' for i in N["insectos"]), True
     if marker == "N:arboles":
         return "arbol", "<p>Árboles y arbustos del monte y los linderos. ★ = citado por fuentes del Geoparque.</p>" + "".join(
-            f'<details class="ficha"><summary><strong>{escape(a["nombre"])}{" ★" if a["geoparque"] else ""}</strong> <em>{escape(a["cientifico"])}</em></summary><ul class="guia" style="margin:.3rem 0"><li>{escape(a["dato"])}</li></ul></details>' for a in N["arboles"]) + aviso_n, True
+            f'<details class="ficha"><summary>{_mini(a["nombre"])}<strong>{escape(a["nombre"])}{" ★" if a["geoparque"] else ""}</strong> <em>{escape(a["cientifico"])}</em></summary>{_ejemplo(a["nombre"])}<ul class="guia" style="margin:.3rem 0"><li>{escape(a["dato"])}</li></ul></details>' for a in N["arboles"]) + aviso_n, True
     if marker == "N:flora":
-        return "flor", "<ul class=\"guia\">" + "".join(f"<li><strong>{escape(f['nombre'])}</strong> <em>{escape(f['cientifico'])}</em>. {escape(f['dato'])}</li>" for f in N["flora"]) + "</ul>", False
+        return "flor", "".join(f'<details class="ficha"><summary>{_mini(f["nombre"])}<strong>{escape(f["nombre"])}</strong> <em>{escape(f["cientifico"])}</em></summary>{_ejemplo(f["nombre"])}<ul class="guia" style="margin:.3rem 0"><li>{escape(f["dato"])}</li></ul></details>' for f in N["flora"]), True
     if marker == "N:mirar":
         return "consejo", "<ul class=\"guia\">" + "".join(f"<li>{escape(x)}</li>" for x in N["mirar"]) + "</ul>", False
     return "habitat", "<p>En preparación.</p>", False

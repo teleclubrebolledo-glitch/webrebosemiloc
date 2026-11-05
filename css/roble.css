@@ -210,3 +210,9 @@ details.ficha>ul{padding-left:1.6rem}
 @media (max-width:640px){.cinta{font-size:.88rem}.cinta-etq{display:none}}
 html.js[data-vista="seccion"] .cinta{display:none}
 @media (max-width:640px){.cinta-cat{display:none}}
+
+.mini{width:44px;height:44px;object-fit:cover;border-radius:10px 10px 0 0;vertical-align:middle;margin-right:.5rem;background:var(--piedra)}
+figure.ejemplo{margin:.4rem 0 .5rem;max-width:380px}
+figure.ejemplo img{display:block;width:100%;height:auto;border-radius:14px 14px 0 0}
+figure.ejemplo figcaption{font:.74rem/1.35 system-ui,sans-serif;color:var(--tenue);padding:.2rem 0}
+details.ficha>summary{display:flex;align-items:center;gap:.1rem;flex-wrap:wrap}
