@@ -4,7 +4,7 @@ Web estática (HTML + CSS, sin JavaScript, sin cookies, sin servicios de tercero
 Rama de trabajo: `nueva-web`. No publicar en `main` hasta cerrar la lista de abajo.
 
 ## Antes de publicar (marcado con «Por completar» / «por definir» en las páginas)
-- [x] Titular (TeleCluB Rebolledo de la Torre) y correo (teleclubrebolledo@gmail.com) incorporados.
+- [x] Titular (TeleCluB Rebolledo de la Torre) y correo de contacto incorporados (sin publicarlo en claro: va ofuscado en el aviso legal).
 - [x] Grupo informal sin actividad económica: sin NIF por ahora. **Al empezar a vender (camisetas, tazas…) hay que identificar al titular (LSSI-CE art. 10), darse de alta fiscalmente y revisar el Aviso legal.**
 - [x] Sin nombres de personas por ahora (proyecto muy informal, poca gente). Revisar si el proyecto crece o hay actividad económica: un grupo informal no tiene personalidad jurídica y responde una persona física.
 - [x] Reconocimiento por usos comerciales: se deja deliberadamente ambiguo («el reconocimiento que corresponda», a acordar por escrito con la persona autora).
