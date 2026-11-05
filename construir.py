@@ -60,7 +60,21 @@ for _i, _c in enumerate(CONTENIDO):
         _com = _rutas_comunidad(); APORTA_ID = f"rutas-{_pos + len(_com) + 1}"
         CONTENIDO[_i] = (_c[0], _c[1], _l[:_pos] + _com + _l[_pos:])
 
-LEADS = {"rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
+AVISOS = {}
+def _recorta(t, n):
+    t = t.strip()
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "…"
+def _seccion_avisos():
+    global AVISOS
+    try: AVISOS = json.loads((Path(__file__).parent / "avisos" / "salida" / "avisos.json").read_text())
+    except Exception: AVISOS = {"items": [], "actualizado": "", "estado_fuentes": {}}
+    subs = [("Cómo funciona esta sección", "@AVISA")] + [(_recorta(a["titulo_natural"], 72), f"@AVISO:{i}") for i, a in enumerate(AVISOS["items"][:20])]
+    return subs
+for _i, _c in enumerate(CONTENIDO):
+    if _c[0] == "rutas":
+        CONTENIDO.insert(_i + 1, ("avisos", "Avisos y ayudas", _seccion_avisos())); break
+
+LEADS = {"avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
          "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
@@ -76,6 +90,8 @@ def rama_fondo():
             '<path class="ramita r3" pathLength="1" d="M56 300C34 288 22 292 10 270"/>'
             '<path class="ramita r4" pathLength="1" d="M74 140C94 126 106 132 116 112"/>'
             '</svg>')
+
+CATEGORIAS_AVISOS = {k: v['nombre'] for k, v in json.loads((Path(__file__).parent / 'avisos' / 'config.json').read_text())['categorias'].items()}
 
 ASTRO_GUIA = (
     '<ol class="guia"><li><strong>Encuentra la Polar.</strong> Une Merak y Dubhe, las dos estrellas del borde del Carro, y prolonga esa línea unas cinco veces su distancia.</li>'
@@ -105,6 +121,26 @@ def tarjeta(ident, titulo, texto):
     if texto == "@ASTRO":
         return (f'<article class="tarjeta ancha" id="{ident}"><div class="figuras">{graficos.carta_polar()}{graficos.montura()}</div>'
                 f'<div class="texto"><h3>{escape(titulo)}</h3><details><summary>Ver los pasos</summary>{ASTRO_GUIA}</details></div></article>')
+    if texto == "@AVISA":
+        est = AVISOS.get("estado_fuentes", {}); act = AVISOS.get("actualizado", "") or "todavía no"
+        li = "".join(f"<li>{escape(k)}: {escape(v.split(' (')[0].split(':')[0])}</li>" for k, v in est.items())
+        return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.icono_aviso("noticias")}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
+                f'<p>Cada día un programa de este proyecto lee el <strong>BOE</strong>, el <strong>BOCYL</strong> y noticias del medio rural de Castilla y León, '
+                f'se queda con lo que puede interesar a Rebolledo de la Torre (ayudas, obras y energía, comunicaciones, transporte, vivienda, empleo, educación, cultura, turismo y emprendimiento) y lo cuenta en palabras sencillas. '
+                f'No usa inteligencia artificial. <strong>Vale siempre el texto oficial</strong> del enlace.</p>'
+                f'<p class="nota">Última actualización: {escape(act)}. Estado de las fuentes:</p><ul class="guia" style="margin-top:0">{li}</ul></div></article>')
+    if texto.startswith("@AVISO:"):
+        a = AVISOS["items"][int(texto[7:])]
+        cats = [k for k in a["categorias"] if k != "noticias"] or a["categorias"]
+        orden = ("energia", "comunicaciones", "transporte", "vivienda", "ayudas", "rural", "cultura", "educacion", "turismo", "noticias")
+        icono = next((c for c in orden if c in a["categorias"]), "ayudas")
+        etiqueta = escape(CATEGORIAS_AVISOS.get(cats[0], cats[0]))
+        fecha = "/".join(reversed(a["fecha"].split("-")))
+        datos = "".join(f"<li><strong>{k}:</strong> {escape(v)}</li>" for k, v in (("A quién", ", ".join(a["a_quien"])), ("Plazo", a.get("plazo") or ""), ("Importe", a.get("importe") or "")) if v)
+        return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.icono_aviso(icono)}</figure><div class="texto"><h3>{escape(_recorta(a["titulo_natural"], 190))}</h3>'
+                f'<p><span class="etiqueta">{etiqueta}</span> {fecha} · {escape(a["fuente"])}</p><p>{escape(a["resumen"])}</p>'
+                + (f'<ul class="guia" style="margin:.2rem 0 .4rem">{datos}</ul>' if datos else '') +
+                f'<p><a href="{escape(a["enlace"])}" rel="noopener">Ver el texto oficial</a></p></div></article>')
     if texto == "@APORTA":
         return (f'<article class="tarjeta" id="{ident}"><figure>{graficos.punto_vacio()}</figure><div class="texto"><h3>{escape(titulo)}</h3>'
                 '<p>¿Has recorrido un sendero del entorno y lo has grabado con el móvil? Envía el archivo .gpx al bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> escribiendo /ruta en un chat privado. Te pedirá tu permiso, el nombre de la ruta y una descripción corta, y saldrá aquí con su plano, su perfil y sus datos, con el reconocimiento que elijas. Al final podrás añadir hasta 3 fotos de la ruta (opcional): ten esas fotos a mano en el mismo dispositivo. '

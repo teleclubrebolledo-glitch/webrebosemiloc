@@ -1,0 +1,29 @@
+# Actualización diaria de los avisos (BOE, BOCYL y noticias del medio rural). Sin IA, sin tokens, sin secretos.
+# Solo se ejecuta desde la rama principal. «Run workflow» en la pestaña Actions permite refrescar a mano.
+name: Avisos (actualización diaria)
+on:
+  schedule:
+    - cron: "30 4 * * *"      # 04:30 UTC (05:30 o 06:30 en España)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar pdftotext (para leer plazos e importes de los PDF)
+        run: sudo apt-get update -y && sudo apt-get install -y poppler-utils
+      - name: Leer las fuentes y escribir los avisos
+        run: python3 avisos/avisos.py
+      - name: Regenerar la web
+        run: python3 construir.py
+      - name: Guardar si hay cambios
+        run: |
+          git config user.name "Web de Rebolledo"
+          git config user.email "teleclubrebolledo@gmail.com"
+          git add avisos/salida index.html
+          git diff --cached --quiet || (git commit -m "Avisos: actualización diaria" && git push)

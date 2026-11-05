@@ -1,0 +1,332 @@
+{
+ "actualizado": "2026-11-05 02:42",
+ "estado_fuentes": {
+  "boe": "ok (2752 anuncios leídos)",
+  "bocyl": "ok (49 anuncios leídos)",
+  "bopbu": "pendiente: Su servidor solo admite una versión antigua de TLS; falta decidir cómo leerlo sin rebajar la seguridad.",
+  "Agronews Castilla y León": "ok (20 noticias leídas)"
+ },
+ "total": 13,
+ "aviso": "Resumen automático hecho por un programa, sin inteligencia artificial. Lo que vale es el texto oficial del enlace.",
+ "items": [
+  {
+   "id": "BOCYL-4a991be19d66",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE AGRICULTURA, GANADERÍA, MEDIO RURAL Y POLÍTICA AMBIENTAL",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "EXTRACTO de la Orden de 29 de octubre de 2026, de la Consejería de Agricultura, Ganadería, Medio Rural y Política Ambiental, por la que se convocan, para el año 2026, subvenciones a las organizaciones profesionales agrarias más representativas en la Comunidad de Castilla y León.",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-13.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-13.pdf",
+   "ambito": "region",
+   "categorias": [
+    "ayudas",
+    "rural",
+    "cultura"
+   ],
+   "puntos": 38,
+   "tipo": "convocatoria",
+   "titulo_natural": "Se convocan para el año 2026, subvenciones a las organizaciones profesionales agrarias más representativas en la Comunidad de Castilla y León",
+   "resumen": "Es de ámbito Castilla y León. Si encaja contigo, mira en el texto oficial quién puede pedirla, el plazo y cómo se solicita.",
+   "a_quien": [
+    "agricultores y ganaderos"
+   ],
+   "plazo": null,
+   "importe": "1.500.000 €"
+  },
+  {
+   "id": "BOCYL-a69a1a349adc",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE MEDIO AMBIENTE Y ENERGÍA",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "INFORMACIÓN pública relativa a la solicitud de autorización administrativa previa y evaluación de impacto ambiental de la instalación de energía eléctrica, por tecnología eólica en régimen de autoconsumo con excedentes, denominada parque eólico «Lindero» y sus instalaciones eléctricas asociadas, en los términos municipales de Cayuela, Arcos de la Llana, Villariezo, Cogollos, Estepar, Villangómez, Albillos, Buniel, Villalbilla de Burgos, San Mamés de Burgos (Burgos). Expte.: PE/BU/002/2024.",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-27.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-27.pdf",
+   "ambito": "provincia",
+   "categorias": [
+    "energia"
+   ],
+   "puntos": 35,
+   "tipo": "informacion",
+   "titulo_natural": "Sale a información pública un proyecto de parque eólico «Lindero» en la zona de Cayuela",
+   "resumen": "Afecta a la comarca o a la provincia de Burgos. Proyecto: parque eólico en la zona de Cayuela. Cualquiera puede consultar el proyecto y presentar alegaciones dentro del plazo que marca el anuncio.",
+   "a_quien": [
+    "cualquier persona o entidad interesada (se puede alegar)"
+   ],
+   "plazo": "treinta días hábiles desde la publicación",
+   "importe": "37.059.935,57 €"
+  },
+  {
+   "id": "BOCYL-5f3b612d80df",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE MEDIO AMBIENTE Y ENERGÍA",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "INFORMACIÓN pública relativa a la solicitud de autorización administrativa previa y evaluación de impacto ambiental de la instalación de producción de energía eléctrica, mediante tecnología eólica en régimen de autoconsumo con excedentes, denominada parque eólico «Castoreño» y sus instalaciones eléctricas asociadas, en los términos municipales de Melgar de Fernamental y Padilla de Abajo (Burgos), promovido por «Castoreño Wind, S.L.». Expte.: PE/BU/001/2025.",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-28.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-28.pdf",
+   "ambito": "provincia",
+   "categorias": [
+    "energia"
+   ],
+   "puntos": 35,
+   "tipo": "informacion",
+   "titulo_natural": "Sale a información pública un proyecto de parque eólico «Castoreño» en la zona de Melgar de Fernamental y Padilla de Abajo",
+   "resumen": "Afecta a la comarca o a la provincia de Burgos. Proyecto: parque eólico en la zona de Melgar de Fernamental y Padilla de Abajo. Cualquiera puede consultar el proyecto y presentar alegaciones dentro del plazo que marca el anuncio.",
+   "a_quien": [
+    "cualquier persona o entidad interesada (se puede alegar)"
+   ],
+   "plazo": "treinta días hábiles desde la publicación",
+   "importe": "29.164.124,42 €"
+  },
+  {
+   "id": "BOCYL-9c2062c0ea94",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE MEDIO AMBIENTE Y ENERGÍA",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "INFORMACIÓN pública relativa a la solicitud de autorización administrativa previa y evaluación de impacto ambiental de la línea eléctrica de alta tensión de 400 kV y sus subestaciones eléctricas, desde la instalación de «Armonia Green Burgos» hasta la subestación «Cotorros 400 kV», en los términos municipales del Melgar de Fernamental, Padilla de Abajo, Padilla de Arriba, Grijalba, Villasandino, Sasamón, Isar, Las Quintanillas, Hornillos de Camino, Rabe de las Calzadas, Estepar, Frandovinez, Cavia, Buniel, San Mamés de Burgos y Villalbilla de Burgos (Burgos), promovido por «Armonia Green Burgos, S.L.».",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-29.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-29.pdf",
+   "ambito": "provincia",
+   "categorias": [
+    "energia"
+   ],
+   "puntos": 35,
+   "tipo": "informacion",
+   "titulo_natural": "Sale a información pública un proyecto de línea eléctrica de alta tensión de 400 kv y sus subestaciones eléctricas en la zona de Burgos",
+   "resumen": "Afecta a la comarca o a la provincia de Burgos. Proyecto: línea eléctrica de alta tensión de 400 kv y sus subestaciones eléctricas en la zona de Burgos. Cualquiera puede consultar el proyecto y presentar alegaciones dentro del plazo que marca el anuncio.",
+   "a_quien": [
+    "cualquier persona o entidad interesada (se puede alegar)"
+   ],
+   "plazo": "treinta días hábiles desde la publicación",
+   "importe": "69.287.658,56 €"
+  },
+  {
+   "id": "BOE-A-2026-22616",
+   "fecha": "2026-10-29",
+   "fuente": "BOE",
+   "organismo": "Subvenciones",
+   "seccion": "I. Disposiciones generales",
+   "epigrafe": "Subvenciones",
+   "titulo": "Real Decreto 927/2026, de 28 de octubre, por el que se regula la concesión directa de determinadas subvenciones en el ámbito de la transición ecológica y el reto demográfico para el ejercicio presupuestario 2026.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22616",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/29/pdfs/BOE-A-2026-22616.pdf",
+   "ambito": "nacional",
+   "categorias": [
+    "ayudas",
+    "rural"
+   ],
+   "puntos": 21,
+   "tipo": "concesion",
+   "titulo_natural": "Se regula la concesión directa de determinadas subvenciones en el ámbito de la transición ecológica y el reto demográfico para el ejercicio presupuestario 2026",
+   "resumen": "Se han concedido ayudas o subvenciones; mira si entre los beneficiarios hay alguien de la zona.",
+   "a_quien": [
+    "agricultores y ganaderos",
+    "ayuntamientos y entidades locales"
+   ],
+   "plazo": null,
+   "importe": null
+  },
+  {
+   "id": "BOE-A-2026-22211",
+   "fecha": "2026-10-23",
+   "fuente": "BOE",
+   "organismo": "Premios",
+   "seccion": "III. Otras disposiciones",
+   "epigrafe": "Premios",
+   "titulo": "Orden APA/1111/2026, de 7 de octubre, por la que se modifica la Orden AAA/839/2015, de 29 de abril, por la que se establecen las bases reguladoras de la concesión de Premios de Excelencia a la Innovación para Mujeres Rurales.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-22211",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/23/pdfs/BOE-A-2026-22211.pdf",
+   "ambito": "nacional",
+   "categorias": [
+    "ayudas",
+    "rural"
+   ],
+   "puntos": 21,
+   "tipo": "bases",
+   "titulo_natural": "Se modifica la Orden AAA/839/2015, de 29 de abril, por la que se establecen las bases reguladoras de la concesión de Premios de Excelencia a la Innovación para Mujeres Rurales",
+   "resumen": "Son las normas de unas ayudas: sirven para saber con antelación si podrás pedirlas.",
+   "a_quien": [
+    "agricultores y ganaderos",
+    "ayuntamientos y entidades locales"
+   ],
+   "plazo": "diez días desde la publicación",
+   "importe": null
+  },
+  {
+   "id": "BOCYL-6a3fa272663a",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE INDUSTRIA, UNIVERSIDADES, EMPLEO Y COMERCIO",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "ORDEN IEM/1154/2026, de 30 de octubre, por la que se establece el calendario de domingos y días festivos de apertura autorizada para los establecimientos comerciales en la Comunidad de Castilla y León durante el año 2027.",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-14.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-14.pdf",
+   "ambito": "region",
+   "categorias": [
+    "empleo",
+    "educacion"
+   ],
+   "puntos": 20,
+   "tipo": "otro",
+   "titulo_natural": "Se establece el calendario de domingos y días festivos de apertura autorizada para los establecimientos comerciales en la Comunidad de Castilla y León durante el año 2027",
+   "resumen": "Es de ámbito Castilla y León. Lee el texto oficial para ver si te afecta.",
+   "a_quien": [],
+   "plazo": "un mes desde la publicación",
+   "importe": null
+  },
+  {
+   "id": "BOE-A-2026-23000",
+   "fecha": "2026-11-02",
+   "fuente": "BOE",
+   "organismo": "Comunidad de Castilla y León. Convenio",
+   "seccion": "III. Otras disposiciones",
+   "epigrafe": "Comunidad de Castilla y León. Convenio",
+   "titulo": "Resolución de 22 de octubre de 2026, del Centro de Investigaciones Energéticas Medioambientales y Tecnológicas, O.A., M.P., por la que se publica el Convenio con la Comunidad de Castilla y León, relativo al establecimiento de un marco general de colaboración para la realización de la fase de formación en empresa u organismo equiparado por el alumnado de formación profesional de los grados.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-23000",
+   "pdf": "https://www.boe.es/boe/dias/2026/11/02/pdfs/BOE-A-2026-23000.pdf",
+   "ambito": "region",
+   "categorias": [
+    "empleo",
+    "educacion"
+   ],
+   "puntos": 20,
+   "tipo": "otro",
+   "titulo_natural": "Se publica el Convenio con la Comunidad de Castilla y León, relativo al establecimiento de un marco general de colaboración para la realización de la fase de formación en empresa u organismo equiparado por el alumnado de formación…",
+   "resumen": "Es de ámbito Castilla y León. Lee el texto oficial para ver si te afecta.",
+   "a_quien": [
+    "personas emprendedoras, autónomas y pymes",
+    "asociaciones y entidades sin ánimo de lucro"
+   ],
+   "plazo": null,
+   "importe": null
+  },
+  {
+   "id": "BOE-B-2026-35112",
+   "fecha": "2026-10-27",
+   "fuente": "BOE",
+   "organismo": "",
+   "seccion": "V. Anuncios. - B. Otros anuncios oficiales",
+   "epigrafe": "",
+   "titulo": "Anuncio de la Delegación del Gobierno en Castilla y León por el que se convoca para el levantamiento de actas previas a la ocupación de bienes y derechos afectados por las modificaciones en la línea subterránea 132 kV SET Martínez Montes – SET Tordesillas Renovables, que forma parte de la planta fotovoltaica El Espino, de 50,10 MW, en los términos municipales de Bercero, Vega de Valdetronco y Tordesillas, en la provincia de Valladolid.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35112",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/27/pdfs/BOE-B-2026-35112.pdf",
+   "ambito": "region",
+   "categorias": [
+    "energia"
+   ],
+   "puntos": 19,
+   "tipo": "convocatoria",
+   "titulo_natural": "Se convoca para el levantamiento de actas previas a la ocupación de bienes y derechos afectados por las modificaciones en la línea subterránea 132 kV SET Martínez Montes – SET Tordesillas Renovables, que forma parte de la planta f…",
+   "resumen": "Es de ámbito Castilla y León. Proyecto: planta fotovoltaica en la zona de Castilla y León. Si encaja contigo, mira en el texto oficial quién puede pedirla, el plazo y cómo se solicita.",
+   "a_quien": [
+    "ayuntamientos y entidades locales",
+    "propietarios y vecinos de la zona"
+   ],
+   "plazo": null,
+   "importe": null
+  },
+  {
+   "id": "BOE-B-2026-34481",
+   "fecha": "2026-10-23",
+   "fuente": "BOE",
+   "organismo": "",
+   "seccion": "V. Anuncios. - B. Otros anuncios oficiales",
+   "epigrafe": "",
+   "titulo": "Anuncio de la Delegación del Gobierno en Castilla y León por el que se convoca para el levantamiento de actas previas a la ocupación de bienes y derechos afectados por las modificaciones en la línea subterránea 132 kV SET Martínez Montes – SET Tordesillas Renovables, que forma parte de la planta fotovoltaica El Espino, de 50,10 MW, en los términos municipales de Bercero, Vega de Valdetronco y Tordesillas, en la provincia de Valladolid.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-34481",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/23/pdfs/BOE-B-2026-34481.pdf",
+   "ambito": "region",
+   "categorias": [
+    "energia"
+   ],
+   "puntos": 19,
+   "tipo": "convocatoria",
+   "titulo_natural": "Se convoca para el levantamiento de actas previas a la ocupación de bienes y derechos afectados por las modificaciones en la línea subterránea 132 kV SET Martínez Montes – SET Tordesillas Renovables, que forma parte de la planta f…",
+   "resumen": "Es de ámbito Castilla y León. Proyecto: planta fotovoltaica en la zona de Castilla y León. Si encaja contigo, mira en el texto oficial quién puede pedirla, el plazo y cómo se solicita.",
+   "a_quien": [
+    "ayuntamientos y entidades locales",
+    "propietarios y vecinos de la zona"
+   ],
+   "plazo": null,
+   "importe": null
+  },
+  {
+   "id": "BOE-B-2026-34518",
+   "fecha": "2026-10-23",
+   "fuente": "BOE",
+   "organismo": "",
+   "seccion": "V. Anuncios. - B. Otros anuncios oficiales",
+   "epigrafe": "",
+   "titulo": "Resolución de 19 de octubre de 2026, del Instituto Tecnológico Agrario de Castilla y León, por la que se da continuidad al procedimiento y se hace pública la solicitud de registro de la Denominación de Origen Protegida (DOP) «Sierra de la Culebra».",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-34518",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/23/pdfs/BOE-B-2026-34518.pdf",
+   "ambito": "region",
+   "categorias": [
+    "rural"
+   ],
+   "puntos": 17,
+   "tipo": "otro",
+   "titulo_natural": "Se da continuidad al procedimiento y se hace pública la solicitud de registro de la Denominación de Origen Protegida (DOP) «Sierra de la Culebra»",
+   "resumen": "Es de ámbito Castilla y León. Lee el texto oficial para ver si te afecta.",
+   "a_quien": [
+    "propietarios y vecinos de la zona"
+   ],
+   "plazo": "dos meses desde la publicación",
+   "importe": null
+  },
+  {
+   "id": "BOCYL-5edaf5b7a73f",
+   "fecha": "2026-11-04",
+   "fuente": "BOCYL",
+   "organismo": "CONSEJERÍA DE DESREGULACIÓN, FAMILIA Y AYUDAS SOCIALES",
+   "seccion": "I. COMUNIDAD DE CASTILLA Y LEÓN",
+   "epigrafe": "",
+   "titulo": "EXTRACTO de la Orden de 29 de octubre de 2026, de la Consejería de Desregulación, Familia y Ayudas Sociales, por la que se convocan subvenciones, cofinanciadas por el Fondo Social Europeo Plus (FSE+), para el desarrollo del Programa de digitalización para jóvenes residentes en Castilla y León.",
+   "enlace": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-12.pdf",
+   "pdf": "https://bocyl.jcyl.es/boletines/2026/11/04/pdf/BOCYL-D-04112026-213-12.pdf",
+   "ambito": "region",
+   "categorias": [
+    "ayudas"
+   ],
+   "puntos": 16,
+   "tipo": "convocatoria",
+   "titulo_natural": "Se convocan subvenciones, cofinanciadas por el Fondo Social Europeo Plus (FSE+), para el desarrollo del Programa de digitalización para jóvenes residentes en Castilla y León",
+   "resumen": "Es de ámbito Castilla y León. Si encaja contigo, mira en el texto oficial quién puede pedirla, el plazo y cómo se solicita.",
+   "a_quien": [],
+   "plazo": null,
+   "importe": "220.847,33 €"
+  },
+  {
+   "id": "BOE-B-2026-35369",
+   "fecha": "2026-10-29",
+   "fuente": "BOE",
+   "organismo": "",
+   "seccion": "V. Anuncios. - B. Otros anuncios oficiales",
+   "epigrafe": "",
+   "titulo": "Anuncio de la Demarcación de Carreteras del Estado en Castilla y León Occidental sobre Resolución del Ministerio de Transportes y Movilidad Sostenible por la que se aprueba el expediente de Información Pública y definitivamente el Proyecto de \"Trazado Autovía A-60, Valladolid – León. Tramo: Villanubla – La Mudarra\". Provincia De Valladolid. Clave 12-VA-4200.",
+   "enlace": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-35369",
+   "pdf": "https://www.boe.es/boe/dias/2026/10/29/pdfs/BOE-B-2026-35369.pdf",
+   "ambito": "region",
+   "categorias": [
+    "transporte"
+   ],
+   "puntos": 16,
+   "tipo": "informacion",
+   "titulo_natural": "Se aprueba el expediente de Información Pública y definitivamente el Proyecto de \"Trazado Autovía A-60, Valladolid – León. Tramo: Villanubla – La Mudarra\". Provincia De Valladolid. Clave 12-VA-4200",
+   "resumen": "Es de ámbito Castilla y León. Cualquiera puede consultar el proyecto y presentar alegaciones dentro del plazo que marca el anuncio.",
+   "a_quien": [
+    "propietarios y vecinos de la zona"
+   ],
+   "plazo": "un (1) mes desde la publicación",
+   "importe": null
+  }
+ ]
+}

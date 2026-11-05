@@ -519,3 +519,38 @@ def plano_observacion():
 
 # Dibujos por título (las posiciones de las tarjetas cambian al añadir fichas): evita tarjetas sin imagen, cuyo título quedaría bajo la curva del arco.
 POR_TITULO = {"Las Fuerzas de la Tierra": peña_mesa, "Las Tuerces y la Horadada": tuerces, "Valdelucio y las Loras": loras, "Circuito románico": romanico}
+
+
+# ═════════════ ICONOS DE LOS AVISOS ═════════════
+def _fondo_aviso(extra):
+    return f'<rect width="300" height="200" fill="#efe0ad"/><path d="M0 164 C80 150 160 172 300 158 V200 H0Z" fill="{VERDE}"/>{extra}'
+
+
+def icono_aviso(cat):
+    if cat in ("energia",):
+        aspas = "".join(f'<path d="M150 80 L{150+46*math.sin(math.radians(a)):.1f} {80-46*math.cos(math.radians(a)):.1f}" stroke="#fff" stroke-width="7" stroke-linecap="round"/>' for a in (0, 120, 240))
+        c = _fondo_aviso(f'<path d="M146 164 L150 80 L154 164Z" fill="#fff"/>{aspas}<circle cx="150" cy="80" r="7" fill="{"#8a5a3c"}"/>'
+                         f'<g transform="translate(60 120) scale(.6)"><path d="M146 164 L150 80 L154 164Z" fill="#fff"/></g><circle cx="230" cy="48" r="20" fill="{TRIGO}"/>')
+        et = "Dibujo de un aerogenerador"
+    elif cat == "comunicaciones":
+        c = _fondo_aviso(f'<path d="M150 164 L150 70 M120 164 L150 70 L180 164 M130 130 H170 M138 100 H162" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>'
+                         f'<path d="M110 60 q-18 24 0 48 M190 60 q18 24 0 48 M96 50 q-30 34 0 68 M204 50 q30 34 0 68" stroke="{ROJO}" stroke-width="4" fill="none" stroke-linecap="round"/>')
+        et = "Dibujo de una antena de telecomunicaciones con ondas"
+    elif cat == "transporte":
+        c = _fondo_aviso(f'<path d="M30 200 L130 120 H170 L270 200Z" fill="#8f836b"/><path d="M150 200 L150 176 M150 160 L150 146 M150 134 L150 124" stroke="#fff" stroke-width="5" stroke-linecap="round"/>'
+                         f'<circle cx="236" cy="52" r="20" fill="{TRIGO}"/>')
+        et = "Dibujo de una carretera que se pierde en el horizonte"
+    elif cat == "vivienda":
+        c = _fondo_aviso(f'<rect x="100" y="94" width="100" height="70" fill="#fff"/><path d="M88 96 L150 46 L212 96Z" fill="{ROJO}"/><rect x="138" y="124" width="24" height="40" fill="{NOCHE}"/><rect x="108" y="108" width="20" height="20" fill="#a8d4ee"/><rect x="172" y="108" width="20" height="20" fill="#a8d4ee"/>')
+        et = "Dibujo de una casa"
+    elif cat in ("cultura", "educacion", "turismo"):
+        c = _fondo_aviso(f'<path d="M90 160 V100 A60 60 0 0 1 210 100 V160Z" fill="#fff" stroke="{VERDE_OSC}" stroke-width="4"/><path d="M114 160 V104 A36 36 0 0 1 186 104 V160Z" fill="{NOCHE}" opacity=".85"/>')
+        et = "Dibujo de un arco de medio punto"
+    elif cat == "noticias":
+        c = _fondo_aviso(f'<rect x="84" y="56" width="132" height="104" rx="6" fill="#fff"/><rect x="98" y="70" width="104" height="16" fill="{VERDE_OSC}"/>' + "".join(f'<rect x="98" y="{98+k*14}" width="{104 if k % 2 else 70}" height="6" fill="#8f836b"/>' for k in range(4)))
+        et = "Dibujo de un periódico"
+    else:   # ayudas, rural, emprendimiento, empleo, otros: espiga con moneda
+        gr = "".join(f'<ellipse cx="{150+s*14}" cy="{64+k*18}" rx="8" ry="13" fill="{TRIGO}" transform="rotate({s*28} {150+s*14} {64+k*18})"/>' for k in range(5) for s in (-1, 1))
+        c = _fondo_aviso(f'<path d="M150 164 V54" stroke="{VERDE_OSC}" stroke-width="5"/>{gr}<ellipse cx="150" cy="44" rx="8" ry="13" fill="{TRIGO}"/><circle cx="224" cy="120" r="22" fill="{TRIGO}" stroke="{VERDE_OSC}" stroke-width="3"/><text x="224" y="128" text-anchor="middle" font-size="22" font-weight="700" fill="{VERDE_OSC}" font-family="Lora,Georgia,serif">€</text>')
+        et = "Dibujo de una espiga de trigo y una moneda"
+    return _svg(c, et)

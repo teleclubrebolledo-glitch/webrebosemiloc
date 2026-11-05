@@ -1,0 +1,35 @@
+{
+  "nombre": "Avisos",
+  "territorio": {
+    "municipio": "Rebolledo de la Torre",
+    "localidades": ["Albacastro", "Castrecías", "La Rebolleda", "Rebolledo", "Valtierra", "Villela"],
+    "comarca": ["Páramos", "Las Loras", "Valdelucio", "Humada", "Sedano", "Odra-Pisuerga", "Geoparque"],
+    "provincia": ["Burgos"],
+    "region": ["Castilla y León"]
+  },
+  "fuentes": {
+    "boe": {"activa": true, "dias": 3, "nombre": "BOE"},
+    "bocyl": {"activa": true, "secciones": ["I", "II", "III", "IV", "V"], "nombre": "BOCYL"},
+    "bopbu": {"activa": false, "nombre": "BOP de Burgos", "nota": "Su servidor solo admite una versión antigua de TLS; falta decidir cómo leerlo sin rebajar la seguridad."},
+    "rss": [
+      {"activa": true, "nombre": "Agronews Castilla y León", "url": "https://www.agronewscastillayleon.com/feed", "categoria": "noticias"}
+    ]
+  },
+  "otras_regiones": ["Andaluc","Arag\u00f3n","Asturias","Illes Balears","Islas Baleares","Canarias","Cantabria","Catalu","Castilla-La Mancha","Comunitat Valenciana","Extremadura","Galicia","Comunidad de Madrid","Regi\u00f3n de Murcia","Navarra","Pa\u00eds Vasco","La Rioja","Ceuta","Melilla"],
+  "puntuacion": {"local": 60, "comarca": 28, "provincia": 22, "region": 8, "minimo": 16, "maximo_total": 60, "dias_historico": 45},
+  "categorias": {
+    "ayudas": {"nombre": "Ayudas y subvenciones", "peso": 12, "palabras": ["subvenci", "ayuda", "ayudas", "convocatoria", "convocan", "bases reguladoras", "incentivo", "bonificaci"]},
+    "rural": {"nombre": "Medio rural", "peso": 9, "palabras": ["rural", "agrari", "agricultor", "ganader", "explotaci", "leader", "desarrollo rural", "despoblaci", "reto demogr", "pequeños municipios", "forestal", "pac ", "regad", "cinegétic", "apícola", "incorporación de jóvenes", "joven agricultor"]},
+    "energia": {"nombre": "Energía y grandes obras", "peso": 11, "palabras": ["parque eólico", "parque eólico", "aerogenerador", "fotovoltaic", "planta solar", "instalación solar", "huerto solar", "línea eléctrica", "alta tensión", "subestación", "impacto ambiental", "autorización administrativa previa", "biogás", "biometano", "almacenamiento"]},
+    "comunicaciones": {"nombre": "Comunicaciones", "peso": 9, "palabras": ["telefonía", "fibra óptica", "banda ancha", "estación base", "antena", "telecomunicaci", "cobertura móvil", "5g"]},
+    "transporte": {"nombre": "Carreteras y transporte", "peso": 8, "palabras": ["carretera", "transporte regular", "transporte de viajeros", "autobús", "ferrocarril", "ferroviari", "transporte a la demanda", "transporte rural", "caminos rurales", "camino rural"]},
+    "empleo": {"nombre": "Trabajo y formación", "peso": 6, "palabras": ["empleo", "formación profesional", "contratación indefinida", "autónomo", "trabajo", "cursos de formaci"]},
+    "vivienda": {"nombre": "Vivienda", "peso": 8, "palabras": ["vivienda", "rehabilitación", "alquiler", "eficiencia energética de edificios", "arreglo de vivienda"]},
+    "educacion": {"nombre": "Educación", "peso": 6, "palabras": ["educación", "escuela", "colegio rural", "becas", "alumnado", "universidad"]},
+    "cultura": {"nombre": "Cultura y patrimonio", "peso": 6, "palabras": ["cultura", "patrimonio", "bien de interés cultural", "biblioteca", "museo", "arte románico", "tradición", "fiestas"]},
+    "turismo": {"nombre": "Turismo sostenible", "peso": 8, "palabras": ["turismo", "alojamiento rural", "casa rural", "senderismo", "cielo oscuro", "geoparque", "astroturismo", "camino de santiago"]},
+    "emprendimiento": {"nombre": "Emprendimiento", "peso": 8, "palabras": ["emprendedor", "emprendimiento", "pyme", "microempresa", "startup", "nuevos negocios", "creación de empresas", "comercio rural"]},
+    "noticias": {"nombre": "Noticias del medio rural", "peso": 0, "palabras": []}
+  },
+  "descartar": ["proveer", "plazas de ", "pr\u00e1cticas externas", "pr\u00e1cticas acad\u00e9micas", "ministerio de defensa", "convenio con la universidad", "convenio entre el ministerio", "libre designación", "nombramiento", "cese de", "toma de posesión", "adjudicación de destino", "mérito", "tribunal calificador", "lista de admitidos", "lista definitiva de admitidos", "relación de aprobados", "oposiciones", "proceso selectivo", "cuerpo de ", "escala de ", "personal laboral fijo", "concurso de traslados", "bolsa de empleo", "plaza de funcionario"]
+}
