@@ -203,12 +203,12 @@
     }
     var nf, gr = svg.querySelector('#piedras-grietas'), sem = 31, rnd = function () { sem = (sem * 16807) % 2147483647; return sem / 2147483647; }, cl = '';
     geo.forEach(function (g, n) {                                /* estilo de mis iconos, en pequeño y en cantidad: grietas cortas con ramas, muchas lascas claras y astillas oscuras; siempre las mismas (semilla fija) y bajo las fotos */
-      var s = '', fl = '', z, k, nc = 2 + Math.floor(rnd() * 3), nf = 9 + Math.floor(rnd() * 7);
+      var s = '', fl = '', z, k, nc = 2 * (2 + Math.floor(rnd() * 3)), nf = 9 + Math.floor(rnd() * 7);
       for (k = 0; k < nc; k++) {
         var x = g.x + g.w * (.08 + .8 * rnd()), y = g.y + g.h * (.12 + .7 * rnd()), bx = x, by = y;
         s += 'M' + x.toFixed(1) + ' ' + y.toFixed(1);
-        for (z = 0; z < 3; z++) { x += g.w * (.02 + .025 * rnd()); y += (rnd() - .45) * g.h * .1; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); if (z === 0) { bx = x; by = y; } }
-        s += 'M' + bx.toFixed(1) + ' ' + by.toFixed(1) + 'L' + (bx + g.w * .018).toFixed(1) + ' ' + (by + g.h * (.04 + .04 * rnd())).toFixed(1);
+        for (z = 0; z < 3; z++) { x += g.w * (.01 + .0125 * rnd()); y += (rnd() - .45) * g.h * .05; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); if (z === 0) { bx = x; by = y; } }
+        s += 'M' + bx.toFixed(1) + ' ' + by.toFixed(1) + 'L' + (bx + g.w * .009).toFixed(1) + ' ' + (by + g.h * (.02 + .02 * rnd())).toFixed(1);
       }
       for (z = 0; z < nf; z++) {
         var fx = g.x + g.w * (.05 + .9 * rnd()), fy = g.y + g.h * (.1 + .8 * rnd()), l = 1.6 + 2.6 * rnd(), a = Math.floor(rnd() * 180);
