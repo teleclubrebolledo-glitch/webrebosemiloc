@@ -214,8 +214,8 @@ def barra_html(pref=""):
         items += (f'<details class="menu" name="menu"><summary data-sec="{ident}">{escape(nombre)}</summary>'
                   f'<div class="sub"><a class="todo" href="{pref}#{ident}">Ver toda la sección</a>{enl}</div></details>')
     ini = f'<a href="{pref or "#inicio"}" data-sec="inicio">Inicio</a>' if pref else '<a href="#inicio" data-sec="inicio">Inicio</a>'
-    marca = (f'<div class="cab-marca"><div class="fila"><a class="marca" href="{pref or "#inicio"}">Rebolledo de la Torre</a><span class="t-ahora" hidden></span></div>'
-             f'<div class="t-manana" hidden></div></div>')
+    marca = (f'<a class="marca" href="{pref or "#inicio"}">Rebolledo de la Torre</a>'
+             f'<div class="tiempo-cab"><span class="t-ahora" hidden></span><span class="t-manana" hidden></span></div>')
     return f'<header class="barra">\n  {marca}\n  <nav class="navtop" aria-label="Secciones">{ini}{items}</nav>\n</header>\n'
 
 

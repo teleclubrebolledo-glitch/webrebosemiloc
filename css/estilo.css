@@ -102,3 +102,12 @@ h1,h2,h3{font-family:var(--titulos);letter-spacing:.03em}
 .pel svg{display:block}
 @media (prefers-reduced-motion:no-preference){.pel.grave svg{animation:pulsa 2.4s ease-in-out infinite}@keyframes pulsa{50%{transform:scale(1.15)}}}
 .t-manana .llu{font-size:.68rem}.t-manana .pel{font-size:.66rem}.t-manana .pel svg{width:15px;height:15px}
+
+/* el tiempo va a la derecha, a la altura del título; los menús, debajo, en su propia línea */
+.tiempo-cab{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:.2rem 1.4rem}
+.navtop{flex:1 1 100%;justify-content:center;margin-left:0}
+.t-manana{font:600 .84rem system-ui,sans-serif;color:var(--verde-osc)}
+.t-manana .ico svg{width:22px;height:22px}
+.t-manana .pre{font:500 .72rem system-ui,sans-serif;font-variant:small-caps;letter-spacing:.04em;color:var(--tenue)}
+.t-manana .llu{font-size:.74rem}.t-manana .pel{font-size:.72rem}.t-manana .pel svg{width:17px;height:17px}
+@media (max-width:760px){.tiempo-cab{margin-left:0;width:100%;justify-content:flex-start;gap:.1rem 1rem}}
