@@ -566,5 +566,45 @@
   "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
   "pagina": "https://commons.wikimedia.org/wiki/File:(MHNT)_Tettigonia_viridissima_on_Avena_fatua.jpg",
   "buscado": "Tettigonia viridissima"
+ },
+ "Cortados y barrancos calizos": {
+  "archivo": "fotos/habitat-1.jpg",
+  "autor": "Josepepewicho",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Las_tuerces_09.jpg",
+  "buscado": "Las tuerces 09.jpg"
+ },
+ "Páramos y campos de cereal": {
+  "archivo": "fotos/habitat-2.jpg",
+  "autor": "MottaW",
+  "licencia": "CC BY 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:M-bustillo-del-paramo-burgos-panoramica-agosto-2020.jpg",
+  "buscado": "M-bustillo-del-paramo-burgos-panoramica-agosto-2020.jpg"
+ },
+ "Bosques de quejigo, melojo y encina": {
+  "archivo": "fotos/habitat-3.jpg",
+  "autor": "Basotxerri",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Elburgo_-_Camino_en_el_bosque_01.jpg",
+  "buscado": "Elburgo - Camino en el bosque 01.jpg"
+ },
+ "Arroyos y riberas": {
+  "archivo": "fotos/habitat-4.jpg",
+  "autor": "Rodelar",
+  "licencia": "CC BY-SA 4.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/4.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:R%C3%ADo_Pisuerga,_Arbejal.jpg",
+  "buscado": "Río Pisuerga, Arbejal.jpg"
+ },
+ "Pueblos, huertas y tapias": {
+  "archivo": "fotos/habitat-5.jpg",
+  "autor": "Luis Rogelio HM",
+  "licencia": "CC BY-SA 2.0",
+  "url_licencia": "https://creativecommons.org/licenses/by-sa/2.0",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Rebolledo_de_la_Torre_-_001_(40943701125).jpg",
+  "buscado": "Rebolledo de la Torre - 001 (40943701125).jpg"
  }
 }

@@ -216,3 +216,14 @@ figure.ejemplo{margin:.4rem 0 .5rem;max-width:380px}
 figure.ejemplo img{display:block;width:100%;height:auto;border-radius:14px 14px 0 0}
 figure.ejemplo figcaption{font:.74rem/1.35 system-ui,sans-serif;color:var(--tenue);padding:.2rem 0}
 details.ficha>summary{display:flex;align-items:center;gap:.1rem;flex-wrap:wrap}
+
+/* ── segunda cinta (huerta): el doble de alta, con foto pequeña enlazable ── */
+.cinta2{min-height:84px}
+.cinta2 .cinta-pista{height:68px}
+.cinta2 .cinta-item{display:flex;align-items:center;gap:.8rem;line-height:1.3;white-space:normal;text-overflow:clip}
+.cinta2 .cinta-item img{flex:none;width:64px;height:64px;object-fit:cover;border-radius:32px 32px 4px 4px;background:#222}
+.cinta2 .cinta-txt{display:flex;flex-direction:column;min-width:0}
+.cinta2 .cinta-txt strong{color:#ffd77a}
+.cinta2 .cinta-txt span{font-weight:500;color:#e8e4d6;font-size:.88rem}
+.habitat{margin:.2rem 0 1rem}.habitat h4{margin:.2rem 0}
+.breve{margin:.3rem 0;font-style:italic}

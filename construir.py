@@ -74,7 +74,7 @@ def _seccion_avisos():
 for _i, _c in enumerate(CONTENIDO):
     if _c[0] == "rutas":
         CONTENIDO.insert(_i + 1, ("avisos", "Avisos y ayudas", _seccion_avisos()))
-        CONTENIDO.insert(_i + 2, ("huerta", "Huerta", [("Este mes en la huerta", "@H:este_mes"), ("Productos de temporada", "@H:temporada"), ("Calendario de la huerta", "@H:calendario"),
+        CONTENIDO.insert(_i + 2, ("huerta", "Huerta", [("Este mes en la huerta", "@H:este_mes"), ("El mes que viene en la huerta", "@H:proximo"), ("Receta del mes", "@H:receta"), ("Productos de temporada", "@H:temporada"), ("Calendario de la huerta", "@H:calendario"),
                                                        ("Hortalizas y legumbres", "@H:hortalizas"), ("Frutales y árboles de la zona", "@H:frutales"), ("Aromáticas, medicinales y silvestres", "@H:aromaticas"),
                                                        ("Flores", "@H:flores"), ("Setas: temporadas y peligros", "@H:setas"), ("Plantas peligrosas", "@H:peligros"), ("Consejos para la huerta a 958 m", "@H:consejos")]))
         CONTENIDO.insert(_i + 3, ("naturaleza", "Fauna y flora", [("Un territorio, muchos hábitats", "@N:habitats"), ("Aves de los cortados y del cielo", "@N:rapaces"), ("Aves del campo, del pueblo y de la noche", "@N:campo"),
@@ -236,6 +236,16 @@ def cinta_avisos():
             f'<button type="button" class="cinta-b" data-d="-1" aria-label="Aviso anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Aviso siguiente">›</button></div>')
 
 
+def cinta_huerta():
+    """Segunda cinta negra, el doble de alta, con foto pequeña: lo que toca en la huerta este mes y el próximo; cada entrada lleva a su ficha."""
+    items = huerta_web.banner_items()
+    if not items: return ""
+    li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="{it["enlace"]}"><img src="{escape(it["foto"])}" alt="" width="64" height="64" loading="lazy">'
+                 f'<span class="cinta-txt"><strong>{escape(it["titulo"])}</strong><span>{escape(it["texto"])}</span></span></a>' for i, it in enumerate(items))
+    return (f'<div class="cinta cinta2" data-ms="21000" role="region" aria-label="Lo que toca en la huerta"><a class="cinta-etq" href="#huerta">En la huerta</a><div class="cinta-pista">{li}</div>'
+            f'<button type="button" class="cinta-b" data-d="-1" aria-label="Anterior">‹</button><button type="button" class="cinta-b" data-d="1" aria-label="Siguiente">›</button></div>')
+
+
 def pagina_creditos():
     """creditos-fotos.html: autoría y licencia de cada foto de ejemplo (Wikimedia Commons)."""
     import re
@@ -247,6 +257,14 @@ def pagina_creditos():
         if not f.get("archivo"): continue
         lic = f'<a href="{escape(f["url_licencia"])}" rel="noopener">{escape(f["licencia"])}</a>' if f.get("url_licencia") else escape(f["licencia"])
         li += f'<li><strong>{escape(nombre)}</strong> — {escape(f["autor"])} · {lic} · <a href="{escape(f["pagina"])}" rel="noopener">archivo original en Wikimedia Commons</a></li>\n'
+    try: hf = json.loads((Path(__file__).parent / "huerta" / "fotos.json").read_text())
+    except Exception: hf = {}
+    try: hd = json.loads((Path(__file__).parent / "huerta" / "datos.json").read_text()); nom = {e["id"]: e["nombre"] for e in hd["especies"] + hd["flores"]}
+    except Exception: nom = {}
+    for i, f in sorted(hf.items(), key=lambda kv: nom.get(kv[0], kv[0]).lower()):
+        if not f.get("archivo"): continue
+        lic = f'<a href="{escape(f["url_licencia"])}" rel="noopener">{escape(f["licencia"])}</a>' if f.get("url_licencia") else escape(f["licencia"])
+        li += f'<li><strong>{escape(nom.get(i, i))}</strong> (huerta) — {escape(f["autor"])} · {lic} · <a href="{escape(f["pagina"])}" rel="noopener">archivo original en Wikimedia Commons</a></li>\n'
     base = (Path(__file__).parent / "enviar-fotos.html").read_text()
     pag = re.sub(r"<title>.*?</title>", "<title>Créditos de las fotografías · Rebolledo de la Torre</title>", base)
     pag = re.sub(r'<meta name="description" content=".*?">', '<meta name="description" content="Autoría y licencia de cada fotografía de ejemplo de la sección Fauna y flora.">', pag)
@@ -287,7 +305,7 @@ def parchea_paginas():
 
 
 def main():
-    cinta = cinta_avisos()
+    cinta = cinta_avisos() + cinta_huerta()
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
     navtop = '<a href="#inicio" data-sec="inicio">Inicio</a>' + tabs
     secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
