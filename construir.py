@@ -305,7 +305,7 @@ def parchea_paginas():
 
 
 def main():
-    cinta = cinta_avisos() + cinta_huerta()
+    cinta = '<div class="cintas">' + cinta_huerta() + cinta_avisos() + '</div>'
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
     navtop = '<a href="#inicio" data-sec="inicio">Inicio</a>' + tabs
     secciones = "".join(seccion(i, *c) for i, c in enumerate(CONTENIDO))
