@@ -76,13 +76,13 @@ for _i, _c in enumerate(CONTENIDO):
         CONTENIDO.insert(_i + 1, ("avisos", "Avisos y ayudas", _seccion_avisos()))
         CONTENIDO.insert(_i + 2, ("huerta", "Huerta", [("Este mes en la huerta", "@H:este_mes"), ("El mes que viene en la huerta", "@H:proximo"), ("Receta del mes", "@H:receta"), ("Productos de temporada", "@H:temporada"), ("Calendario de la huerta", "@H:calendario"),
                                                        ("Hortalizas y legumbres", "@H:hortalizas"), ("Frutales y árboles de la zona", "@H:frutales"), ("Aromáticas, medicinales y silvestres", "@H:aromaticas"),
-                                                       ("Flores", "@H:flores"), ("Setas: temporadas y peligros", "@H:setas"), ("Plantas peligrosas", "@H:peligros"), ("Consejos para la huerta a 958 m", "@H:consejos")]))
+                                                       ("Flores", "@H:flores"), ("Setas: temporadas y peligros", "@H:setas"), ("Plantas peligrosas", "@H:peligros"), ("Consejos para la huerta (altitud de la zona: 958 m)", "@H:consejos")]))
         CONTENIDO.insert(_i + 3, ("naturaleza", "Fauna y flora", [("Un territorio, muchos hábitats", "@N:habitats"), ("Aves de los cortados y del cielo", "@N:rapaces"), ("Aves del campo, del pueblo y de la noche", "@N:campo"),
                                                                  ("Calendario de las aves", "@N:calendario"), ("Mamíferos", "@N:mamiferos"), ("Reptiles y anfibios", "@N:reptiles"), ("Insectos y polinizadores", "@N:insectos"),
                                                                  ("Árboles y arbustos", "@N:arboles"), ("Plantas y flores silvestres", "@N:flora"), ("Mirar sin molestar", "@N:mirar")]))
         break
 
-LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m, con fichas de cultivos, frutales, flores, setas y plantas peligrosas.", "naturaleza": "Todo lo vivo de las loras y los páramos: aves, mamíferos, reptiles, insectos, árboles y flores.", "avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
+LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m de altitud sobre el nivel del mar (la de la zona, no la superficie del terreno), con fichas de cultivos, frutales, flores, setas y plantas peligrosas.", "naturaleza": "Todo lo vivo de las loras y los páramos: aves, mamíferos, reptiles, insectos, árboles y flores.", "avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
          "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",

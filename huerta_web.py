@@ -165,7 +165,7 @@ def card(marker):
     if marker == "H:temporada":
         c = [e for e in _lista(esp, "cosecha", mes, True) if e["tipo"] in ("hortaliza", "legumbre", "frutal", "fruto", "cereal", "otro")]
         fr = [e for e in c if e["tipo"] in ("frutal", "fruto")]; ho = [e for e in c if e not in fr]
-        return "hortaliza", (f'<p>Lo que da la huerta en <strong>{MES[mes]}</strong> a 958 m:</p><ul class="guia" style="margin-top:.3rem"><li><strong>Hortalizas y legumbres:</strong> {escape(_nombres(ho))}</li>'
+        return "hortaliza", (f'<p>Lo que da la huerta en <strong>{MES[mes]}</strong> a unos 958 m de <strong>altitud sobre el nivel del mar</strong> (la altitud de la zona):</p><ul class="guia" style="margin-top:.3rem"><li><strong>Hortalizas y legumbres:</strong> {escape(_nombres(ho))}</li>'
                              f'<li><strong>Frutas y frutos:</strong> {escape(_nombres(fr))}</li></ul><p class="nota">Comer de temporada y de cerca es más barato, más sabroso y más sostenible.</p>'), False
     if marker == "H:proximo":
         sig = mes % 12 + 1
@@ -180,8 +180,10 @@ def card(marker):
         _, nombre, ing, texto, _n = r
         por = {e["id"]: e["nombre"] for e in esp}
         lista = ", ".join(por[i].lower() for i in ing if i in por)
-        return "hortaliza", (f'<p><strong>{escape(nombre)}.</strong></p><p>Con lo que se cosecha en {MES[mes]}: {escape(lista)}, más aceite de oliva, sal y especias.</p><p>{escape(texto)}</p>'
-                             '<p class="nota">Sugerencia orientativa; cambia cantidades y especias a tu gusto.</p>'), False
+        mos = "".join(f'<img src="huerta/{escape(FOTH[i]["archivo"])}" alt="{escape(por[i])}" title="{escape(por[i])}" loading="lazy">' for i in ing if i in por and FOTH.get(i, {}).get("archivo"))
+        mos = f'<div class="figuras mosaico mos{min(len(ing), 6)}">{mos}</div>' if mos else ""
+        return "hortaliza", (mos + f'<p><strong>{escape(nombre)}.</strong></p><p>Con lo que se cosecha en {MES[mes]}: {escape(lista)}, más aceite de oliva, sal y especias.</p><p>{escape(texto)}</p>'
+                             '<p class="nota">Sugerencia orientativa; cambia cantidades y especias a tu gusto. Fotos de ingredientes: Wikimedia Commons, licencia libre; autoría en <a href="creditos-fotos.html">créditos de las fotos</a>.</p>'), False
     if marker == "H:consejos":
         li = ["Aquí hiela hasta mediados de mayo y puede volver a helar en octubre: no trasplantes tomates ni pimientos antes de entonces o protégelos con manta térmica.",
               "Riega temprano y poco a poco; acolchar con paja o hierba seca ahorra agua y mantiene el suelo vivo.",
@@ -198,7 +200,7 @@ def card(marker):
             e = por_id.get(i) or next((x for x in esp if x["id"].startswith(i)), None)
             if not e: continue
             filas.append((e["nombre"], [(meses(e["siembra_aire"]) | meses(e["siembra_prot"]), "#4c6b2e"), (meses(e["plantar"]), "#d9ad3f"), (meses(e["cosecha"]), "#a3441a")]))
-        svg = G.calendario_barras(filas, [("#4c6b2e", "Sembrar"), ("#d9ad3f", "Plantar"), ("#a3441a", "Cosechar")], "Calendario de la huerta a 958 m")
+        svg = G.calendario_barras(filas, [("#4c6b2e", "Sembrar"), ("#d9ad3f", "Plantar"), ("#a3441a", "Cosechar")], "Calendario de la huerta (altitud de la zona: 958 m)")
         return "calendario", f'<div class="figuras una" style="background:#faf5e8">{svg}</div>', True
     grupos = {"H:hortalizas": ("hortaliza", "Hortalizas y legumbres", ("hortaliza", "legumbre", "cereal", "otro")), "H:frutales": ("frutal", "Frutales y árboles de la zona", ("frutal", "fruto")),
               "H:aromaticas": ("aromatica", "Aromáticas, medicinales y silvestres", ("aromática", "medicinal", "silvestre")), "H:flores": ("flor", "Flores", ("flor",))}

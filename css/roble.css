@@ -227,3 +227,9 @@ details.ficha>summary{display:flex;align-items:center;gap:.1rem;flex-wrap:wrap}
 .cinta2 .cinta-txt span{font-weight:500;color:#e8e4d6;font-size:.88rem}
 .habitat{margin:.2rem 0 1rem}.habitat h4{margin:.2rem 0}
 .breve{margin:.3rem 0;font-style:italic}
+/* mosaico de ingredientes de la receta (fotos libres) */
+.mosaico{display:grid;gap:3px;grid-template-columns:repeat(3,1fr);grid-auto-rows:110px;height:auto;overflow:hidden;border-radius:999px 999px 0 0;line-height:0;background:#e8dfc2}
+.mosaico img{width:100%;height:100%;object-fit:cover;display:block}
+.mosaico.mos2,.mosaico.mos4{grid-template-columns:repeat(2,1fr)}
+.mosaico.mos1{grid-template-columns:1fr}
+.mosaico.mos5 img:first-child{grid-column:span 2}

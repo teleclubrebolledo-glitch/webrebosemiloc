@@ -2,7 +2,7 @@
  "generado": "2026-11-05",
  "altitud_m": 958,
  "lugar": "Rebolledo de la Torre (Burgos)",
- "aviso": "Datos botánicos adaptados a unos 958 m de altitud y escritos de memoria: orientativos, contrasta con guías y con la gente de la zona. Las heladas en esta altura pueden llegar hasta mediados de mayo y volver en octubre.",
+ "aviso": "Datos botánicos adaptados a unos 958 m de altitud sobre el nivel del mar (la de la zona) y escritos de memoria: orientativos, contrasta con guías y con la gente de la zona. Las heladas en esta altura pueden llegar hasta mediados de mayo y volver en octubre.",
  "labores_mes": {
   "1": "Poda de frutales en reposo (sin helada fuerte); semilleros protegidos de cebolla y puerro; revisar cubiertas y mantas.",
   "2": "Primeros semilleros de tomate y pimiento bajo cubierta; siembra de guisantes y habas al aire libre si el suelo no está helado; compost y enmiendas.",
@@ -1021,7 +1021,7 @@
    "plantar": "",
    "cosecha": "5-6",
    "huerta": 1,
-   "labores": "Despuntar al florecer contra el pulgón; las otoñales pueden helarse a 958 m: acolchar.",
+   "labores": "Despuntar al florecer contra el pulgón; las otoñales pueden helarse a 958 m de altitud: acolchar.",
    "usos": "Fresca o seca.",
    "curiosidad": "Es de las legumbres cultivadas más antiguas.",
    "precaucion": "Personas con déficit de G6PD pueden sufrir favismo."
@@ -1293,7 +1293,7 @@
    "plantar": "6",
    "cosecha": "8-9",
    "huerta": 1,
-   "labores": "Marginal a 958 m: bajo cubierta y variedades tempranas.",
+   "labores": "Marginal a 958 m de altitud: bajo cubierta y variedades tempranas.",
    "usos": "Fruta.",
    "curiosidad": "",
    "precaucion": ""
@@ -1677,7 +1677,7 @@
    "plantar": "6",
    "cosecha": "8-9",
    "huerta": 1,
-   "labores": "Marginal a 958 m: bajo cubierta y variedades tempranas.",
+   "labores": "Marginal a 958 m de altitud: bajo cubierta y variedades tempranas.",
    "usos": "Fruta.",
    "curiosidad": "",
    "precaucion": ""
