@@ -111,3 +111,4 @@ h1,h2,h3{font-family:var(--titulos);letter-spacing:.03em}
 .t-manana .pre{font:500 .72rem system-ui,sans-serif;font-variant:small-caps;letter-spacing:.04em;color:var(--tenue)}
 .t-manana .llu{font-size:.74rem}.t-manana .pel{font-size:.72rem}.t-manana .pel svg{width:17px;height:17px}
 @media (max-width:760px){.tiempo-cab{margin-left:0;width:100%;justify-content:flex-start;gap:.1rem 1rem}}
+.vie{display:inline-flex;align-items:center;gap:.15rem;font:500 .74rem system-ui,sans-serif;color:#5c5a4e}.vie small{font-size:.9em}.t-manana .vie{font-size:.7rem}

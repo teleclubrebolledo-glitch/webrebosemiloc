@@ -123,6 +123,34 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cierraMenus(); });
 
   /* Dovelas: el arco del vídeo lleva un anillo de piedras con sus juntas (dibujo decorativo, se recalcula al cambiar el tamaño). */
+  /* Fotos de «Fauna y flora» en las piedras del arco: de una en una; mientras se desvanece la de una piedra aparece otra foto en otra piedra, sin repetir hasta agotarlas todas. */
+  var fotosPiedra = (function () {
+    var lista = (document.querySelector('.marco-arco') || {}).getAttribute ? (document.querySelector('.marco-arco').getAttribute('data-fotos') || '').split('|').filter(Boolean) : [];
+    var cola = [], actual = null, NS = 'http://www.w3.org/2000/svg', o = { geo: [], capa: null };
+    function baraja() { cola = lista.slice(); for (var a = cola.length - 1; a > 0; a--) { var b = Math.floor(Math.random() * (a + 1)), t = cola[a]; cola[a] = cola[b]; cola[b] = t; } }
+    function crea(piedra, url, visible) {
+      var g = o.geo[piedra]; if (!g || !o.capa) return null;
+      var im = document.createElementNS(NS, 'image');
+      im.setAttribute('href', url); im.setAttribute('x', g.x); im.setAttribute('y', g.y); im.setAttribute('width', g.w); im.setAttribute('height', g.h);
+      im.setAttribute('preserveAspectRatio', 'xMidYMid slice'); im.setAttribute('clip-path', 'url(#pf-' + piedra + ')');
+      im.style.opacity = visible ? 1 : 0; im.style.transition = 'opacity 1.8s ease-in-out';
+      o.capa.appendChild(im); return im;
+    }
+    o.repinta = function () { if (actual) actual.im = crea(actual.piedra, actual.url, true); };
+    function paso() {
+      if (!lista.length || !o.geo.length || !o.capa) return;
+      if (!cola.length) baraja();
+      var url = cola.pop(), piedra, tries = 0;
+      do { piedra = Math.floor(Math.random() * o.geo.length); tries++; } while (actual && Math.abs(piedra - actual.piedra) < 2 && tries < 20);   /* otra piedra, no la de al lado */
+      var nuevo = { piedra: piedra, url: url, im: crea(piedra, url, false) };
+      if (!nuevo.im) return;
+      var viejo = actual; actual = nuevo;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { if (nuevo.im) nuevo.im.style.opacity = 1; if (viejo && viejo.im) { var v = viejo.im; v.style.opacity = 0; setTimeout(function () { if (v.parentNode) v.parentNode.removeChild(v); }, 2000); viejo.im = null; } }); });
+    }
+    if (!reducido && lista.length) { setTimeout(paso, 1500); setInterval(function () { if (!document.hidden) paso(); }, 6000); }
+    return o;
+  })();
+
   function piedras() {
     var marco = document.querySelector('.marco-arco'), por = document.querySelector('.portada');
     if (!marco || !por) return;
@@ -145,16 +173,31 @@
     L.shift();
     var N = Math.max(7, Math.round(L[M] / (T * 1.1))); if (N % 2 === 0) N++;       /* nº impar: la clave queda en el centro */
     var banda = 'M' + O.map(function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('L') + 'L' + P.slice().reverse().map(function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('L') + 'Z';
-    var d = '';
+    var d = '', J = [0];
     for (i = 1; i < N; i++) {                                    /* juntas a intervalos iguales de arco: todas las piedras del mismo largo */
       var obj = L[M] * i / N; k = 1; while (k < M && L[k] < obj) k++;
-      d += 'M' + P[k][0].toFixed(1) + ' ' + P[k][1].toFixed(1) + 'L' + O[k][0].toFixed(1) + ' ' + O[k][1].toFixed(1);
+      J.push(k); d += 'M' + P[k][0].toFixed(1) + ' ' + P[k][1].toFixed(1) + 'L' + O[k][0].toFixed(1) + ' ' + O[k][1].toFixed(1);
     }
     svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
     /* el anillo termina justo en la cara superior del capitel (ni un pixel por debajo): recorte horizontal a esa altura */
     svg.innerHTML = '<defs><clipPath id="piedras-corte"><rect x="0" y="0" width="' + m.width + '" height="' + (cy - capAlto) + '"/></clipPath></defs><g clip-path="url(#piedras-corte)">' +
-      '<path d="' + banda + '" fill="#cbbd9b"/><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
+      '<path d="' + banda + '" fill="#cbbd9b"/><g id="piedras-fotos"></g><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
+    J.push(M);
+    var defs = svg.querySelector('defs'), capa = svg.querySelector('#piedras-fotos'), geo = [];
+    for (i = 0; i < N; i++) {                                    /* polígono de cada piedra: borde exterior de una junta a la siguiente y vuelta por el interior */
+      var pts = [], xs = [], ys = [];
+      for (k = J[i]; k <= J[i + 1]; k++) pts.push(O[k]);
+      for (k = J[i + 1]; k >= J[i]; k--) pts.push(P[k]);
+      pts.forEach(function (q) { xs.push(q[0]); ys.push(q[1]); });
+      var cp = document.createElementNS(NS, 'clipPath'); cp.setAttribute('id', 'pf-' + i);
+      var pg = document.createElementNS(NS, 'polygon'); pg.setAttribute('points', pts.map(function (q) { return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' ')); cp.appendChild(pg); defs.appendChild(cp);
+      var x0 = Math.min.apply(null, xs), y0 = Math.min.apply(null, ys);
+      geo.push({ x: x0, y: y0, w: Math.max.apply(null, xs) - x0, h: Math.max.apply(null, ys) - y0 });
+    }
+    fotosPiedra.geo = geo; fotosPiedra.capa = capa; fotosPiedra.repinta();
   }
+
+
   piedras();
   if (window.ResizeObserver) new ResizeObserver(piedras).observe(document.querySelector('.marco-arco')); else window.addEventListener('resize', piedras);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(piedras);

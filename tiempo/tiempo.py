@@ -17,12 +17,14 @@ NIEVE_FUERTE_DIA = 6  # cm
 CALOR = 36            # °C máxima
 
 URL = ("https://api.open-meteo.com/v1/forecast?latitude=42.6889&longitude=-4.2271"
-       "&current=temperature_2m,weather_code,is_day,precipitation,wind_gusts_10m"
+       "&current=temperature_2m,weather_code,is_day,precipitation,wind_gusts_10m,wind_speed_10m"
        "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_gusts_10m_max,snowfall_sum"
-       "&timezone=Europe%2FMadrid&forecast_days=2")
+       "&hourly=wind_speed_10m&timezone=Europe%2FMadrid&forecast_days=2")
 req = urllib.request.Request(URL, headers={"User-Agent": "tiempo-rebolledo/0.1"})
 j = json.load(urllib.request.urlopen(req, timeout=40))
 c, d = j["current"], j["daily"]
+_h = j["hourly"]["wind_speed_10m"]
+viento_medio = [round(sum(_h[i * 24:(i + 1) * 24]) / max(1, len(_h[i * 24:(i + 1) * 24]))) for i in range(2)]   # km/h, media del día
 
 
 def peligros(codigo, tmin, tmax, racha, lluvia, nieve, lluvia_ahora=0):
@@ -45,7 +47,7 @@ hoy = {"codigo": c["weather_code"], "tmin": min(c["temperature_2m"], d["temperat
 p_ahora = peligros(hoy["codigo"], c["temperature_2m"], d["temperature_2m_max"][0], hoy["racha"], hoy["lluvia"], hoy["nieve"], c.get("precipitation", 0))
 p_manana = peligros(d["weather_code"][1], d["temperature_2m_min"][1], d["temperature_2m_max"][1], d["wind_gusts_10m_max"][1], d["precipitation_sum"][1], d["snowfall_sum"][1])
 out = {"actualizado": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), "fuente": "Open-Meteo.com (CC BY 4.0)",
-       "ahora": {"codigo": c["weather_code"], "temp": round(c["temperature_2m"]), "dia": bool(c["is_day"]), "lluvia": d["precipitation_probability_max"][0], "peligros": p_ahora},
-       "manana": {"codigo": d["weather_code"][1], "tmax": round(d["temperature_2m_max"][1]), "tmin": round(d["temperature_2m_min"][1]), "lluvia": d["precipitation_probability_max"][1], "peligros": p_manana}}
+       "ahora": {"codigo": c["weather_code"], "temp": round(c["temperature_2m"]), "dia": bool(c["is_day"]), "lluvia": d["precipitation_probability_max"][0], "viento": round(c["wind_speed_10m"]), "racha": round(hoy["racha"]), "peligros": p_ahora},
+       "manana": {"codigo": d["weather_code"][1], "tmax": round(d["temperature_2m_max"][1]), "tmin": round(d["temperature_2m_min"][1]), "lluvia": d["precipitation_probability_max"][1], "viento": viento_medio[1], "racha": round(d["wind_gusts_10m_max"][1]), "peligros": p_manana}}
 (Path(__file__).parent / "tiempo.json").write_text(json.dumps(out, ensure_ascii=False))
 print(json.dumps(out, ensure_ascii=False))

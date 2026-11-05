@@ -21,6 +21,8 @@
   }
   var gota = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5C9 8 6.5 10.8 6.5 14a5.5 5.5 0 0 0 11 0C17.5 10.8 15 8 12 3.5Z"/></svg>';
   var triangulo = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.2 22 20.5H2Z"/><path d="M12 10v5M12 17.8h.01"/></svg>';
+  var vien = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h10a2.6 2.6 0 1 0-2.6-2.6M3 14h15a2.8 2.8 0 1 1-2.8 2.8M3 19h7"/></svg>';
+  function viento(v, r, medio) { return typeof v === 'number' ? '<span class="vie" title="' + medio + ' ' + v + ' km/h; ráfagas máximas ' + r + ' km/h">' + vien + v + '<small>/' + r + ' km/h</small></span>' : ''; }
   function lluvia(p, cuando) { return '<span class="llu" title="Probabilidad de lluvia">' + gota + (typeof p === 'number' ? p : '?') + '%' + (cuando ? ' ' + cuando : '') + '</span>'; }
   function textoPeligros(ps) { return ps && ps.length ? '. ATENCIÓN: ' + ps.map(function (x) { return x.t; }).join('; ') : ''; }
   function peligro(ps) {
@@ -32,10 +34,10 @@
   if (!a || !m) return;
   fetch('tiempo/tiempo.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (d) {
     var h = icono(d.ahora.codigo, d.ahora.dia), n = icono(d.manana.codigo, true);
-    a.innerHTML = '<span class="pre">Ahora</span><span class="ico">' + h.svg + '</span><span class="gr">' + d.ahora.temp + '°</span>' + lluvia(d.ahora.lluvia, 'hoy') + peligro(d.ahora.peligros);
-    a.setAttribute('title', 'Ahora en Rebolledo: ' + h.texto + ', ' + d.ahora.temp + ' grados; probabilidad de lluvia hoy ' + d.ahora.lluvia + ' %' + textoPeligros(d.ahora.peligros)); a.setAttribute('aria-label', a.getAttribute('title'));
-    m.innerHTML = '<span class="pre">prev. mañana</span><span class="ico">' + n.svg + '</span><span class="gr">' + d.manana.tmin + '°/' + d.manana.tmax + '°</span>' + lluvia(d.manana.lluvia, '') + peligro(d.manana.peligros);
-    m.setAttribute('title', 'Previsión de mañana: ' + n.texto + ', mínima ' + d.manana.tmin + ' y máxima ' + d.manana.tmax + ' grados; probabilidad de lluvia ' + d.manana.lluvia + ' %' + textoPeligros(d.manana.peligros)); m.setAttribute('aria-label', m.getAttribute('title'));
+    a.innerHTML = '<span class="pre">Ahora</span><span class="ico">' + h.svg + '</span><span class="gr">' + d.ahora.temp + '°</span>' + lluvia(d.ahora.lluvia, 'hoy') + viento(d.ahora.viento, d.ahora.racha, 'Viento medio ahora') + peligro(d.ahora.peligros);
+    a.setAttribute('title', 'Ahora en Rebolledo: ' + h.texto + ', ' + d.ahora.temp + ' grados; probabilidad de lluvia hoy ' + d.ahora.lluvia + ' %; viento medio ' + d.ahora.viento + ' km/h y ráfagas máximas de hoy ' + d.ahora.racha + ' km/h' + textoPeligros(d.ahora.peligros)); a.setAttribute('aria-label', a.getAttribute('title'));
+    m.innerHTML = '<span class="pre">prev. mañana</span><span class="ico">' + n.svg + '</span><span class="gr">' + d.manana.tmin + '°/' + d.manana.tmax + '°</span>' + lluvia(d.manana.lluvia, '') + viento(d.manana.viento, d.manana.racha, 'Viento medio mañana') + peligro(d.manana.peligros);
+    m.setAttribute('title', 'Previsión de mañana: ' + n.texto + ', mínima ' + d.manana.tmin + ' y máxima ' + d.manana.tmax + ' grados; probabilidad de lluvia ' + d.manana.lluvia + ' %; viento medio ' + d.manana.viento + ' km/h y ráfagas máximas ' + d.manana.racha + ' km/h' + textoPeligros(d.manana.peligros)); m.setAttribute('aria-label', m.getAttribute('title'));
     a.hidden = false; m.hidden = false;
   }).catch(function () { /* sin datos: no se muestra nada */ });
 })();

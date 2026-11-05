@@ -41,7 +41,11 @@ CONTENIDO = [
     ("comunidad", "Comunidad", [("Canales de Telegram", tg("Rebolledodelatorre", "Pueblo") + " · " + tg("rutasrebolledodelatorre", "Rutas") + " · " + tg("rebolledodelatorrehuerta", "Huerta") + " · " + tg("Rebolledodelatorreenlaces", "Enlaces")),
                                 ("Tus fotos", '<a href="enviar-fotos.html">Cómo enviar tus fotos</a> por el bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a>'),
                                 ("Galería", '<a href="galeria.html">Ver las fotos</a>')]),
-    ("visitar", "Visitar", [("Cómo llegar", "Provincia de Burgos. " + MAPA),
+    ("visitar", "Visitar", [("Horario del Teleclub", "Horario: por confirmar con el propio Teleclub. " + PEND),
+                            ("Horario de visitas a la iglesia", "Iglesia de San Julián y Santa Basilisa (siglo XII, pórtico románico). Para visitarla hay que avisar al teléfono <strong>616 440 648</strong> (dato de Turismo de Castilla y León, <em>por confirmar</em>). Horario fijo: por confirmar. Hay visitas guiadas al pórtico sobre todo en las fiestas patronales de enero."),
+                            ("Horario del Ayuntamiento", "Calle Barrio Alto s/n. Teléfono <strong>947 572 303</strong> y web <a href=\"https://www.rebolledodelatorre.es\" rel=\"noopener\">rebolledodelatorre.es</a>. Horario de atención: por confirmar; consúltalo allí."),
+                            ("Transporte a la demanda", "En Castilla y León funciona el transporte público «a la demanda»: no hay horario fijo, hay que pedir el viaje con antelación a la central de reservas de la Junta (hay un bono rural gratuito en muchas zonas). Las expediciones y el teléfono concretos de esta zona: por confirmar con el Ayuntamiento o la Junta."),
+                            ("Cómo llegar", "Provincia de Burgos. " + MAPA),
                             ("El tiempo", '<a href="https://windy.com/' + LAT + '/' + LON + '" rel="noopener">Windy</a> (se abre en otra página)'),
                             ("Contacto", 'Escríbenos por el bot de Telegram <a href="https://t.me/rebolledodelatorre_bot" rel="noopener">@rebolledodelatorre_bot</a> (botón «Hablar con el equipo»).')]),
 ]
@@ -305,6 +309,9 @@ def parchea_paginas():
 
 
 def main():
+    try: _nf = json.loads((Path(__file__).parent / "naturaleza" / "fotos.json").read_text())
+    except Exception: _nf = {}
+    fotos_piedras = "|".join("naturaleza/" + f["archivo"] for f in _nf.values() if f.get("archivo") and "habitat" not in f["archivo"])
     cinta = '<div class="cintas">' + cinta_huerta() + cinta_avisos() + '</div>'
     tabs = "".join(f'<a href="#{c[0]}" data-sec="{c[0]}">{escape(c[1])}</a>' for c in CONTENIDO)
     navtop = '<a href="#inicio" data-sec="inicio">Inicio</a>' + tabs
@@ -326,7 +333,7 @@ def main():
 {barra_html()}
 
 <main id="contenido">
-  <div class="marco-arco">
+  <div class="marco-arco" data-fotos="{fotos_piedras}">
     <div class="pilar" aria-hidden="true"></div>
     <div class="centro">
       <section class="portada" id="inicio">
