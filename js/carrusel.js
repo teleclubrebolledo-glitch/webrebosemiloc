@@ -188,7 +188,7 @@
     svg.setAttribute('width', m.width); svg.setAttribute('height', cy + 2); svg.setAttribute('viewBox', '0 0 ' + m.width + ' ' + (cy + 2));
     /* el anillo termina justo en la cara superior del capitel (ni un pixel por debajo): recorte horizontal a esa altura */
     svg.innerHTML = '<defs><clipPath id="piedras-corte"><rect x="0" y="0" width="' + m.width + '" height="' + (cy - capAlto) + '"/></clipPath></defs><g clip-path="url(#piedras-corte)">' +
-      '<path d="' + banda + '" fill="#cbbd9b"/><g id="piedras-grietas"></g><g id="piedras-fotos"></g><g id="piedras-sombra"></g><g id="piedras-chips"></g><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
+      '<path d="' + banda + '" fill="#cbbd9b"/><g id="piedras-grietas"></g><g id="piedras-sombra"></g><g id="piedras-fotos"></g><g id="piedras-chips"></g><path d="' + d + '" stroke="#8f836b" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="' + banda + '" fill="none" stroke="#8f836b" stroke-width="1.6" stroke-linejoin="round"/></g>';
     J.push(M);
     var defs = svg.querySelector('defs'), capa = svg.querySelector('#piedras-fotos'), geo = [];
     for (i = 0; i < N; i++) {                                    /* polígono de cada piedra: borde exterior de una junta a la siguiente y vuelta por el interior */
