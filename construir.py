@@ -299,7 +299,7 @@ def cinta_avisos():
         return escape(CATEGORIAS_AVISOS.get(ks[0] if ks else a["categorias"][0], ""))
     li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="#avisos-{i + 2}"><span class="cinta-txt"><span class="cinta-cat">{cat(a)}</span> {escape(_recorta(a["titulo_natural"], 150))}</span>'
                  f'<span class="cinta-ico">{_icono_aviso_mini(a)}</span></a>' for i, a in enumerate(items))
-    return (f'<div class="cinta cinta-der" role="region" aria-label="Últimos avisos y ayudas"><div class="cinta-pista">{li}</div>'
+    return (f'<div class="cinta cinta-der" data-ms="9000" role="region" aria-label="Últimos avisos y ayudas"><div class="cinta-pista">{li}</div>'
             + _cinta_cab("Avisos y ayudas", "#avisos", "Aviso anterior", "Aviso siguiente") + '</div>')
 
 
@@ -308,8 +308,8 @@ def cinta_huerta():
     items = huerta_web.banner_items()
     if not items: return ""
     li = "".join(f'<a class="cinta-item{" activo" if i == 0 else ""}" href="{it["enlace"]}"><img src="{escape(it["foto"])}" alt="" width="64" height="64" loading="lazy">'
-                 f'<span class="cinta-txt"><strong>{escape(it["titulo"])}</strong><span>{escape(it["texto"])}</span></span></a>' for i, it in enumerate(items))
-    return (f'<div class="cinta cinta2" data-ms="21000" role="region" aria-label="Lo que toca en la huerta">{_cinta_cab("En la huerta", "#huerta", "Anterior", "Siguiente")}<div class="cinta-pista">{li}</div></div>')
+                 f'<span class="cinta-txt"><span class="cinta-cab2"><strong>{escape(it["titulo"])}</strong> · {escape(it["texto"])}</span><span class="cinta-desc">{escape(it["desc"])}</span></span></a>' for i, it in enumerate(items))
+    return (f'<div class="cinta cinta2" data-ms="27000" role="region" aria-label="Lo que toca en la huerta">{_cinta_cab("En la huerta", "#huerta", "Anterior", "Siguiente")}<div class="cinta-pista">{li}</div></div>')
 
 
 def pagina_creditos():

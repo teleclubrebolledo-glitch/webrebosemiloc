@@ -4,6 +4,7 @@ import datetime, json
 from html import escape
 from pathlib import Path
 import graficos as G
+from huerta_desc import DESC
 
 AQUI = Path(__file__).parent
 MES = ["", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
@@ -147,7 +148,7 @@ def banner_items(mes=None):
                 f = FOTH.get(e["id"], {})
                 if not f.get("archivo"): continue
                 if any(o["id"] == e["id"] for o in out): continue
-                out.append({"id": e["id"], "foto": "huerta/" + f["archivo"], "titulo": e["nombre"], "texto": f"{verbo} {cuando}", "enlace": f"#huerta-esp-{e['id']}", "orden": (0 if m == mes else 1, 0 if campo == "cosecha" else 1)})
+                out.append({"id": e["id"], "foto": "huerta/" + f["archivo"], "titulo": e["nombre"], "texto": f"{verbo} {cuando}", "desc": DESC.get(e["id"], ("", ""))[1 if campo == "cosecha" else 0], "enlace": f"#huerta-esp-{e['id']}", "orden": (0 if m == mes else 1, 0 if campo == "cosecha" else 1)})
     out.sort(key=lambda o: o["orden"])
     return out[:14]
 
