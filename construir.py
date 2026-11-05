@@ -223,9 +223,46 @@ def tarjeta(ident, titulo, texto):
     fig = f'<figure>{g()}</figure>' if g else ""
     return f'<article class="tarjeta" id="{ident}">{fig}<div class="texto"><h3>{escape(titulo)}</h3><p>{texto}</p></div></article>'
 
+# ── fondos de los dibujos: que no se confundan con el fondo de la tarjeta (--cal) ni con el de la banda de la sección ──
+def _lab(hx):
+    hx = hx.lstrip("#"); r, g, b = [int(hx[k:k + 2], 16) / 255 for k in (0, 2, 4)]
+    f = lambda v: ((v + 0.055) / 1.055) ** 2.4 if v > 0.04045 else v / 12.92
+    r, g, b = f(r), f(g), f(b)
+    X = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047; Y = 0.2126 * r + 0.7152 * g + 0.0722 * b; Z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883
+    t = lambda v: v ** (1 / 3) if v > 0.008856 else 7.787 * v + 16 / 116
+    return 116 * t(Y) - 16, 500 * (t(X) - t(Y)), 200 * (t(Y) - t(Z))
+
+def _dE(a, b):
+    import math
+    return math.dist(_lab(a), _lab(b))
+
+CAL = "#f9f3e3"; BANDAS = {0: "#e1d6bc", 1: "#efe0ad", 2: "#dbe4c2"}
+FONDOS = ["#c9deee", "#f0d27a"]      # cielo suave y trigo vivo: distintos de la tarjeta y de las tres bandas (ΔE ≥ 21)
+
+def recolorea(html, banda):
+    """Cambia el fondo de cada dibujo 300×200 si se parece (ΔE < 16) al de la tarjeta o al de su banda."""
+    import re
+    def uno(m):
+        svg = m.group(0)
+        if 'viewBox="0 0 300 200"' not in svg.split(">", 1)[0]: return svg
+        r = re.search(r'<rect[^>]*width="300"[^>]*height="200"[^>]*fill="(#[0-9a-f]{6})"', svg)
+        if r:
+            bg = r.group(1)
+            if min(_dE(bg, CAL), _dE(bg, BANDAS[banda])) >= 16: return svg
+            otros = [x for x in re.findall(r'fill="(#[0-9a-f]{6})"', svg) if x != bg] + re.findall(r'stroke="(#[0-9a-f]{6})"', svg)
+            nuevo = max(FONDOS, key=lambda f: min([_dE(f, o) for o in otros] or [99]))
+            return svg.replace(r.group(0), r.group(0).replace(bg, nuevo), 1)
+        stops = re.findall(r'stop-color="(#[0-9a-f]{6})"', svg)
+        if stops and min(min(_dE(s, CAL), _dE(s, BANDAS[banda])) for s in stops) < 16 and _lab(stops[0])[0] > 70:
+            alto = "sol" if _lab(stops[0])[2] < 0 else "trigo"
+            a, b = (("#a7c7e5", "#cfe1f1") if alto == "sol" else ("#f0d27a", "#f6e3a8"))
+            for s, n in zip(stops[:2], (a, b)): svg = svg.replace(f'stop-color="{s}"', f'stop-color="{n}"', 1)
+        return svg
+    return re.sub(r"<svg[^>]*>.*?</svg>", uno, html, flags=re.S)
+
 def seccion(i, ident, nombre, subs):
     BANNER = ' banner' if ident == 'astro' else ''
-    tarjetas = "\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs))
+    tarjetas = recolorea("\n      ".join(tarjeta(f"{ident}-{j+1}", t, x) for j, (t, x) in enumerate(subs)), i % 3)
     rama = '<svg class="trazo" viewBox="0 0 240 24" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 18C30 18 40 4 70 8S110 22 140 14 190 2 238 10"/></svg>'
     return (f'  <section class="banda b{i % 3} sec" id="{ident}" data-nombre="{escape(nombre)}" data-lead="{escape(LEADS[ident])}" aria-labelledby="h-{ident}">\n'
             f'    <div class="envoltorio">\n      <div class="titulo"><h2 id="h-{ident}">{escape(nombre)}</h2></div>\n'
