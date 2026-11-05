@@ -224,7 +224,7 @@
       var tx = q1[0] - q0[0], ty = q1[1] - q0[1], tn = Math.hypot(tx, ty) || 1, ix = q2[0] - q0[0], iy = q2[1] - q0[1], inn = Math.hypot(ix, iy) || 1, u = 3 + 3 * rnd(), w = 1.8 + 1.8 * rnd();
       dc += 'M' + q0[0].toFixed(1) + ' ' + q0[1].toFixed(1) + 'L' + (q0[0] + tx / tn * u).toFixed(1) + ' ' + (q0[1] + ty / tn * u).toFixed(1) + 'L' + (q0[0] + tx / tn * u * .4 + ix / inn * w).toFixed(1) + ' ' + (q0[1] + ty / tn * u * .4 + iy / inn * w).toFixed(1) + 'Z';
     }
-    if (chp) chp.innerHTML = '<path d="' + dc + '" fill="#d9cdb0"/>';
+    if (chp) chp.innerHTML = '<path d="' + dc + '" fill="#9a6b4a"/>';
     fotosPiedra.geo = geo; fotosPiedra.capa = capa; fotosPiedra.repinta();
   }
 

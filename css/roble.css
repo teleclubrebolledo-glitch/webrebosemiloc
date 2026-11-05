@@ -157,7 +157,7 @@ html[data-vista="seccion"] .tabs{margin-top:18px}
 html[data-vista="seccion"] .tabs{display:none}
 
 /* ── la portada es un arco con sus columnas: el vídeo, bajo el arco; a los lados, los fustes con capitel y base ── */
-.marco-arco{--col:clamp(30px,6vw,88px);--cap:clamp(16px,2.6vw,26px);display:grid;grid-template-columns:var(--col) minmax(0,1fr) var(--col);background:#d9cdb0;
+.marco-arco{--col:clamp(30px,6vw,88px);--cap:clamp(16px,2.6vw,26px);display:grid;grid-template-columns:var(--col) minmax(0,1fr) var(--col);background:#9a6b4a;
   padding:clamp(16px,2.6vw,30px) clamp(8px,3vw,44px) 0}
 .marco-arco .portada{min-height:min(62vh,560px)}
 .pilar{position:relative;margin-top:var(--arco);background:linear-gradient(90deg,transparent 0 12%,#bfb08f 12% 66%,#a99a7a 66% 88%,transparent 88%)}
