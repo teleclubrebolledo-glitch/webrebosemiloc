@@ -165,7 +165,7 @@ def card(marker):
     if marker == "H:temporada":
         c = [e for e in _lista(esp, "cosecha", mes, True) if e["tipo"] in ("hortaliza", "legumbre", "frutal", "fruto", "cereal", "otro")]
         fr = [e for e in c if e["tipo"] in ("frutal", "fruto")]; ho = [e for e in c if e not in fr]
-        return "hortaliza", (f'<p>Lo que da la huerta en <strong>{MES[mes]}</strong> a unos 958 m de <strong>altitud sobre el nivel del mar</strong> (la altitud de la zona):</p><ul class="guia" style="margin-top:.3rem"><li><strong>Hortalizas y legumbres:</strong> {escape(_nombres(ho))}</li>'
+        return "hortaliza", (f'<p>Lo que da la huerta en <strong>{MES[mes]}</strong> a unos 958 m de <strong>altitud sobre el nivel del mar</strong>:</p><ul class="guia" style="margin-top:.3rem"><li><strong>Hortalizas y legumbres:</strong> {escape(_nombres(ho))}</li>'
                              f'<li><strong>Frutas y frutos:</strong> {escape(_nombres(fr))}</li></ul><p class="nota">Comer de temporada y de cerca es más barato, más sabroso y más sostenible.</p>'), False
     if marker == "H:proximo":
         sig = mes % 12 + 1

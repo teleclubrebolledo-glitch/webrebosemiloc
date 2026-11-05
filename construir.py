@@ -86,7 +86,7 @@ for _i, _c in enumerate(CONTENIDO):
                                                                  ("Árboles y arbustos", "@N:arboles"), ("Plantas y flores silvestres", "@N:flora"), ("Mirar sin molestar", "@N:mirar")]))
         break
 
-LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m de altitud sobre el nivel del mar (la de la zona, no la superficie del terreno), con fichas de cultivos, frutales, flores, setas y plantas peligrosas.", "naturaleza": "Todo lo vivo de las loras y los páramos: aves, mamíferos, reptiles, insectos, árboles y flores.", "avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
+LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m de altitud sobre el nivel del mar, con fichas de cultivos, frutales, flores, setas y plantas peligrosas.", "naturaleza": "Todo lo vivo de las loras y los páramos: aves, mamíferos, reptiles, insectos, árboles y flores.", "avisos": "Lo que sale en los boletines oficiales y en la prensa del medio rural y puede interesar a Rebolledo de la Torre y sus localidades.", "rutas": "Itinerarios del entorno, dentro del Geoparque Mundial de la UNESCO Las Loras.",
          "astro": "Cielo oscuro para mirar con calma, sin luces ni prisas.",
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
