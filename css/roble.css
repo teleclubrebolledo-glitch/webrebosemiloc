@@ -260,3 +260,7 @@ html.js[data-vista="seccion"] .cintas{display:none}
 .cintas .cinta2 .cinta-desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-weight:500;font-size:.88rem;color:#f4f1e8;line-height:1.3;margin-top:.1rem}
 .cintas .cinta2 .cinta-txt span{font-size:inherit}
 .cintas .cinta-der .cinta-txt{-webkit-line-clamp:4;max-height:5.3em}
+
+/* piedra con textura: columnas, capiteles y bases picados y con el borde rasgado (filtro SVG #pdr-todo); la pared del marco, con grano */
+.pilar{filter:url(#pdr-todo)}
+.marco-arco{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .55 -.18'/></filter><rect width='220' height='220' filter='url(%23g)'/></svg>")}
