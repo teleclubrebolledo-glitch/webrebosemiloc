@@ -95,3 +95,10 @@ h1,h2,h3{font-family:var(--titulos);letter-spacing:.03em}
 .t-manana .pre{font-variant:small-caps;letter-spacing:.04em}
 .navtop a,.menu>summary{padding:8px 7px 6px;font-size:.76rem;letter-spacing:.04em}
 @media (max-width:760px){.navtop a,.menu>summary{padding:8px 9px 6px}}
+.t-ahora .pre{font:500 .72rem system-ui,sans-serif;font-variant:small-caps;letter-spacing:.04em;color:var(--tenue)}
+.llu{display:inline-flex;align-items:center;gap:.15rem;font:500 .74rem system-ui,sans-serif;color:#3f6f94}
+.pel{display:inline-flex;align-items:center;gap:.2rem;color:#a3441a;font:700 .72rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.03em}
+.pel.grave{color:#9b1c10}
+.pel svg{display:block}
+@media (prefers-reduced-motion:no-preference){.pel.grave svg{animation:pulsa 2.4s ease-in-out infinite}@keyframes pulsa{50%{transform:scale(1.15)}}}
+.t-manana .llu{font-size:.68rem}.t-manana .pel{font-size:.66rem}.t-manana .pel svg{width:15px;height:15px}
