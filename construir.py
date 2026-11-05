@@ -91,7 +91,7 @@ LEADS = {"huerta": "Qué sembrar, plantar y cosechar cada mes a unos 958 m de al
          "patrimonio": "Su iglesia, su torre y las costumbres que siguen vivas.",
          "eventos": "Lo que se vive en el pueblo, contado por quienes lo viven.",
          "comunidad": "Canales de Telegram, fotos de vecinas y vecinos, y cómo sumarse.",
-         "visitar": "Cómo llegar, el tiempo y cómo escribirnos."}
+         "visitar": "Horarios, transporte, cómo llegar, el tiempo y cómo escribirnos."}
 
 # Curvatura de lóbulos de roble como único motivo: borde festoneado (máscara), línea que crece y rama de fondo.
 def rama_fondo():

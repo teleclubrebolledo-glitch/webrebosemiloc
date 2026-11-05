@@ -235,13 +235,33 @@ def montura():
     return _svg(cuerpo, f"Perfil de una montura ecuatorial cuyo eje polar se inclina {ang:.1f} grados sobre el horizonte norte, apuntando a la Estrella Polar", vb="0 0 460 420")
 
 
+def reloj():
+    marcas = "".join(f'<path d="M150 {44 if a % 90 == 0 else 48} V56" transform="rotate({a} 150 100)" stroke="{VERDE_OSC}" stroke-width="{4 if a % 90 == 0 else 2}" stroke-linecap="round"/>' for a in range(0, 360, 30))
+    c = (f'<rect width="300" height="200" fill="{CLARO}"/><circle cx="150" cy="100" r="62" fill="#fff" stroke="{VERDE}" stroke-width="6"/>{marcas}'
+         f'<path d="M150 100 V64" stroke="{NOCHE}" stroke-width="5" stroke-linecap="round"/><path d="M150 100 L176 114" stroke="{ROJO}" stroke-width="4" stroke-linecap="round"/><circle cx="150" cy="100" r="5" fill="{NOCHE}"/>')
+    return _svg(c, "Dibujo de un reloj")
+
+
+def ayuntamiento():
+    c = (f'<rect width="300" height="200" fill="#f3ead2"/><rect x="70" y="86" width="160" height="82" fill="{PIEDRA}"/><path d="M60 88 L150 52 L240 88Z" fill="{ROJO}" opacity=".85"/>'
+         + "".join(f'<rect x="{x}" y="104" width="16" height="26" fill="{NOCHE}"/>' for x in (86, 118, 182, 210))
+         + f'<path d="M138 168 V132 A12 12 0 0 1 162 132 V168Z" fill="{NOCHE}"/><path d="M150 52 V22" stroke="{NOCHE}" stroke-width="3"/><path d="M150 22 H178 V36 H150Z" fill="{TRIGO}"/>')
+    return _svg(c, "Dibujo de un ayuntamiento con bandera")
+
+
+def autobus():
+    c = (f'<rect width="300" height="200" fill="{CLARO}"/><path d="M0 160 H300" stroke="#8f836b" stroke-width="4"/><rect x="52" y="76" width="196" height="72" rx="12" fill="{VERDE}"/>'
+         + "".join(f'<rect x="{x}" y="88" width="32" height="26" rx="4" fill="#fff"/>' for x in (66, 106, 146, 186))
+         + f'<rect x="224" y="88" width="14" height="30" rx="3" fill="#fff"/><circle cx="92" cy="150" r="14" fill="{NOCHE}"/><circle cx="92" cy="150" r="5" fill="#ccc"/><circle cx="206" cy="150" r="14" fill="{NOCHE}"/><circle cx="206" cy="150" r="5" fill="#ccc"/>')
+    return _svg(c, "Dibujo de un autobús")
+
+
 GRAFICOS = {
     "rutas-1": peña_mesa, "rutas-2": tuerces, "rutas-3": loras, "rutas-4": romanico,
     "astro-1": cielo_loras, "astro-2": telescopio,
     "patrimonio-1": iglesia, "patrimonio-2": torre, "patrimonio-3": costumbres,
     "eventos-1": eclipse, "eventos-2": evento,
     "comunidad-1": telegram, "comunidad-2": fotos, "comunidad-3": galeria,
-    "visitar-1": mapa, "visitar-2": tiempo, "visitar-3": contacto,
 }
 
 if __name__ == "__main__":
@@ -518,7 +538,9 @@ def plano_observacion():
 
 
 # Dibujos por título (las posiciones de las tarjetas cambian al añadir fichas): evita tarjetas sin imagen, cuyo título quedaría bajo la curva del arco.
-POR_TITULO = {"Las Fuerzas de la Tierra": peña_mesa, "Las Tuerces y la Horadada": tuerces, "Valdelucio y las Loras": loras, "Circuito románico": romanico}
+POR_TITULO = {"Las Fuerzas de la Tierra": peña_mesa, "Las Tuerces y la Horadada": tuerces, "Valdelucio y las Loras": loras, "Circuito románico": romanico,
+              "Horario del Teleclub": reloj, "Horario de visitas a la iglesia": iglesia, "Horario del Ayuntamiento": ayuntamiento, "Transporte a la demanda": autobus,
+              "Cómo llegar": mapa, "El tiempo": tiempo, "Contacto": contacto}
 
 
 # ═════════════ ICONOS DE LOS AVISOS ═════════════
