@@ -268,3 +268,7 @@ html.js[data-vista="seccion"] .cintas{display:none}
 .pilar::after{clip-path:polygon(0 100%,12% 0,88% 0,100% 62%,94% 100%)}
 /* los márgenes entre las columnas y el vídeo, en negro (solo esa franja: sale de los lados del propio vídeo) */
 .marco-arco .portada,.marco-arco>.centro>:not(.portada){box-shadow:calc(var(--col) * .12 + 1px) 0 0 #000,calc(var(--col) * -.12 - 1px) 0 0 #000}
+/* columnas 7 px más anchas hacia dentro (hacia el vídeo); el capitel de la derecha, entero y sin esquina rota */
+.marco-arco>.pilar:first-child{margin-right:-7px}
+.marco-arco>.pilar:last-child{margin-left:-7px}
+.marco-arco>.pilar:last-child::before{clip-path:polygon(12% 100%,0 0,100% 0,88% 100%)}
