@@ -202,25 +202,26 @@
       geo.push({ x: x0, y: y0, w: Math.max.apply(null, xs) - x0, h: Math.max.apply(null, ys) - y0 });
     }
     var nf, gr = svg.querySelector('#piedras-grietas'), sem = 31, rnd = function () { sem = (sem * 16807) % 2147483647; return sem / 2147483647; }, cl = '';
-    geo.forEach(function (g, n) {                                /* estilo de mis iconos: grietas con ramas, lascas claras y astillas oscuras; siempre las mismas (semilla fija) y por debajo de las fotos */
-      var s = '', x = g.x + g.w * (.15 + .3 * rnd()), y = g.y + g.h * (.15 + .5 * rnd()), z, fl = '';
-      if (rnd() < .8) {
-        var x0 = x, y0 = y; s = 'M' + x.toFixed(1) + ' ' + y.toFixed(1);
-        for (z = 0; z < 3; z++) { x += g.w * (.12 + .1 * rnd()); y += (rnd() - .45) * g.h * .35; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); if (z === 1) var bx = x, by = y; }
-        s += 'M' + bx.toFixed(1) + ' ' + by.toFixed(1) + 'L' + (bx + g.w * .1).toFixed(1) + ' ' + (by + g.h * (.2 + .15 * rnd())).toFixed(1);
+    geo.forEach(function (g, n) {                                /* estilo de mis iconos, en pequeño y en cantidad: grietas cortas con ramas, muchas lascas claras y astillas oscuras; siempre las mismas (semilla fija) y bajo las fotos */
+      var s = '', fl = '', z, k, nc = 2 + Math.floor(rnd() * 3), nf = 9 + Math.floor(rnd() * 7);
+      for (k = 0; k < nc; k++) {
+        var x = g.x + g.w * (.08 + .8 * rnd()), y = g.y + g.h * (.12 + .7 * rnd()), bx = x, by = y;
+        s += 'M' + x.toFixed(1) + ' ' + y.toFixed(1);
+        for (z = 0; z < 3; z++) { x += g.w * (.04 + .05 * rnd()); y += (rnd() - .45) * g.h * .18; s += 'L' + x.toFixed(1) + ' ' + y.toFixed(1); if (z === 0) { bx = x; by = y; } }
+        s += 'M' + bx.toFixed(1) + ' ' + by.toFixed(1) + 'L' + (bx + g.w * .035).toFixed(1) + ' ' + (by + g.h * (.08 + .08 * rnd())).toFixed(1);
       }
-      for (z = 0, nf = 2 + Math.floor(rnd() * 3); z < nf; z++) {
-        var fx = g.x + g.w * (.1 + .8 * rnd()), fy = g.y + g.h * (.15 + .7 * rnd()), l = 4 + 5 * rnd(), a = Math.floor(rnd() * 180);
-        fl += '<rect x="' + fx.toFixed(1) + '" y="' + fy.toFixed(1) + '" width="' + l.toFixed(1) + '" height="' + (l * .42).toFixed(1) + '" rx="1.2" fill="' + (rnd() < .55 ? '#ece3cb' : '#a99a7a') + '" opacity=".85" transform="rotate(' + a + ' ' + fx.toFixed(1) + ' ' + fy.toFixed(1) + ')"/>';
+      for (z = 0; z < nf; z++) {
+        var fx = g.x + g.w * (.05 + .9 * rnd()), fy = g.y + g.h * (.1 + .8 * rnd()), l = 1.6 + 2.6 * rnd(), a = Math.floor(rnd() * 180);
+        fl += '<rect x="' + fx.toFixed(1) + '" y="' + fy.toFixed(1) + '" width="' + l.toFixed(1) + '" height="' + (l * .45).toFixed(1) + '" rx=".6" fill="' + (rnd() < .55 ? '#ece3cb' : '#a99a7a') + '" opacity=".85" transform="rotate(' + a + ' ' + fx.toFixed(1) + ' ' + fy.toFixed(1) + ')"/>';
       }
-      cl += '<g clip-path="url(#pf-' + n + ')">' + (s ? '<path d="' + s + '" stroke="#8a7e66" stroke-width="1.5" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/><path d="' + s + '" transform="translate(1.4 1.4)" stroke="#f1e9d3" stroke-width=".8" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>' : '') + fl + '</g>';
+      cl += '<g clip-path="url(#pf-' + n + ')"><path d="' + s + '" stroke="#8a7e66" stroke-width=".9" fill="none" opacity=".85" stroke-linecap="round" stroke-linejoin="round"/><path d="' + s + '" transform="translate(.9 .9)" stroke="#f1e9d3" stroke-width=".5" fill="none" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>' + fl + '</g>';
     });
     if (gr) gr.innerHTML = cl;
     var chp = svg.querySelector('#piedras-chips'), dc = '';
     for (i = 0; i < N; i++) {                                    /* pequeños desconchones en el borde exterior (triángulos del color de la pared), en unas pocas piedras */
-      if (rnd() > .6) continue;
+      if (rnd() > .85) continue;
       var kk = J[i] + Math.max(1, Math.round((J[i + 1] - J[i]) * (.2 + .6 * rnd()))), q0 = O[kk], q1 = O[Math.min(M, kk + 1)], q2 = P[kk];
-      var tx = q1[0] - q0[0], ty = q1[1] - q0[1], tn = Math.hypot(tx, ty) || 1, ix = q2[0] - q0[0], iy = q2[1] - q0[1], inn = Math.hypot(ix, iy) || 1, u = 6 + 5 * rnd(), w = 3.5 + 3 * rnd();
+      var tx = q1[0] - q0[0], ty = q1[1] - q0[1], tn = Math.hypot(tx, ty) || 1, ix = q2[0] - q0[0], iy = q2[1] - q0[1], inn = Math.hypot(ix, iy) || 1, u = 3 + 3 * rnd(), w = 1.8 + 1.8 * rnd();
       dc += 'M' + q0[0].toFixed(1) + ' ' + q0[1].toFixed(1) + 'L' + (q0[0] + tx / tn * u).toFixed(1) + ' ' + (q0[1] + ty / tn * u).toFixed(1) + 'L' + (q0[0] + tx / tn * u * .4 + ix / inn * w).toFixed(1) + ' ' + (q0[1] + ty / tn * u * .4 + iy / inn * w).toFixed(1) + 'Z';
     }
     if (chp) chp.innerHTML = '<path d="' + dc + '" fill="#d9cdb0"/>';
