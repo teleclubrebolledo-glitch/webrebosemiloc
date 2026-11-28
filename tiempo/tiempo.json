@@ -1,1 +1,1 @@
-{"actualizado": "2026-11-28 03:13", "fuente": "Open-Meteo.com (CC BY 4.0)", "ahora": {"codigo": 2, "temp": 6, "dia": false, "lluvia": 0, "viento": 11, "racha": 28, "peligros": []}, "manana": {"codigo": 55, "tmax": 8, "tmin": 2, "lluvia": 23, "viento": 9, "racha": 35, "peligros": []}}
+{"actualizado": "2026-11-28 15:24", "fuente": "Open-Meteo.com (CC BY 4.0)", "ahora": {"codigo": 3, "temp": 8, "dia": true, "lluvia": 0, "viento": 10, "racha": 28, "peligros": []}, "manana": {"codigo": 53, "tmax": 8, "tmin": 2, "lluvia": 30, "viento": 7, "racha": 30, "peligros": []}}
